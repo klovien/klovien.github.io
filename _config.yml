@@ -1,4 +1,4 @@
-# Site settings
+﻿# Site settings
 title: 金院树蛙人
 SEOTitle: 金融树蛙人 -听取蛙声一篇
 header-img:/img/about-someone.jpg
@@ -99,16 +99,16 @@ service-worker: true
 # Friends
 friends: [
     {
-        title: "三叶草国际语维基词典",
-        href: "https://github.com/klovien/klovien.github.io/wiki"
+        title: "中国软件开发者网络",
+        href: "https://www.csdn.net/"
     },{
-        title: "三叶草国际语互动社区",
-        href: "https://klovien.fandom.com/wiki/Klovien_Interlingua"
+        title: "经管之家python论坛",
+        href: "https://bbs.pinggu.org/forum-436-1.html"
     },{
-        title: "知乎：人造国际语",
-        href: "https://zhuanlan.zhihu.com/Artificial-International-Language"
+        title: "知乎：数据挖掘",
+        href: "https://www.zhihu.com/topic/19553534/index"
     },{
-        title: "知乎：Henri_Jambo",
-        href: "https://www.zhihu.com/people/henry-jiang-78" 
+        title: "树蛙人的世界",
+        href: "http://lzy20051028.gitee.io/" 
     }
 ]
