@@ -51,23 +51,7 @@ gems: [jekyll-paginate]
 markdown: kramdown
 highlighter: rouge
 kramdown:
-  input: GFM                            # use Github Flavored Markdown !important
-
-
-
-# 评论系统
-# Disqus（https://disqus.com/）
-# disqus_username: yanjin
-
-# Gitalk
-gitalk:
-  enable: true    #是否开启Gitalk评论
-  clientID: 94be908944f3036034f4                            #生成的clientID
-  clientSecret: 77c5e01536698c5c041d9246bb77b185d4ffb8b5    #生成的clientSecret
-  repo: yanxiaoji.github.io    #仓库名称
-  owner: yanxiaoji    #github用户名
-  admin: yanxiaoji
-  distractionFreeMode: true #是否启用类似FB的阴影遮罩
+  input: GFM                            
 
 
 # 统计
