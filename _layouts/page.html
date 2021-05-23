@@ -89,9 +89,18 @@ layout: default
                     <div class="tags">
                         {% for tag in site.tags %}
                             {% if tag[1].size > {{site.featured-condition-size}} %}
-                                <a href="{{ site.baseurl }}/2-tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
+                                <!-- <a href="{{ site.baseurl }}/2-tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
                                     {{ tag[0] }}
-                                </a>
+									
+									
+                                </a> -->
+								<!-- 标签云 -->
+								<div id='tag_cloud' class="tags">
+									{% for tag in site.tags %}
+									<a href="#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">{{ tag[0] }}</a>
+									{% endfor %}
+								</div>
+								
                             {% endif %}
                         {% endfor %}
                     </div>
