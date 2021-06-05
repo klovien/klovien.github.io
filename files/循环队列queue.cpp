@@ -1,4 +1,4 @@
-/*  æ‰‹æ‰“ å¾ªç¯é˜Ÿåˆ—queue */
+/*  ÊÖ´ò Ñ­»·¶ÓÁĞqueue */
 #include <iostream>
 #define MAX_SIZE 5
 using namespace std;
@@ -13,7 +13,7 @@ class Queue
 
 public:
 	Queue()
-	{ //åˆå§‹åŒ–é˜Ÿåˆ—
+	{ //³õÊ¼»¯¶ÓÁĞ
 
 		this->count = 0;
 		this->front = 0;
@@ -21,21 +21,21 @@ public:
 	}
 
 	bool isFull()
-	{ //åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦æ»¡
+	{ //ÅĞ¶Ï¶ÓÁĞÊÇ·ñÂú
 		return this->count >= MAX_SIZE;
 	}
 
 	bool isEmpty()
-	{ //åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦ä¸ºç©º
+	{ //ÅĞ¶Ï¶ÓÁĞÊÇ·ñÎª¿Õ
 		return this->count <= 0;
 	}
 
 	void push(T item)
-	{ //å…¥é˜Ÿ
+	{ //Èë¶Ó
 
 		if (this->isFull())
 		{
-			cerr << "é˜Ÿåˆ—æ»¡äº†!" << endl;
+			cerr << "¶ÓÁĞÂúÁË!" << endl;
 			return;
 		}
 		else
@@ -47,10 +47,10 @@ public:
 	}
 
 	void pop()
-	{ //å‡ºé˜Ÿ
+	{ //³ö¶Ó
 		if (this->isEmpty())
 		{
-			cerr << "é˜Ÿåˆ—ä¸ºç©º!" << endl;
+			cerr << "¶ÓÁĞÎª¿Õ!" << endl;
 			return;
 		}
 		else
@@ -61,20 +61,20 @@ public:
 	}
 
 	int size()
-	{ //è¿”å›é˜Ÿåˆ—é•¿åº¦
+	{ //·µ»Ø¶ÓÁĞ³¤¶È
 		return this->count;
 	}
 
 	void show()
-	{ //éå†é˜Ÿåˆ—
+	{ //±éÀú¶ÓÁĞ
 		if (this->isEmpty())
 		{
-			cout << "é˜Ÿåˆ—ä¸ºç©º!" << endl;
+			cout << "¶ÓÁĞÎª¿Õ!" << endl;
 			return;
 		}
 		else
 		{
-			cout << "é˜Ÿåˆ—éå†: ";
+			cout << "¶ÓÁĞ±éÀú: ";
 			int i = this->front;
 			while (i != this->rear)
 			{
@@ -90,7 +90,7 @@ public:
 
 int main()
 {
-	Queue<int> dummy; //ç”³è¯·ç»“ç‚¹ç©ºé—´
+	Queue<int> dummy; //ÉêÇë½áµã¿Õ¼ä
 
 	dummy.push(11);
 	dummy.push(5);
@@ -109,8 +109,8 @@ int main()
 	return 0;
 }
 
-//è¿è¡Œç»“æœï¼š
+//ÔËĞĞ½á¹û£º
 //
-//é˜Ÿåˆ—éå†: 5 23 18
-//é˜Ÿåˆ—éå†: 23 18 33
-//é˜Ÿåˆ—éå†: 23 18 33 77
+//¶ÓÁĞ±éÀú: 5 23 18
+//¶ÓÁĞ±éÀú: 23 18 33
+//¶ÓÁĞ±éÀú: 23 18 33 77
