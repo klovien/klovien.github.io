@@ -93,19 +93,3 @@ featured-condition-size: 1              # 相同标签数量大于这个数，�
 # Progressive Web Apps
 chrome-tab-theme-color: "#000000"
 service-worker: true
-
-
-
-# 友情链接，请尽量不要删除，谢谢！
-friends: [
-    {
-        title: "格罗比言·全球语",
-        href: "https://globien.gitee.io"
-    },{
-        title: "格罗比言互动社区",
-        href: "https://tieba.baidu.com/f?kw=%E6%A0%BC%E7%BD%97%E6%AF%94%E8%A8%80&fr=home"
-    },{
-        title: "知乎：人造国际语",
-        href: "https://zhuanlan.zhihu.com/Artificial-International-Language"
-    }
-]
