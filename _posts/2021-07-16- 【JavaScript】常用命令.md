@@ -32,7 +32,7 @@ function binary_search(nums,target,low,high){
 
 ## Math对象
 
-一些数学中的特殊值
+**一些数学中的特殊值**
 
 ```javascript
 Math.E			//e
@@ -45,7 +45,7 @@ Math.SQRT2		//√2
 Math.SQRT1_2	//√1/2
 ```
 
-舍入方法
+**舍入方法**
 
 ```JavaScript
 Math.ceil(num)		//向上取整
@@ -54,16 +54,18 @@ Math.round(num)		//四舍五入
 Math.fround(num)	//返回数值最接近的单精度（32位）浮点值
 ```
 
-随机数
+**随机数**
 
 ```javascript
 Math.random()  	//返回0~1范围随机数  
 //let num = Math.random()*100 + 10; //10~109的数
 ```
 
-其他方法
+**其他方法**
 
 ```javascript
+         
+
 Math.abs(num)  	//绝对值
 Math.exp(num)	//e的num次幂
 Math.expm1(num)	//e的num次幂 - 1
@@ -75,4 +77,18 @@ Math.acos
 	acosh 	asin     asinh   atan 	atanh    atan2(y,x)  cos sin tan
 //反双曲余弦 反双曲正弦 反双曲正弦 反正切	反双曲正切  y/x的反正切
 ```
+
+## 数组方法
+
+#### 归并方法：
+
+```javascript
+//param：前一次函数的返回值，当前元素，和当前元素索引 和 array的本体
+Array.reduce(function(prev,curr,index,array){
+
+})
+//同理，从末尾往前迭代Array.reduceRight(function(prev,curr,index,array){})
+```
+
+![]({{site.baseurl}}/img-post/js-20210718.png)
 
