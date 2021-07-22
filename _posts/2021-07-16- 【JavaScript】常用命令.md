@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      【JavaScript】常用命令
-subtitle:   记录一下常用命令
+title:      【JavaScript】常用方法
+subtitle:   记录一下常用方法
 date:       2021-07-16
 author:     YeanSe
 header-img: 
@@ -14,7 +14,7 @@ tags:
 
 返回第一个小于 等于 该数的下标 
 **自己写的 **
-( 相当于c++中的 lower_bound(begin,end,target) ;
+( 相当于c++中的反版 lower_bound(begin,end,target) ;
 
 ```javascript
 function binary_search(nums,target,low,high){
@@ -27,7 +27,7 @@ function binary_search(nums,target,low,high){
      else if(nums[mid]<target){
         return binary_search(nums,target,mid+1,high);
      }
- }
+}
 ```
 
 ## Math对象
@@ -64,8 +64,6 @@ Math.random()  	//返回0~1范围随机数
 **其他方法**
 
 ```javascript
-         
-
 Math.abs(num)  	//绝对值
 Math.exp(num)	//e的num次幂
 Math.expm1(num)	//e的num次幂 - 1
@@ -80,15 +78,129 @@ Math.acos
 
 ## 数组方法
 
-#### 归并方法：
+#### 1.构建
 
 ```javascript
-//param：前一次函数的返回值，当前元素，和当前元素索引 和 array的本体
-Array.reduce(function(prev,curr,index,array){
+let arr =[];
+let arr = new Array(20);			//有20个空元素
+let arr = new Array("ele1","ele2"); //2个元素
+let arr = Array.from(map);			//类数组 -> 数组 （arguments伪数组，字符串，map，set等）
+let arr = Array.of(1,2,3,4);		//一组参数 ->数组
+```
 
-})
-//同理，从末尾往前迭代Array.reduceRight(function(prev,curr,index,array){})
+#### 2.检测
+
+```javascript
+Array.isArray(value)     //确定一个值是不是数组
+value instanceof Array   //只适用于一个页面
+```
+
+#### 3.迭代
+
+| 迭代器      |        |
+| :---------- | ------ |
+| a.keys()    | 键     |
+| a.values()  | 值     |
+| a.entries() | 键值对 |
+```javascript
+a.forEach( (item,index,array) =>{ } );
+
+
+//params：前一次函数的返回值，当前元素，和当前元素索引 和 array的本体
+Array.reduce(function(prev,curr,index,array){...})
+Array.reduceRight(function(prev,curr,index,array){...})//同理，从末尾往前迭代
 ```
 
 ![]({{site.baseurl}}/img-post/js-20210718.png)
+
+#### 4.复制和填充
+
+```javascript
+a.fill(5);   	//用5填充整个数组
+a.fill(6,3);	//用6填充 下标 3<=index
+a.fill(6,1,5); 	//用6填充 下标 1<=index<5
+```
+
+```javascript
+a.copyWithin(5);	//从0<=index开始浅拷贝，插入到 5 	-> 0 1 2 3 4 0 1 2 3 4 5
+a.copyWithin(5,1);	//从1<=index开始浅拷贝，插入到 5	-> 0 1 2 3 4 1 2 3 4 5 6
+a.copyWithin(5,1,2);//从1<=index<2开始浅拷贝，插入到5	-> 0 1 2 3 4 1 5 6 7 8 9
+```
+
+#### 5.转换
+
+```javascript
+a.toString()
+a.valueOf()
+a.toLocaleString()
+//常用：
+let a = [0, 1, 2, 3, 4,5,6,7,8,9,10];
+console.log( a.toString().replace(/,/g,'') )
+//012345678910
+```
+
+#### 6.栈
+
+push返回最新长度 pop返回删除元素
+
+```javascript
+a.push("a");		//["a"] 
+a.push("a","b");	//["a","a","b"] 可以同时push两个 
+console.log(a.pop()); //b 删掉了b
+```
+
+#### 7.队列
+
+```javascript
+a.unshift("a");		//["a"] 
+a.unshift("a","b");	//["a","b","a"] 可以 前插 两个,还是按原ab顺序 
+console.log(a.shift()); //a 删掉了a
+```
+
+#### 8.排序
+
+```javascript
+a.sort()
+a.sort(compare)
+a.reverse()
+```
+
+#### 9.操作
+
+##### concat 
+
+衔接无限个数组、元素，返回一个新构建的数组
+
+```javascript
+let newArray = a.concat("a",["a","b"])  //创建一个 ["a","a","b"]
+```
+
+##### slice   
+
+ slice(开始,结束)   返回 开始<=index<结束 的新数组
+
+```javascript
+let newArray = a.slice(0)  //创建一个 0到末尾
+let newArray = a.slice(0,1)  //创建一个 [0] 
+```
+
+##### splice 
+
+最强大的数组操作方法 一次实现 删除、插入、替换 三个功能的语法糖
+
+| 功能 | 参数                           | 语法糖                          | 用途                        |
+| ---- | ------------------------------ | ------------------------------- | --------------------------- |
+| 删除 | 2       开始位置 删除数量      | a.splice(begin,num)             | 删除begin<=index的num个元素 |
+| 插入 | >=3  开始位置 0(删除数量) 元素 | a.splice(begin,0,ele...)        | 在begin处 插入 元素         |
+| 替换 | >=3  开始位置 num num个元素    | a.splice(begin,num,num个ele...) | 又删又插 就是替换           |
+
+#### 10.搜索方法
+
+| 方法                                           | 返回    | 功能                   |
+| ---------------------------------------------- | ------- | ---------------------- |
+| a.includes(ele,begin)                          | bool    | 是否含有               |
+| a.indexOf(ele,begin)                           | 下标    | 从起始查找第一个       |
+| a.lastIndexOf(ele,begin)                       | 下标    | 从末尾查找第一个       |
+| a.find( (ele,index,array) => ele.age<18 )      | 某个ele | 第一个匹配的元素       |
+| a.findIndex( (ele,index,array) => ele.age<18 ) | 某个ele | 第一个匹配的元素的索引 |
 
