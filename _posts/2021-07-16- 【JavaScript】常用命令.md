@@ -134,10 +134,19 @@ a.toString()
 a.valueOf()
 a.toLocaleString()
 //常用：
-let a = [0, 1, 2, 3, 4,5,6,7,8,9,10];
-console.log( a.toString().replace(/,/g,'') )
-//012345678910
+let a = [1,2,3,4,5,6]
+let str = ''.concat(...a);
+//或者用a.toString().replace(/,/g,'');
+//1,2,3,4,5,6 => 123456
+
+let string = "this is a string";
+//string => array
+arr = [...string]
+//array => string
+let str = ''.concat(...arr);
 ```
+
+![]({{site.baseurl}}/img-post/JSstring-20210724.png)
 
 #### 6.栈
 

@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CSS+JS极品飞车19主页面效果</title>
+<style>
+
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	
+	body{
+		/*如果不需要3D效果请把下面这行删掉*/
+		perspective: 2500px;
+		overflow: hidden;
+	}
+	
+	#bg{
+		position: absolute;
+		z-index: 0;
+		width: 1920px;
+		height: 1080px;
+		/*如果不需要3D效果把transform属性删掉，下同*/
+		transform: rotateX(5deg) rotateY(15deg) rotateZ(-5deg) scale(1.2);
+		/*如果需要添加背景图，请在此添加background属性*/
+	}
+	
+	#box{
+		position: absolute;
+		z-index: 9999;
+		width: 1440px;
+		height: 720px;
+		transform: rotateX(5deg) rotateY(15deg) rotateZ(-5deg);
+	}
+	#box div{
+		position: absolute;
+		border: 2px solid #EEE;
+		background: rgba(0,0,0,0.7);
+		box-shadow: 0px 0px 10px 0px #111;
+	}
+	#box div:hover{
+		z-index: 9999;
+		transform: scale(1.2);
+		box-shadow: 0px 0px 10px 0px #EEE;
+		background: #FFF;
+		cursor: pointer;
+		transition: all 0.3s;
+	}
+</style>
+</head>
+
+<body>
+	
+	<div id="bg"></div>
+	<div id="box">
+		<div style="width: 300px; height: 100px; left: 400px; top: 30px;"></div>
+		<div style="width: 130px; height: 130px; left: 710px; top: 0px;"></div>
+		<div style="width: 550px; height: 300px; left: 400px; top: 140px;"></div>
+		<div style="width: 300px; height: 150px; left: 90px; top: 140px;"></div>
+		<div style="width: 140px; height: 140px; left: 250px; top: 300px;">开始游戏</div>
+		<div style="width: 350px; height: 200px; left: 960px; top: 240px;"></div>
+		<div style="width: 300px; height: 150px; left: 290px; top: 450px;"></div>
+		<div style="width: 300px; height: 150px; left: 600px; top: 450px;"></div>
+		<div style="width: 300px; height: 150px; left: 910px; top: 450px;"></div>
+		<div style="width: 130px; height: 130px; left: 910px; top: 610px"></div>
+	</div>
+	
+	<script>
+	
+		var bg = document.getElementById("bg");
+		var box = document.getElementById("box");
+		
+		document.onmousemove=function(e)
+		{		
+			/*
+			 * 背景图初始坐标（300,100）,请根据需要自行调整
+			 * 元素名.style.left|top = 初始X|Y坐标（可选） + (e.pageX|Y - 主体内容宽度|高度/2) / 常数（可选） + "px"
+			 */
+			
+			bg.style.left = 300 + (-e.pageX - 960) / 10 + "px";
+			bg.style.top = 100 + (-e.pageY - 540) / 10 + "px";
+			
+			box.style.left = 480 + (-e.pageX - 480) / 5 + "px";
+			box.style.top = 170 + (-e.pageY - 270) / 5 + "px";
+		}
+	
+	</script>
+	
+</body>
+</html>

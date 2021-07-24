@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello</title>
+    <style>
+        .first {
+            width: 200px;
+            height: 100px;
+        }
+
+        .mask {
+            display: none;
+            z-index: 1;
+            position: fixed;
+            top: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .mask .innerModel {
+            display: none;
+            z-index: 100;
+            width: 300px;
+            height: 300px;
+            background-color: aliceblue;
+            position: relative;
+            top: calc(50% - 150px);
+            left: calc(50% - 150px);
+            cursor: move;
+        }
+
+        .close {
+            display: block;
+            position: absolute;
+            top: 0%;
+            right: 0%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>Hello,world</div>
+    <button class="first" onclick="mybutton()">hello</button>
+    <div class="mask">
+        <div class="innerModel">
+            <button class="close" onclick="closeModel()">X</button>
+        </div>
+    </div>
+
+</body>
+<script>
+    var Model = document.querySelector('.innerModel');
+    var mask = document.querySelector('.mask');
+    Model.addEventListener("mousedown", function (e) {
+        let x = e.pageX - Model.offsetLeft;
+        let y = e.pageY - Model.offsetTop;
+        let fn = function (e) {
+            Model.style.left = e.pageX - x + 'px';
+            Model.style.top = e.pageY - y + 'px';
+        }
+        document.addEventListener("mousemove", fn);
+        document.addEventListener("mouseup", function (e) {
+            document.removeEventListener('mousemove', fn)
+        });
+    })
+
+    function mybutton() {
+        Model.style.display = "block";
+        Model.style.top = "calc(50% - 150px)";
+        Model.style.left = "calc(50% - 150px)";
+
+        mask.style.display = "block";
+    };
+
+    function closeModel() {
+        Model.style.display = "none";
+        mask.style.display = "none";
+
+    }
+</script>
+
+</html>

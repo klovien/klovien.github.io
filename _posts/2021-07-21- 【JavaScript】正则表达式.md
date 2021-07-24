@@ -13,13 +13,6 @@ tags:
 ```javascript
 pattern.exec(str)
 ```
-
-
-
-
-
-
-
 学正则表达式的网址：https://codejiaonang.com/
 
 <h2 id="section">多种匹配模式</h2>
