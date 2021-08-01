@@ -97,15 +97,27 @@ value instanceof Array   //只适用于一个页面
 
 #### 3.迭代
 
+
+
 | 迭代器      |        |
 | :---------- | ------ |
 | a.keys()    | 键     |
 | a.values()  | 值     |
 | a.entries() | 键值对 |
+
+##### 5个迭代方法，参数均为	 function(item,index,array){}
+
+**1、every（）∀ 任意**：对数组中的每一项运行给定函数，如果该函数对每一个项都返回true,则返回true
+**2、some（）∃存在	：**对数组中的每一项运行给定函数，如果该函数对任一一项返回true,则返回true
+**3、filter（）过滤器	：**对数组中的每一项运行给定函数，返回该函数会返回true的项组成的数组
+
+**4、foreach（）		：**对数组中的每一项运行给定函数，没有返回值
+**5、map（）映射转换：**对数组中的每一项运行给定函数，返回每次函数调用的结果组成的数组
+
+##### 2个归并方法 reduce和reduceRight
+
 ```javascript
 a.forEach( (item,index,array) =>{ } );
-
-
 //params：前一次函数的返回值，当前元素，和当前元素索引 和 array的本体
 Array.reduce(function(prev,curr,index,array){...})
 Array.reduceRight(function(prev,curr,index,array){...})//同理，从末尾往前迭代
@@ -135,7 +147,8 @@ a.valueOf()
 a.toLocaleString()
 //常用：
 let a = [1,2,3,4,5,6]
-let str = ''.concat(...a);
+let str = a.join('');			//123456
+let str = ''.concat(...a);	//123456
 //或者用a.toString().replace(/,/g,'');
 //1,2,3,4,5,6 => 123456
 
