@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <link rel="stylesheet" href="./style1.css">
+</head>
+
+<body>
+    <!-- <button class="default">1</button> -->
+    <div class="calculator">
+        <!-- 显示区begin -->
+        <div class="display">
+            <div class="viceScreen"></div>
+            <input class="screen" maxlength="19" value="0">
+        </div>
+        <!-- 显示区end -->
+
+        <!-- 功能区begin -->
+        <div class="function">
+            function
+        </div>
+        <!-- 功能区end -->
+
+        <!-- 输入区begin -->
+        <div class="input">
+            <div class="digits">
+                <div>
+                    <button class="default">0</button>
+                    <button class="default">.</button>
+                </div>
+                <button class="default">1</button>
+                <button class="default">2</button>
+                <button class="default">3</button>
+                <button class="default">4</button>
+                <button class="default">5</button>
+                <button class="default">6</button>
+                <button class="default">7</button>
+                <button class="default">8</button>
+                <button class="default">9</button>
+            </div>
+            <div class="operators">
+                <button class="default operator">+</button>
+                <button class="default operator">-</button>
+                <button class="default operator">*</button>
+                <button class="default operator">/</button>
+                <button class="default" onclick="clearOut()">清空</button>
+                <button class="default" onclick="del()">delete</button>
+                <div>
+                    <button class="default" onclick="equal()">=</button>
+                </div>
+            </div>
+        </div>
+        <!-- 输入区end -->
+    </div>
+</body>
+<script src="./calculator.js"></script>
+</html>

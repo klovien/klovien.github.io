@@ -1,0 +1,157 @@
+* {
+  outline: none;
+}
+.calculator {
+  -moz-user-select: none;
+  /*火狐*/
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+  -ms-user-select: none;
+  /*IE10*/
+  -khtml-user-select: none;
+  /*早期浏览器*/
+  user-select: none;
+}
+.calculator {
+  min-width: 300px;
+  width: 500px;
+  min-height: 300px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #ECD9D4;
+  border-radius: 30px 30px 50px 50px;
+  border-bottom: 10px solid #6e3c3c;
+  border-right: 5px solid #7c4444;
+}
+.display {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 3px;
+  display: flex;
+  flex: 1 1;
+  background-color: #bd8282;
+  border-radius: 60px;
+  position: relative;
+}
+.display .viceScreen {
+  width: 75%;
+  height: 30%;
+  z-index: 1;
+  position: absolute;
+  top: 7%;
+  right: 10%;
+  text-align: right;
+  color: #7C4F4F;
+  line-height: 125%;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 30px;
+  font-weight: 500;
+}
+.display .screen {
+  flex: 1 1;
+  margin: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: 2px solid white;
+  color: #7C4F4F;
+  line-height: 100%;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 40px;
+  font-weight: 500;
+  text-align: right;
+  padding-right: 10px;
+  border-radius: 40px;
+  background-color: #E9EAE8;
+  outline: none;
+}
+.display .screen:active {
+  border: none;
+  text-decoration: none;
+  appearance: unset;
+}
+.function {
+  display: none;
+  flex: 1 1;
+  background-color: blue;
+}
+.input {
+  flex: 3 1;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+.input .digits {
+  flex: 5;
+  display: flex;
+  flex-wrap: wrap-reverse;
+}
+.input .digits div {
+  width: 100%;
+  display: flex;
+}
+.input .digits button:first-child {
+  flex: 100 1;
+}
+.input .digits button {
+  min-width: 25%;
+  flex: 2 2;
+}
+.input .operators {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10px;
+  flex: 2 1;
+}
+.input .operators .editable {
+  display: flex;
+  flex: 1 1;
+}
+.input .operators .default {
+  flex: 1 1;
+  min-width: 40%;
+  margin: 10px 3%;
+}
+.input .operators div {
+  display: flex;
+  flex: 2 3;
+}
+.input .operators div .default {
+  flex: 2 2;
+  background-color: red;
+}
+.input .default {
+  box-sizing: border-box;
+  margin: 5px 3px;
+  transform-style: preserve-3d;
+  transform: perspective(900px);
+  background: linear-gradient(to bottom, #ecd7d5 50%, #e9cac7 100%);
+  border: 1px solid #7C4F4F;
+  border-radius: 70px;
+  border-bottom: 8px solid #7C4F4F;
+  color: #B67B75;
+  font-weight: 700;
+  font-family: 'Open Sans', sans-serif;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+  font-size: 15px;
+  text-align: center;
+  box-shadow: 1px 7px 2px rgba(0, 0, 0, 0.3);
+  -moz-user-select: none;
+  /*火狐*/
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+  -ms-user-select: none;
+  /*IE10*/
+  -khtml-user-select: none;
+  /*早期浏览器*/
+  user-select: none;
+}
+.input .default:active {
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+  transform: translateY(6px);
+  border-bottom: 8px solid #6b4545;
+}
