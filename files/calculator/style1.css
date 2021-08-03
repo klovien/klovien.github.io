@@ -21,6 +21,7 @@
 	min-height: 300px;
 	max-width: 505px;
 	max-height: 510px;
+	
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
