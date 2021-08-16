@@ -57,8 +57,9 @@ Math.fround(num)	//返回数值最接近的单精度（32位）浮点值
 **随机数**
 
 ```javascript
-Math.random()  	//返回0~1范围随机数  
-//let num = Math.random()*100 + 10; //10~109的数
+Math.random()  //返回0<=x<1范围的随机数  
+//let ran = Math.random()*100 + 10; 	//10~109的数
+//let ran = ~~Math.random()*100 + 10;	//10~109的整数
 ```
 
 **其他方法**
@@ -226,3 +227,22 @@ let newArray = a.slice(0,1)  //创建一个 [0]
 | a.find( (ele,index,array) => ele.age<18 )      | 某个ele | 第一个匹配的元素       |
 | a.findIndex( (ele,index,array) => ele.age<18 ) | 某个ele | 第一个匹配的元素的索引 |
 
+## 本地存储
+
+localStorage 是 HTML5 标准中新加入的技术，用于长久保存整个网站的数据，保存的数据没有过期时间，直到手动去删除；
+localStorage和sessionStorage最大一般为5MB，仅在客户端（即浏览器）中保存，不参与和服务器的通信；
+
+setItem(key,value) 设置数据
+getItem(key) 获取数据
+removeItem(key) 移除数据
+clear() 清除所有值
+
+sessionStorage仅在当前会话下有效，关闭页面或浏览器后被清除；
+
+setItem(key,value) 设置数据
+
+getItem(key) 获取数据
+
+removeItem(key) 移除数据
+
+clear() 清除所有值
