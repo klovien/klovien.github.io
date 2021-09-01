@@ -124,3 +124,40 @@ pattern.exec(str)
 </table>
 </div>
 
+
+
+## 匹配方法
+
+`语法：str.match(reg) 返回：找到的 子串或者子串组`
+
+```javascript
+const str = 'Hello JavaScript'
+str.match()  // [""]
+str.match(/JS/) // null
+str.match(/JavaScript/g)  // ["JavaScript"]
+str.match(/JavaScript/)  // [0: "JavaScript", groups: undefined, index: 6, input: "Hello JavaScript"]
+str.match(/(?<J>Java)(?<S>Script)/)  // [0: "JavaScript", 1: "Java", 2: "Script", groups: { J: "Java", S: "Script" }, index: 6, input: "Hello JavaScript"]
+```
+
+`语法：str.matchAll(reg) `
+
+```javascript
+const regexp = /t(e)(st(\d?))/g;
+const str = 'test1test2';
+const array = [...str.matchAll(regexp)];
+
+console.log(array[0]);
+// expected output: Array ["test1", "e", "st1", "1"]
+
+console.log(array[1]);
+// expected output: Array ["test2", "e", "st2", "2"]
+
+
+// 0: "hello"  匹配的字符串，如果有使用分组会在后面依次列出来
+// groups: undefined  没有使用命名捕获组会返回undefined，否则会返回包含命名捕获组的对象
+// index: 0  匹配的结果在当前字符串位置开始的索引
+// input: "hello javascript hello css" 当前字符串
+```
+
+
+

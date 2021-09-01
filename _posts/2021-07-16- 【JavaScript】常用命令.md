@@ -30,6 +30,28 @@ function binary_search(nums,target,low,high){
 }
 ```
 
+```javascript
+function binary_search(numbers,target,low,high,) {
+        let left = low;
+        let right = high;
+        if (target > numbers[right] || target < numbers[left])
+            return -1;
+        while (left <= right) {
+            let mid = left + parseInt((right - left) / 2);
+            if (numbers[mid] == target) {
+                return mid;
+            } else if (numbers[mid] < target) {
+                left = mid + 1;
+            } else if (target < numbers[mid]) {
+                right = mid - 1;
+            }
+        }
+        return -1;
+    }
+```
+
+
+
 ## Math对象
 
 **一些数学中的特殊值**
@@ -246,3 +268,45 @@ getItem(key) 获取数据
 removeItem(key) 移除数据
 
 clear() 清除所有值
+
+
+
+# 字符串方法
+
+## ASCII码 转 字符
+
+### `String.fromCodePoint(num1[, ...[, numN]])`
+
+```
+String.fromCharCode(65) // A
+String.fromCharCode(90) // Z
+String.fromCharCode(97) // a
+String.fromCharCode(122) // z
+```
+
+### `String.fromCharCode(num1[, ...[, numN]])`
+
+```
+String.fromCodePoint(65) // A
+String.fromCodePoint(90) // Z
+String.fromCodePoint(97) // a
+String.fromCodePoint(122) // z
+```
+
+`fromCodePoint()`, `fromCharCode()`两个都是`String`的静态方法，所以直接使用，不需要实例化。
+
+两者的主要区别是：
+`fromCharCode()` 出现的早，可以处理常用的字符编码
+`fromCodePoint()` ES2015出现的，可以处理高位编码。
+
+## 字符 转 ASCII码
+
+### `'A'.charCodeAt() // 65`
+
+```
+'A'.charCodeAt() // 65
+'a'.charCodeAt() // 97
+'Z'.charCodeAt() // 90
+'z'.charCodeAt() // 122
+```
+
