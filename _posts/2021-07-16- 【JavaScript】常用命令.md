@@ -249,7 +249,7 @@ let newArray = a.slice(0,1)  //创建一个 [0]
 | a.find( (ele,index,array) => ele.age<18 )      | 某个ele | 第一个匹配的元素       |
 | a.findIndex( (ele,index,array) => ele.age<18 ) | 某个ele | 第一个匹配的元素的索引 |
 
-## 本地存储
+# 本地存储
 
 localStorage 是 HTML5 标准中新加入的技术，用于长久保存整个网站的数据，保存的数据没有过期时间，直到手动去删除；
 localStorage和sessionStorage最大一般为5MB，仅在客户端（即浏览器）中保存，不参与和服务器的通信；
@@ -310,3 +310,108 @@ String.fromCodePoint(122) // z
 'z'.charCodeAt() // 122
 ```
 
+# 模块化语法
+
+## ES5 `module.export ={} `和 `require()`
+
+```javascript
+//工具人.js
+module.exports = {//挺好，直接封装成对象，函数中可以调用 this
+  	a,
+    b
+}
+或者用 exports = {} //是一样的
+//正常写.js
+const test = require("./test.js")
+```
+
+## ES6 `export default`和`import 内容 from 路径`
+
+```javascript
+//工具人.js
+//语法
+export var a = 1;
+或
+var a = 1;
+export default a;
+
+export default {//80%以上的情况，默认暴露
+  a:"封装成一个对象，写法是一样的", 
+  方法1(){
+    
+  }
+}
+
+//正常写.js
+import a from "./test.js"
+```
+
+利用es6规范，还想用node运行js文件，想的美。必须用babel将es6 -> es5 
+
+```shell
+npm init -y
+npm install babel-preset-es2015
+babel 文件/文件夹名 -d dist
+```
+
+或者在插件商店找个compile to es5 的插件 例如：compile hero
+
+# 进制转换
+
+#### 1.10进制转其他进制
+
+```javascript
+//number类型的toString方法
+(100).toString(2)         // "1100100"
+(100).toString(8)         // "144"
+(100).toString(16)         // "64"
+```
+
+
+
+#### 2.其他进制转 十进制
+
+`parseInt(数，该数的进制)`
+
+##### 16进制转10进制
+
+```javascript
+parseInt(0x64)            //  100 
+parseInt('0x64')          //  100
+parseInt('0x64',16)       //  100    第二参数写了更好，以免迷糊
+parseInt('ff')            //  NaN
+parseInt('ff',16)         //  255   这里没有0x打头，必须要注明要转的基数
+```
+
+##### 8进制转10进制
+
+```javascript
+parseInt(0100);           //  64    先转成字符串，再以8进制解析
+parseInt("0100",8);       //  64    正确写法，无歧义  !!!
+
+parseInt("0100");         //  100   官方表示不确定：但是测试结果，谷歌浏览器当成10进制输入。所以不建议这样写
+```
+
+
+
+##### 2进制转10进制
+
+```javascript
+parseInt("11",2);        //返回 3 
+```
+
+##### **补充**
+
+ES6支持二进制和八进制的字面量
+
+　　1、在**数字**前面添加 **0o** 或者 **0O** 即可将其转换为八进制
+
+　　2、在**数字**前面添加 **0b** 或者 **0B** 即可将其转换为二进制
+
+```
+let oValue = 0o10;
+console.log(oValue);      //8
+
+let bValue = 0b10;
+console.log(bValue);      //2
+```
