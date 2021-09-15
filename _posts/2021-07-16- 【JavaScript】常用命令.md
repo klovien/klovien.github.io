@@ -10,6 +10,24 @@ tags:
     - JavaScript
 ---
 
+# 注释 
+
+<table><thead><tr><th align="center">注释名</th><th align="center">语法</th><th align="center">含义</th><th align="center">示例</th></tr></thead><tbody><tr><td align="center">@param</td><td align="center"><code>@param 参数名 {参数类型} 描述信息</code></td><td align="center">描述参数的信息</td><td align="center"><code>@param name {String} 传入名称</code></td></tr><tr><td align="center">@return</td><td align="center"><code>@return {返回类型} 描述信息</code></td><td align="center">描述返回值的信息</td><td align="center"><code>@return {Boolean} true:可执行;false:不可执行</code></td></tr><tr><td align="center">@author</td><td align="center"><code>@author 作者信息 [附属信息：如邮箱、日期]</code></td><td align="center">描述此函数作者的信息</td><td align="center"><code>@author 张三 2015/07/21</code></td></tr><tr><td align="center">@version</td><td align="center"><code>@version XX.XX.XX</code></td><td align="center">描述此函数的版本号</td><td align="center"><code>@version 1.0.3</code></td></tr><tr><td align="center">@example</td><td align="center"><code>@example 示例代码</code></td><td align="center">演示函数的使用</td><td align="center"><code>@example setTitle(‘测试’)</code></td></tr></tbody></table>
+
+```javascript
+/**
+ * @method
+ * @param {string} data 目标对象
+ * @returns {string} 运营商名称
+ * @desc 根据参数返回一个字符串
+ */
+function matchedNumber(data){
+    return data + '返回一个字符串'
+}
+```
+
+
+
 ## 二分搜索
 
 返回第一个小于 等于 该数的下标 
@@ -97,6 +115,53 @@ Math.cbrt(num)	//立方根
 Math.acos
 	acosh 	asin     asinh   atan 	atanh    atan2(y,x)  cos sin tan
 //反双曲余弦 反双曲正弦 反双曲正弦 反正切	反双曲正切  y/x的反正切
+```
+
+## 字符串方法
+
+以截掉字符串最后一位为例
+
+1.slice方法
+
+```javascript
+/**
+ * slice(start,end)
+ * start 要截取的字符串的起始下标 如果为负数从后面开始算起 -1指的是字符串的最后一位
+ * end 要截取的字符串的结尾下标 如果为负数从后面开始算起 -1指的是字符串的最后一位
+ * start 和 end 都是下标
+ */
+
+let str ="122889,"
+str=str.slice(0,str.length-1)
+console.log(str)//122889
+```
+
+2.substr方法
+
+```javascript
+/**
+ * substr(start,length)
+ * start 要截取的字符串的起始下标 如果为负数从后面开始算起 -1指的是字符串的最后一位
+ *length 要截取的字符串的长度
+ */
+
+let str ="122889,"
+str=str.substr(0,str.length-1)
+console.log(str)
+```
+
+3.substring方法
+
+```javascript
+/**
+ * substring(from,to)
+ * from 要截取的字符串的起始下标 
+ * to 截取到的字符串的下标 不包括这一项
+ */
+
+let str ="122889,"
+str=str.substring(0,str.length-1)
+console.log(str)
 ```
 
 ## 数组方法
@@ -193,6 +258,64 @@ a.push("a");		//["a"]
 a.push("a","b");	//["a","a","b"] 可以同时push两个 
 console.log(a.pop()); //b 删掉了b
 ```
+
+### 两种栈类的写法
+
+```javascript
+/**
+ * @class 栈类
+ * @description 继承自数组
+ */
+class stack extends Array {
+    constructor() {
+        super();
+    }
+    top() {
+        return this[this.length - 1]
+    }
+    isEmpty() {
+        return this.length === 0
+    }
+    size() {
+        return this.length
+    }
+    clear() {
+        this.length = 0
+    }
+    print() {
+        console.log(this.toString())
+    }
+}
+/**
+ * 只实现了栈，无数组原生的方法
+ */
+function stack() {
+    let items = []
+    this.push = function (element) {
+      items.push(element)
+    }
+    this.pop = function () {
+      return items.pop()
+    }
+    this.peek = function () {
+      return items[items.length - 1]
+    }
+    this.isEmpty = function () {
+      return items.length === 0
+    }
+    this.size = function () {
+      return items.length
+    }
+    this.clear = function () {
+      items = []
+    }
+    this.print = function () {
+      console.log(items.toString())
+    }
+}
+```
+
+
 
 #### 7.队列
 
@@ -355,6 +478,35 @@ babel 文件/文件夹名 -d dist
 ```
 
 或者在插件商店找个compile to es5 的插件 例如：compile hero
+
+
+
+```javascript
+1、export default 向外暴露的成员，可以使用任意变量来接收
+
+2、在一个模块中，export default 只允许向外暴露一次
+
+3、在一个模块中，可以同时使用export default 和export 向外暴露成员
+
+4、使用export向外暴露的成员，只能使用{  }的形式来接收，这种形式，叫做【按需导出】
+
+5、export可以向外暴露多个成员，同时，如果某些成员，在import导入时，不需要，可以不在{ }中定义
+
+6、使用export导出的成员，必须严格按照导出时候的名称，来使用{ }按需接收
+
+7、使用export导出的成员，如果想换个变量名称接收，可以使用as来起别名
+// test.js
+var info = {
+    name: 'zs',
+    age: 20
+}
+export default info
+export var title = '小星星'
+export var content = '哈哈哈'
+import {title, content as content1} from './test.js
+```
+
+
 
 # 进制转换
 

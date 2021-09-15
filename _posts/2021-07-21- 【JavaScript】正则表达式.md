@@ -12,6 +12,7 @@ tags:
 
 ```javascript
 pattern.exec(str)
+pattern.test(str)
 ```
 学正则表达式的网址：https://codejiaonang.com/
 
@@ -122,9 +123,11 @@ pattern.exec(str)
     </tr>
   </tbody>
 </table>
-</div>
+## 解除贪婪模式
 
+在匹配优先量词后加上“?”，即变成属于非贪婪模式的量词，也叫做忽略优先量词，包括： 
 
+“{m,n}?”、“{m,}?”、“??”、“*?”和“+?”。 
 
 ## 匹配方法
 
@@ -160,4 +163,11 @@ console.log(array[1]);
 ```
 
 
+
+`语法：str.replace(/正则/g,(word)=>{return ""})`
+
+```javascript
+name = "Doe, John";
+name.replace(/(\w+)\s*, \s*(\w+)/, "$2 $1")
+```
 
