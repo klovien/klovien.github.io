@@ -567,3 +567,177 @@ console.log(oValue);      //8
 let bValue = 0b10;
 console.log(bValue);      //2
 ```
+
+
+
+# 判断类型是否为数字
+
+我们先创建一些变量：
+
+```
+let intVar = 2;
+
+let floatVar = 10.5;
+
+let stringVar = '4';
+
+let nanVar = NaN;
+
+let infinityVar = Infinity;
+
+let nullVar = null;
+
+let undefinedVar = undefined;
+```
+
+**使用 Number.isFinite() 函数名**
+
+`Number.isFinite()`函数检查变量是否为数字，还检查其是否为**有限值**。 因此，对于`NaN`，`Infinity`或`-Infinity`的数字，它返回`false`。
+
+我们用上面定义的变量来检验一下:
+
+```
+> Number.isFinite(intVar);
+
+true
+
+> Number.isFinite(floatVar);
+
+true
+
+> Number.isFinite(stringVar);
+
+false
+
+> Number.isFinite(nanVar);
+
+false
+
+> Number.isFinite(infinityVar);
+
+false
+
+> Number.isFinite(nullVar);
+
+false
+
+> Number.isFinite(undefined);
+
+false
+```
+
+这正是我们想要的。特殊的非有限数以及非数字类型的任何变量都会被忽略。所以，如果你想检查一个变量是否是一个数字，最好的方法是使用`Number.isFinite()`函数。
+
+**使用 Number.isNaN() 方法**
+
+标准`Number`对象有一个`isNaN()`方法。它接受一个参数，并确定其值是否为`NaN`。因为我们想检查一个变量是否是一个数字，所以我们将在检查中使用非操作符`!`。
+
+```
+> !Number.isNaN(intVar);
+
+true
+
+> !Number.isNaN(floatVar);
+
+true
+
+> !Number.isNaN(stringVar);
+
+true # Wrong
+
+> !Number.isNaN(nanVar);
+
+false
+
+> !Number.isNaN(infinityVar);
+
+true # Wrong
+
+> !Number.isNaN(nullVar);
+
+true # Wrong
+
+> !Number.isNaN(undefinedVar);
+
+true # Wrong
+```
+
+这个方法是相当宽松的，因为它接受根本不是数字的值。这种方法最适合于当你知道你有一个数字并且要检查它是否是一个`NaN`值时，而不是一般的数字检查。
+
+**使用 typeof() 方法**
+
+`typeof()`函数是一个全局函数，它接受变量或值作为参数，并返回其类型的字符串表示。JavaScript 总共有`9`种类型
+
+- undefined
+- boolean
+- number
+- string
+- bigint
+- symbol
+- object
+- null (typeof() 显示的是 `object`)
+- function (一种特殊类型的 object)
+
+为了验证变量是否为数字，我们只需要检查`typeof()`返回的值是否为`"number"。 让我们尝试一下测试变量：
+
+```
+> typeof(intVar) == 'number';
+
+true
+
+> typeof(floatVar) == 'number';
+
+true
+
+> typeof(stringVar) == 'number';
+
+false
+
+> typeof(nanVar) == 'number';
+
+true # Wrong
+
+> typeof(infinityVar) == 'number';
+
+true # Wrong
+
+> typeof(nullVar) == 'number';
+
+false
+
+> typeof(undefined) == 'number';
+
+false
+```
+
+`typeof()`函数的性能比`Number.isNaN()`要好得多。它正确地确定了字符串变量`null`和`undefined`不是数字。但是，对于`NaN`和`Infinity`，它返回`true`。
+
+尽管从技术上来说这是正确的结果，但`NaN`和`Infinity`是特殊的数字值，对于大多数使用情况，我们宁愿忽略它们。
+
+# ?. 与 ??
+
+let arr = res && res.data && res.data.list
+
+是不是非常不美观，今天介绍的新语法就是为了解决这种问题的
+
+可选链操作符?.
+
+来，用新语法再写一次
+
+`let arr = res?.data?.list`
+
+是不是很简洁了。
+
+还有，要是想设置默认值怎么办
+
+以前我们是这么写的
+
+let arr = res && res.data || []
+
+现在可以这样
+
+ 
+
+`let arr = res?.res?.data ?? []`
+
+这个??的意思是当左边的值为null或undefined的时候 就取??右边的值 。
