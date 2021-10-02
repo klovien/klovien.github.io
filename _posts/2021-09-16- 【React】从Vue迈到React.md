@@ -31,8 +31,14 @@ tags:
 
 它会配置你的开发环境，以便使你能够使用最新的 JavaScript 特性，提供良好的开发体验，并为生产环境优化你的应用程序。你需要在你的机器上安装 [Node >= 8.10 和 npm >= 5.6](https://nodejs.org/en/)。要创建项目，请执行：
 
-```
-npx create-react-app my-app
+```shell
+
+1 npm 安装 react
+npm i -g create-react-app
+2初始携带ts的react项目
+npx create-react-app my-app	或
+npx create-react-app my-app --template typescript
+
 cd my-app
 npm start
 ```
