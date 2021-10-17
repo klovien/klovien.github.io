@@ -102,7 +102,7 @@ const icon = {
 
 ## 1.使用BottomTabNavigator底部导航栏
 
-```react
+```
 import * as React from 'react';
 import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -148,9 +148,10 @@ function MyTabs() {
         component={Feed}
         options={{
           tabBarLabel: 'Home',
-          tabBarIcon: ({ color, size }) =>{ return (
+          tabBarIcon: ({ color, size }) =>(
             <MaterialCommunityIcons name="home" color={color} size={size} />
-          )}}}        
+          )
+        }}        
       />}
       ...
     </Tab.Navigator>
