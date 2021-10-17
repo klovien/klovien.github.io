@@ -167,9 +167,10 @@ function MyTabs() {
         component={Profile}
         options={{
           tabBarLabel: 'Profile',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color, size }) => {
+            return (
             <MaterialCommunityIcons name="account" color={color} size={size} />
-          ),
+          )}
         }}
       />
     </Tab.Navigator>
