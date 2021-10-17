@@ -60,11 +60,43 @@ Make sure you're running a packager server or have included a .jsbundle file in 
 
 
 
-# 安装iconfont
+# 安装和使用iconfont图标
+
+<a href="https://juejin.cn/post/6844903598883618829#heading-5">参考链接</a>
 
 iOS需要将iconfont.ttf添加到工程里去，可以创建一个Fonts文件夹，将iconfont.ttf放入其中，再添加Fonts目录到工程中。在Info.plist中`Fonts provided by application`下添加一行iconfont.ttf。
 
 ![img](2021-10-06- 【React-native】react-native踩坑日记.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3plcGluZzg5MTEwMw==,size_16,color_FFFFFF,t_70.jpeg)
+
+安卓，Android放置在`app/src/main/assets/fonts`文件夹中，并且在`app/src/build.gradle`中添加配置:
+
+```javascript
+project.ext.vectoricons = [
+    iconFontNames: [ 'iconfont.ttf' ]
+]
+```
+
+```javascript
+const icon = {
+  fontFamily: 'iconfont',
+  fontSize: 18,
+  //fontWeight: 'bold',尽量不要调整宽度
+  color: 'white',
+};
+```
+
+![image-20211016125830203](2021-10-06- 【React-native】react-native踩坑日记.assets/image-20211016125830203-4360312.png)
+
+使用：转义字符
+
+```react
+<Text style={icon}>&#xe67d;</Text>
+<Text style={icon}>{'\u0e67d'}</Text>
+```
+
+![image-20211016130132916](2021-10-06- 【React-native】react-native踩坑日记.assets/image-20211016130132916-4360494.png)
+
+如果用这种传参数，也可以用{props.icon}加载
 
 # 几个快速掌握react navigation的demo
 
@@ -174,13 +206,13 @@ export default function Activity() {
 
 # 安装react antdesign mobile
 
-![image-20211009163607262](2021-10-06- 【React-native】react-native踩坑日记.assets/image-20211009163607262-3768569.png)
+<img src="2021-10-06- 【React-native】react-native踩坑日记.assets/image-20211009163607262-3768569.png" alt="image-20211009163607262" style="zoom:50%;" />
 
 错误：Could not get Batched bridge.
 
 解决：8081端口被占用，全部重启即可
 
-# 安装react-async-storage
+# 安装react-async-storage本地缓存
 
 凌晨四点加这个包直接爆红，说这个RNcameraRoll编译不行
 
@@ -208,7 +240,7 @@ export default function Activity() {
 
 
 
-# 安卓编译
+# 安卓环境搭建（不要信中文网）
 
 根据rn中文网配好android studio环境后
 
@@ -224,7 +256,9 @@ export default function Activity() {
 
 (cameraroll这个包也有点老了吧)
 
-解决：遇到这个报错就下一个对应版本的SDK即可
+解决：遇到这个报错就下一个对应25版本的SDK即可，也就80多MB
+
+------
 
 ![image-20211015194217622](2021-10-06- 【React-native】react-native踩坑日记.assets/image-20211015194217622-4298138.png)
 
@@ -234,7 +268,43 @@ export default function Activity() {
 
 ![image-20211015194244804](2021-10-06- 【React-native】react-native踩坑日记.assets/image-20211015194244804-4298166-4298177.png)
 
-解决：command+shift+g打开finder，进入～，command+shift+ .（del）  ，显示隐藏文件，配置环境变量，将`ANDROID_HOME`改为`ANDROID_SDK_ROOT`
+解决：command+shift+g打开finder，进入～，command+shift+ .（del）  ，显示隐藏文件，配置环境变量，将***全部的***`ANDROID_HOME`改为`ANDROID_SDK_ROOT`
 
 ![image-20211015194748237](2021-10-06- 【React-native】react-native踩坑日记.assets/image-20211015194748237-4298469.png)
+
+![image-20211015195018686](2021-10-06- 【React-native】react-native踩坑日记.assets/image-20211015195018686-4298619.png)
+
+错误：`cameraroll`报错，使用或覆盖了已过时的 API
+
+解决：
+
+![image-20211015225542422](2021-10-06- 【React-native】react-native踩坑日记.assets/image-20211015225542422-4309743-4309753.png)
+
+更改了一下 sdk版本到30，建议这里的东西都不要改，我按rn中文网上的改版本，react-native-cameraroll频繁报错。但是我最后用的java11+30.0.2，与中文网上的文档java1.8+29.0.2完全不一样，最后成功编译
+
+<hr/>
+
+![image-20211015225841905](2021-10-06- 【React-native】react-native踩坑日记.assets/image-20211015225841905.png)
+
+解决：更新java版本从1.8到11（设置JAVA_HOME环境变量）
+
+
+
+<hr/>
+
+错误： Could not find method compile() for arguments [directory 'libs'] on object
+
+解决：将compile改为implementation
+
+![image-20211016114324591](2021-10-06- 【React-native】react-native踩坑日记.assets/image-20211016114324591-4355806.png)
+
+更改了半天的build.gradle，最终还原到最初的模样，rn中文网有点脑残
+
+最终历经千难万险还是成功编译了
+
+![23A8AD3991E43464D9B0D357C66DEBF2](2021-10-06- 【React-native】react-native踩坑日记.assets/23A8AD3991E43464D9B0D357C66DEBF2.jpg)
+
+![image-20211016232800718](2021-10-06- 【React-native】react-native踩坑日记.assets/image-20211016232800718-4398082.png)
+
+更改这个就行
 
