@@ -143,15 +143,15 @@ function MyTabs() {
         tabBarActiveTintColor: '#e91e63',
       }}
     >
-      <Tab.Screen
+     { <Tab.Screen
         name="Feed"
         component={Feed}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) =>{ return (
             <MaterialCommunityIcons name="home" color={color} size={size} />
-          )}}        
-      />
+          )}}}        
+      />}
       ...
     </Tab.Navigator>
   );
