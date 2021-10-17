@@ -150,8 +150,7 @@ function MyTabs() {
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
-          ),
-        }}
+          )}}
       />
       <Tab.Screen
         name="Notifications"
@@ -306,5 +305,5 @@ export default function Activity() {
 
 ![image-20211016232800718](2021-10-06- 【React-native】react-native踩坑日记.assets/image-20211016232800718-4398082.png)
 
-更改这个就行
+build更改为 implementation 就行
 
