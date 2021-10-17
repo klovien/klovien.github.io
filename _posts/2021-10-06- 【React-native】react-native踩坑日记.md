@@ -148,31 +148,11 @@ function MyTabs() {
         component={Feed}
         options={{
           tabBarLabel: 'Home',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color, size }) =>{ return (
             <MaterialCommunityIcons name="home" color={color} size={size} />
-          )}}
+          )}}        
       />
-      <Tab.Screen
-        name="Notifications"
-        component={Notifications}
-        options={{
-          tabBarLabel: 'Updates',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="bell" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          tabBarLabel: 'Profile',
-          tabBarIcon: ({ color, size }) => {
-            return (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
-          )}
-        }}
-      />
+      ...
     </Tab.Navigator>
   );
 }
