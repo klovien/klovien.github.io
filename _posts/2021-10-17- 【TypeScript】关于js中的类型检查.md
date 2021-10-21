@@ -94,3 +94,7 @@ static propTypes={
 }
 ```
 
+# TypeScript
+
+![img](2021-10-17- 【TypeScript】关于js中的类型检查.assets/c98fdf17e6aecc982d9d693aba3bdf6f-4486994.webp)
+
