@@ -98,3 +98,100 @@ static propTypes={
 
 ![img](2021-10-17- 【TypeScript】关于js中的类型检查.assets/c98fdf17e6aecc982d9d693aba3bdf6f-4486994.webp)
 
+```typescript
+// 一. 对象类型-接口
+
+// 1. 
+// 定义了一个接口 Person（行为的抽象，事物的本质），
+interface Person1 {
+    name:string;
+    age:number;
+}
+
+// 接着定义了一个变量 pr，其类型就是 Person（接口是类型，对象类型）。约束了定义的变量 pr 属性类型必须和接口 Person 一致。
+
+let pr1:Person1 = { // 以上，赋值的时候，多一个少一个都不行，变量的属性必须和接口的属性保持一致（前提对接口属性没做处理）
+    name:'aa',
+    age:22
+}
+
+// 2. 
+// 定义变量的属性个数比接口少，也可以的情况（可少不能多）
+interface Person2 {
+    name:string;
+    age?:number; // ? 可少
+}
+
+let pr2: Person2 = {
+    name: 'aa'
+}
+
+// 3. 可少也能多（也能多）
+interface Person3 {
+    name:string;
+    age?:number;
+    [propName:string]:any; // 能多。
+    // [propName: string] 定义了任意属性，属性 key 类型为 string;
+    // 此时任意属性的类型我们设为 any，所以下面的 isMan 和 address 都能通过；
+}
+
+let pr3: Person3 = {
+    name: 'aa',
+    isMan: true,
+    address: 'bb'
+}
+
+// 4.只读属性
+interface Person4 {
+    readonly name:string; //接口定义时，我们在 name 属性前加了关键字readonly，意指该属性只读。使用场景是对象的某些字段只在创建时被赋值，后面不可更改。
+    age?:number;
+    [propName:string]:any;
+}
+
+let pr4: Person4 = {
+    name: 'aa', 
+    isMan: true,
+    address: 'bb'
+}
+
+// 变量赋值后，给变量 name 重新赋值，报错;
+// 哪怕之前没给它赋值;后面才给 name 赋值，报错；
+
+
+// 二. 数组类型定义
+// 招式一
+// 类型[]
+let arrayFibonacci: number[] = [1, 1, 2, 3, 5, 8];
+let arrayFibonacci3: (number | string | boolean)[] = [1, 1, '2', false, 5, 8]; //联合类型
+
+// 招式二：泛型
+// Array<number>
+let arrayPush: Array<number> = [1, 2, 3];
+
+// 招式三：接口
+interface ArrayNumber {
+[index: number]: number //只要 index 的类型是 number，那么值的类型必须是 number
+}
+let arrayNumberInterface: ArrayNumber = [1, 1, 2, 3, 5];p
+```
+
+## 忽略//@ts-ignore
+
+单行忽略
+
+`// @ts-ignore`
+
+忽略全文
+
+`// @ts-nocheck`
+
+取消忽略全文
+
+`// @ts-check`
+
+## 路径别名
+
+![image-20211220222735809](2021-10-17- 【TypeScript】关于js中的类型检查.assets/image-20211220222735809-0010457.png)
+
+
+

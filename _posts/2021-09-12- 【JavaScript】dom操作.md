@@ -89,7 +89,7 @@ export function addKeyActiveEvent() {
 }
 ```
 
-# 3.实现自动滚动到最底部 `div.scrollTop = div.scrollHeight;`
+# 3.实现自动滚动到最底部 `div.scrollTop=div.scrollHeight;`
 
 一个小案例
 
@@ -118,3 +118,17 @@ export function addKeyActiveEvent() {
 ```
 
  
+
+# 4.距离视窗高度`dom.offsetTop - window.scrollY`
+
+```react
+window.addEventListener("scroll", () => {
+            if (box.current.offsetTop - window.scrollY <= 500) {
+                setActive(true);
+            } else {
+                setActive(false);
+            }
+
+        })
+```
+
