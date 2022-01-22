@@ -392,6 +392,35 @@ removeItem(key) 移除数据
 
 clear() 清除所有值
 
+# 对象方法
+
+## 遍历
+
+1.
+
+```javascript
+var obj = {'0':'a','1':'b','2':'c'};
+Object.keys(obj).forEach(function(key){
+     console.log(key,obj[key]);
+});
+```
+
+```javascript
+var obj = {'0':'a','1':'b','2':'c'};
+Object.getOwnPropertyNames(obj).forEach(function(key){
+    console.log(key,obj[key]);
+});
+```
+
+2.
+
+```javascript
+var obj = {'0':'a','1':'b','2':'c'};
+Array.from(obj.keys()).forEach((key)=>{
+  console.log(key,obj[key]);
+})
+```
+
 
 
 # 字符串方法
@@ -448,7 +477,7 @@ module.exports = {//挺好，直接封装成对象，函数中可以调用 this
 const test = require("./test.js")
 ```
 
-## ES6 `export default`和`import 内容 from 路径`
+## ES6 `export default` `import 内容 from 路径` ` import * as xx from ‘xx’` `import {xx1, xx2, xx2} from ‘xx’`
 
 ```javascript
 //工具人.js

@@ -11,7 +11,7 @@ tags:
     - React-native
 ---
 
-# ios环境搭建
+# iosM1环境搭建
 
 我用的是mac-mini-m1版，ide用的是webstorm，全程挂梯子
 
@@ -154,11 +154,11 @@ export default function Activity() {
 
 ![image-20211010133117949](2021-10-06- 【React-native】react-native踩坑日记.assets/image-20211010133117949-3843879.png)
 
-改名后红色消失，直接可以正常编译了，这个包作者的拼写错误真的很让我无语
+改名后红色消失，直接可以正常编译了，这个拼写错误真的很让我无语
 
 
 
-# android环境搭建（不要信中文网）
+# android环境搭建
 
 根据rn中文网配好android studio环境后
 
@@ -210,13 +210,22 @@ export default function Activity() {
 
 <hr/>
 
-错误： Could not find method compile() for arguments [directory 'libs'] on object
+## 错误： Could not find method compile() for arguments [directory 'libs'] on object
 
 解决：将compile改为implementation，并把之后的@Override删了
 
 ![image-20211016114324591](2021-10-06- 【React-native】react-native踩坑日记.assets/image-20211016114324591-4355806.png)
 
 ![image-20211213134412993](2021-10-06- 【React-native】react-native踩坑日记.assets/image-20211213134412993-9374254.png)
+
+## 错误: 方法不会覆盖或实现超类型的方法
+
+/Users/appe/Documents/GitHub/KuangMoreover/node_modules/react-native-cameraroll/android/src/main/java/com/chrisbianca/cameraroll/RNCameraRollPackage.java:23: 错误: 方法不会覆盖或实现超类型的方法
+
+​    @Override
+​    ^
+
+解决：删掉  @Override
 
 更改了半天的build.gradle，最终还原到最初的模样，rn中文网有点脑残
 
@@ -284,89 +293,88 @@ onBackHandler = ()=>{
 
 
 
-# 全局变量
+# 安装[react-native-clean-project](https://github.com/pmadruga/react-native-clean-project)以清除所有项目的缓存
 
-## 1.新建一个文件，此处命名为Global.js,代码如下
-
-```csharp
-import {Dimensions,Platform,StatusBar,PixelRatio} from  'react-native';
-
-const {width, height} = Dimensions.get('window');
-const  OS = Platform.OS;
-const ios = (OS == 'ios');
-const android = (OS == 'android');
-const  isIPhoneX = (ios && height == 812 && width == 375);
-const  statusBarHeight = (ios ? (isIPhoneX ? 44 : 20) : StatusBar.currentHeight);
+`yarn add -D react-native-clean-project`
 
 
-global.gScreen = {
-    screen_width:width,
-    screen_height:height,
-    statusBarHeight:statusBarHeight,
-    onePixelRatio:1/PixelRatio.get(),
-}
 
-global.gDevice = {
-    ios:ios,
-    android:android,
-    isIPhoneX:isIPhoneX,
-}
-```
+# 错误：Requiring unknown module "11".
 
-## 2.在项目入口处倒入
+错误：Requiring unknown module "11"If you are sure the module is there, try restarting Metro Bundler.You may also want to run yarn or npm install( depending on your environment )
 
-```jsx
-//该全局文件的倒入只需一次，且需要在其他文件声明之前
-import Global from './Pages/Common/Global';
-```
+解决方法：重启控制台进程
 
-## 3.全局变量的调用
+# 打包错误：Execution failed for task ':react-native-cameraroll:verifyReleaseResources']
 
-```rust
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: "#F5F5F5",
-        flex:1
-    },
-    box: {
-        width:gScreen.screen_width
-        // width: '90%',
-        margin: 10,
-    },
-  
- 
-});
-```
+![image-20220123020538011](2021-10-06- 【React-native】react-native踩坑日记.assets/image-20220123020538011-2874739.png)
 
-# debug菜单增加一项
-
-```javascript
-DevSettings.addMenuItem('Hello', () => {
-  console.log(__DEV__);
-});
-```
-
-# 调试工具
-
-无论你是Windows环境或者Mac环境，在你的模拟器那里打开调式栏，Ctrl+M / ⌘+D
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200822152337406.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzcyOTk0Mw==,size_16,color_FFFFFF,t_70#pic_center)
-我们点击Debug，Mac同理，也选择Debug，它会自动打开你的默认浏览器，然后你再打开浏览器的控制台，你的内容就会在这里输出，这方便。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200822152559789.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzcyOTk0Mw==,size_16,color_FFFFFF,t_70#pic_center)
-
-# 禁止屏幕旋转
-
-### android端
-
-android文件下app/src/main/AndroidManifest.xml
-添加
+![img](https://img2020.cnblogs.com/blog/1364917/202109/1364917-20210927204755218-1047665805.png)
 
 ```java
-android:screenOrientation="portrait"
+// START - required to allow working on this project inside Android Studio
+// YES, jcenter is required twice - it somehow tricks studio into compiling deps below
+// doesn't break anything anywhere else and projects using this lib work as normal
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.3'
+    }
+}
+// END
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled  true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+// START - required to allow working on this project inside Android Studio
+// YES, jcenter is required twice - it somehow tricks studio into compiling deps below
+// doesn't break anything anywhere else and projects using this lib work as normal
+// you'll now have code completion/validation and all the other AS goodies.
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+// END
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.facebook.react:react-native:+'
+}
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181214172443236.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjIyMjg3NA==,size_16,color_FFFFFF,t_70)
+# 使用nvm导致错误
 
-### IOS端
+<img src="2021-10-06- 【React-native】react-native踩坑日记.assets/356BE704B54EFFB0C73F59C9F95AE740.png" alt="356BE704B54EFFB0C73F59C9F95AE740" style="zoom:50%;" />
 
-在Xcode项目中把相对应的勾去掉即可
-![在这里插入图片描述](2021-10-06- 【React-native】react-native踩坑日记.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjIyMjg3NA==,size_16,color_FFFFFF,t_70-20211213215712168.png)
+
+
+1.使用`react-native-clean-project  `清理了缓存
+
+2.14版本的node跑不起来 切换到了16版本的node
+
+3.重新npm pod install
+
+最终跑起来了
+
+
+
