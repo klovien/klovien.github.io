@@ -10,7 +10,6 @@ header-img: "img/post-bg-rwd.jpg"
     <option value="0" selected> 中文 Chinese </option>
     <option value="1"> 英文 English </option>
 </select> -->
-
 <!-- Chinese Version -->
 <div class="zh post-container">
 
@@ -19,26 +18,26 @@ header-img: "img/post-bg-rwd.jpg"
         <p>
             宝剑锋从磨砺出
             <br>
-        梅花香自苦寒来
+            梅花香自苦寒来
         </p>
     </blockquote>
 
     <p>尊敬的读者，你好！</p>
-    
+
     <p>我是<strong>dex0423</strong>，一个计算机专业非科班出身的程序员，目前的岗位是爬虫工程师。</p>
 
     <p>之所以建立这个博客站，是为了用来记录自己在工作、学习中的收货，同时也在这里分享出来和各位一起交流探讨。</p>
-    
+
     <p>这里记录的文章内容比较杂，包含了Python、爬虫、JS逆向、安卓逆向、数据库、数仓等。</p>
-    
+
     <p>因为技术有限，文章不免有错漏的地方，欢迎各位读者批评指正。</p>
-    
+
     <p>我的邮箱地址是 pandong423@icloud.com，欢迎来信！</p>
 
     <!--<p>本网站为三叶语官方网站。您也可关注知乎专栏<a href="https://zhuanlan.zhihu.com/Artificial-International-Language">👉人造国际语</a>。如果您有什么建议，欢迎提出探讨~</p>-->
 
     <p></p>
-    
+
 </div>
 
 <!-- English Version -->
@@ -49,7 +48,7 @@ header-img: "img/post-bg-rwd.jpg"
     <p>Hi, I am <strong>Baiying Qiu</strong>，you can call me <strong>BY</strong>. I am an iOS software engineer and currently working in Xiamen</p>
 
     <p>This is my personal blog, through making Github Pages and Jekyll.My GitHub  👉 <a href="http://github.com/qiubaiying">Github·BY</a>.</p>
-    
+
     <p>I am a sports enthusiast, I like fitness, running and boxing.</p>
 
     <h5>Talks</h5>
@@ -61,7 +60,6 @@ header-img: "img/post-bg-rwd.jpg"
     <li><a href="https://qiubaiying.github.io">BY</a></li>
     </ul>
 </div> -->
-
 <!-- Handle Language Change -->
 <script type="text/javascript">
     // get nodes
@@ -73,15 +71,15 @@ header-img: "img/post-bg-rwd.jpg"
     window.addEventListener('hashchange', _render);
 
     // handle render
-    function _render(){
+    function _render() {
         var _hash = window.location.hash;
         // en
-        if(_hash == "#en"){
+        if (_hash == "#en") {
             $select.selectedIndex = 1;
             $en.style.display = "block";
             $zh.style.display = "none";
-        // zh by default
-        }else{
+            // zh by default
+        } else {
             // not trigger onChange, otherwise cause a loop call.
             $select.selectedIndex = 0;
             $zh.style.display = "block";
@@ -90,10 +88,10 @@ header-img: "img/post-bg-rwd.jpg"
     }
 
     // handle select change
-    function onLanChange(index){
-        if(index == 0){
+    function onLanChange(index) {
+        if (index == 0) {
             window.location.hash = "#zh"
-        }else{
+        } else {
             window.location.hash = "#en"
         }
     }
@@ -104,13 +102,13 @@ header-img: "img/post-bg-rwd.jpg"
 
 
 <!-- Gitalk 评论 start  -->
-{% if site.gitalk.enable %}
+<!-- {% if site.gitalk.enable %}-->
 <!-- Gitalk link  -->
-<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
 
 <div id="gitalk-container"></div>
-    <script type="text/javascript">
+<script type="text/javascript">
     var gitalk = new Gitalk({
     clientID: '{{site.gitalk.clientID}}',
     clientSecret: '{{site.gitalk.clientSecret}}',
@@ -124,16 +122,14 @@ header-img: "img/post-bg-rwd.jpg"
 </script>
 {% endif %}
 <!-- Gitalk end -->
-
- <!-- disqus 评论框 start  -->
-{% if site.disqus.enable %}
+<!-- disqus 评论框 start  -->
+<!-- {% if site.disqus.enable %}-->
 
 <div class="comment">
     <div id="disqus_thread" class="disqus-thread">
     </div>
 </div>
 <!-- disqus 评论框 end -->
-
 <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
