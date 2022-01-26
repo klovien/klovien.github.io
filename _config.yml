@@ -7,7 +7,7 @@ description: "记录工作学习的点点滴滴。"
 keyword: "爬虫, 安卓逆向, js逆向, python, 数据抓取"
 url: "https://dex0423.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/rhyan0309/rhyan0309.github.io.git" # you code repository
+github_repo: "https://github.com/dex0423/dex0423.github.io.git" # you code repository
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
