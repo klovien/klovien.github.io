@@ -22,19 +22,17 @@ tags:
 
 ## 2.1. pip3 install scrapy-deltafetch 安装 scrapy-deltafetch 报 Command "python setup.py egg_info" failed ... 错误
 
-###2.1.1. 报错内容
+- 报错内容
 
 >*Command "python setup.py egg_info" failed with error code 1 in /private/var/folders/nw/0lc60c214hj4rcyjm_c4fywh0000gn/T/pip-install-no_thc86/bsddb3/
 You are using pip version 10.0.1, however version 18.1 is available.
 You should consider upgrading via the 'pip install --upgrade pip' command.*
 
-###2.1.2.报错截图
 
-![0EDD68D1-22E6-441C-8B17-239D23DF539C.png](https://upload-images.jianshu.io/upload_images/14502986-ba3b0bc56d0828a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ##2.2. 安装 bsddb3 时报 python setup.py egg_info Check the logs for full command output. 错误
 
-###2.2.1. 报错内容
+- 报错内容
 
 >    ERROR: Command errored out with exit status 1:
      command: /usr/local/opt/python/bin/python3.7 -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/private/var/folders/ch/6mh0_xrs05jgmw7778l4jr500000gn/T/pip-install-gmeb16ru/bsddb3/setup.py'"'"'; __file__='"'"'/private/var/folders/ch/6mh0_xrs05jgmw7778l4jr500000gn/T/pip-install-gmeb16ru/bsddb3/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' egg_info --egg-base /private/var/folders/ch/6mh0_xrs05jgmw7778l4jr500000gn/T/pip-install-gmeb16ru/bsddb3/pip-egg-info
@@ -58,10 +56,6 @@ Found Berkeley DB 6.2 installation.
     ******* COMPILATION ABORTED *******
     ---------------------------------------- 
 ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.
-
-###2.2.2. 报错截图
-
-![image.png](https://upload-images.jianshu.io/upload_images/14502986-d455ab4de468fb8a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 #3. 正确安装方法
 
