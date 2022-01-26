@@ -20,7 +20,7 @@ tags:
 
 # 2.常见问题描述
 
-## 2.1. pip3 install scrapy-deltafetch 安装 scrapy-deltafetch 报 Command "python setup.py egg_info" failed ... 错误
+- `pip3 install scrapy-deltafetch` 安装 scrapy-deltafetch 报 `Command "python setup.py egg_info" failed ...` 错误
 
 - 报错内容
 
@@ -30,7 +30,7 @@ You should consider upgrading via the 'pip install --upgrade pip' command.*
 
 
 
-##2.2. 安装 bsddb3 时报 python setup.py egg_info Check the logs for full command output. 错误
+- 安装 bsddb3 时报 `python setup.py egg_info Check the logs for full command output.` 错误
 
 - 报错内容
 
