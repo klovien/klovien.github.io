@@ -21,6 +21,7 @@ tags:
 **注意：网上的其他解决办法我都试过，全都不可以用。下面的解决办法是自己摸索找到的解决方案，亲测成功。**
 
 ---
+
 常见问题描述
 ===
 
@@ -62,6 +63,7 @@ Found Berkeley DB 6.2 installation.
 >ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.
 
 ---
+
 正确安装方法
 ====
 
@@ -110,6 +112,7 @@ pip3 install scrapy-deltafetch
 ![image.png](https://upload-images.jianshu.io/upload_images/14502986-c109442f6bb4634e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ---
+
 补充说明
 ===
 
