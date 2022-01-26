@@ -26,7 +26,7 @@ tags:
 
 - `pip3 install scrapy-deltafetch` 安装 scrapy-deltafetch 报 `Command "python setup.py egg_info" failed ...` 错误
 
-- 报错内容
+-- 报错内容
 
 >*Command "python setup.py egg_info" failed with error code 1 in /private/var/folders/nw/0lc60c214hj4rcyjm_c4fywh0000gn/T/pip-install-no_thc86/bsddb3/
 You are using pip version 10.0.1, however version 18.1 is available.
@@ -36,7 +36,7 @@ You should consider upgrading via the 'pip install --upgrade pip' command.*
 
 - 安装 bsddb3 时报 `python setup.py egg_info Check the logs for full command output.` 错误
 
-- 报错内容
+-- 报错内容
 
 >    ERROR: Command errored out with exit status 1:
      command: /usr/local/opt/python/bin/python3.7 -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/private/var/folders/ch/6mh0_xrs05jgmw7778l4jr500000gn/T/pip-install-gmeb16ru/bsddb3/setup.py'"'"'; __file__='"'"'/private/var/folders/ch/6mh0_xrs05jgmw7778l4jr500000gn/T/pip-install-gmeb16ru/bsddb3/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' egg_info --egg-base /private/var/folders/ch/6mh0_xrs05jgmw7778l4jr500000gn/T/pip-install-gmeb16ru/bsddb3/pip-egg-info
@@ -62,10 +62,8 @@ Found Berkeley DB 6.2 installation.
 >ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.
 
 
-
 3. 正确安装方法
 ====
-
 
 3.1. 安装berkeley-db4
 ---
@@ -94,11 +92,12 @@ export CPPFLAGS="-I/usr/local/opt/berkeley-db@4/include"
 YES_I_HAVE_THE_RIGHT_TO_USE_THIS_BERKELEY_DB_VERSION=1 BERKELEYDB_DIR=/usr/local/opt/berkeley-db@4/ pip3 install bsddb3
 ```
 **说明**：很多人遇到问题都是出现在这一步，如果直接 pip3 install bsddb3 是不能安装成功的，这是因为再执行安装命令的时候，需要增加两个执行条件。
-- 执行条件包括：
 
--- 条件一：***将"YES_I_HAVE_THE_RIGHT_TO_USE_THIS_BERKELEY_DB_VERSION" 添加到命令行中、增加对于 Berkely DB 的调用权限；***
-
--- 条件二：  ***将 Berkely DB 的文件路径 "/usr/local/opt/berkeley-db@4" 赋值给命令中的 BERKELEYDB_DIR；***
+>执行条件包括：
+>
+>-- 条件一：***将"YES_I_HAVE_THE_RIGHT_TO_USE_THIS_BERKELEY_DB_VERSION" 添加到命令行中、增加对于 Berkely DB 的调用权限；***
+>
+>-- 条件二：  ***将 Berkely DB 的文件路径 "/usr/local/opt/berkeley-db@4" 赋值给命令中的 BERKELEYDB_DIR；***
 
 ![image.png](https://upload-images.jianshu.io/upload_images/14502986-287eff9ee3437110.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
