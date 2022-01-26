@@ -3,7 +3,7 @@ title: dex0423  的博客
 SEOTitle: dex0423 - 爬虫技术
 header-img: img/post-bg-desk.jpg
 email: pandong423@icloud.com
-description: "记录工作学习的点点滴滴。"
+#description: "记录工作学习的点点滴滴。"
 keyword: "爬虫, 安卓逆向, js逆向, python, 数据抓取"
 url: "https://dex0423.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
