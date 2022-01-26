@@ -57,7 +57,7 @@ Found Berkeley DB 6.2 installation.
         http://lists.debian.org/debian-legal/2013/07/
     ******* COMPILATION ABORTED *******
     ---------------------------------------- 
-ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.
+>ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.
 
 
 #3. 正确安装方法
@@ -88,7 +88,9 @@ YES_I_HAVE_THE_RIGHT_TO_USE_THIS_BERKELEY_DB_VERSION=1 BERKELEYDB_DIR=/usr/local
 ```
 **说明**：很多人遇到问题都是出现在这一步，如果直接 pip3 install bsddb3 是不能安装成功的，这是因为再执行安装命令的时候，需要增加两个执行条件。
 - 执行条件包括：
+
 -- 条件一：***将"YES_I_HAVE_THE_RIGHT_TO_USE_THIS_BERKELEY_DB_VERSION" 添加到命令行中、增加对于 Berkely DB 的调用权限；***
+
 -- 条件二：  ***将 Berkely DB 的文件路径 "/usr/local/opt/berkeley-db@4" 赋值给命令中的 BERKELEYDB_DIR；***
 
 ![image.png](https://upload-images.jianshu.io/upload_images/14502986-287eff9ee3437110.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
