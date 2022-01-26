@@ -1,9 +1,9 @@
 # Site settings
 title: dex0423  的博客
-SEOTitle: dex0423 - 爬虫技术博客
+SEOTitle: dex0423 - 爬虫技术
 header-img: img/post-bg-desk.jpg
 email: pandong423@icloud.com
-description: ""
+description: "记录工作学习的点点滴滴。"
 keyword: "爬虫, 安卓逆向, js逆向, python, 数据抓取"
 url: "https://dex0423.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
@@ -11,7 +11,7 @@ github_repo: "https://github.com/rhyan0309/rhyan0309.github.io.git" # you code r
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "一个野生程序员的碎碎念。"
+sidebar-about-description: "一个野生程序员。"
 sidebar-avatar: /img/微信图片_20220126102606.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
