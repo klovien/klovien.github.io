@@ -74,8 +74,6 @@ Found Berkeley DB 6.2 installation.
 brew install berkeley-db4
 ```
 
-![image.png](https://upload-images.jianshu.io/upload_images/14502986-9a1f2380c95ce79c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 
 设置环境变量
 ---
@@ -100,7 +98,6 @@ YES_I_HAVE_THE_RIGHT_TO_USE_THIS_BERKELEY_DB_VERSION=1 BERKELEYDB_DIR=/usr/local
 >
 >-- 条件二：  ***将 Berkely DB 的文件路径 "/usr/local/opt/berkeley-db@4" 赋值给命令中的 BERKELEYDB_DIR；***
 
-![image.png](https://upload-images.jianshu.io/upload_images/14502986-287eff9ee3437110.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 安装 scrapy-deltafetch
@@ -109,7 +106,6 @@ YES_I_HAVE_THE_RIGHT_TO_USE_THIS_BERKELEY_DB_VERSION=1 BERKELEYDB_DIR=/usr/local
 ```
 pip3 install scrapy-deltafetch
 ```
-![image.png](https://upload-images.jianshu.io/upload_images/14502986-c109442f6bb4634e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ---
 
