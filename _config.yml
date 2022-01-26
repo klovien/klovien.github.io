@@ -63,7 +63,7 @@ kramdown:
 gitalk:
   enable: true    #是否开启Gitalk评论
   clientID: a0022dad87aac5fea6bc                            #生成的clientID
-  clientSecret: 76662938554d8b1edddea548e097cadc9b434293     #生成的clientSecret
+  clientSecret: eb4dc34f917d1982dd2730868c0f4fe756097913      #生成的clientSecret
   repo: dex0423.github.io    #仓库名称
   owner: dex0423    #github用户名
   admin: dex0423
