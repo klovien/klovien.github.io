@@ -11,12 +11,14 @@ tags:
 ---
 
 
+
 # 1.前言
 - scrapy-deltafetch，是一个用于解决爬虫去重问题的第三方插件。
 - scrapy-deltafetch通过Berkeley DB来记录爬虫每次爬取收集的request和item，当重复执行爬虫时只爬取新的item，从而实现爬虫的增量爬取。
 - 在安装scrapy-deltafetch插件时，需要先行安装Berkeley DB 和 bsddb4，期间遇到很棘手的问题，解决花去了一天时间，这里和大家分享一下解决办法。
 
 **注意：网上的其他解决办法我都试过，全都不可以用。下面的解决办法是自己摸索找到的解决方案，亲测成功。**
+
 
 # 2.常见问题描述
 
@@ -57,7 +59,9 @@ Found Berkeley DB 6.2 installation.
     ---------------------------------------- 
 ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.
 
+
 #3. 正确安装方法
+
 
 ## 3.1. 安装berkeley-db4
 
@@ -67,6 +71,7 @@ brew install berkeley-db4
 
 ![image.png](https://upload-images.jianshu.io/upload_images/14502986-9a1f2380c95ce79c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+
 ##3.2. 设置环境变量
 
 ```
@@ -74,6 +79,7 @@ echo 'export PATH="/usr/local/opt/berkeley-db@4/bin:$PATH"' >> ~/.bash_profile
 export LDFLAGS="-L/usr/local/opt/berkeley-db@4/lib"
 export CPPFLAGS="-I/usr/local/opt/berkeley-db@4/include"
 ```
+
 
 ##3.3. 安装bsddb3
 
@@ -87,12 +93,14 @@ YES_I_HAVE_THE_RIGHT_TO_USE_THIS_BERKELEY_DB_VERSION=1 BERKELEYDB_DIR=/usr/local
 
 ![image.png](https://upload-images.jianshu.io/upload_images/14502986-287eff9ee3437110.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+
 ##3.4. 安装 scrapy-deltafetch
 
 ```
 pip3 install scrapy-deltafetch
 ```
 ![image.png](https://upload-images.jianshu.io/upload_images/14502986-c109442f6bb4634e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 
 #4.补充说明
 
