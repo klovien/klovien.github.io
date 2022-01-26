@@ -62,8 +62,9 @@ Found Berkeley DB 6.2 installation.
 >ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.
 
 
+
 3. 正确安装方法
-===
+====
 
 
 3.1. 安装berkeley-db4
@@ -86,7 +87,8 @@ export CPPFLAGS="-I/usr/local/opt/berkeley-db@4/include"
 ```
 
 
-##3.3. 安装bsddb3
+3.3. 安装bsddb3
+---
 
 ```
 YES_I_HAVE_THE_RIGHT_TO_USE_THIS_BERKELEY_DB_VERSION=1 BERKELEYDB_DIR=/usr/local/opt/berkeley-db@4/ pip3 install bsddb3
@@ -101,7 +103,8 @@ YES_I_HAVE_THE_RIGHT_TO_USE_THIS_BERKELEY_DB_VERSION=1 BERKELEYDB_DIR=/usr/local
 ![image.png](https://upload-images.jianshu.io/upload_images/14502986-287eff9ee3437110.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-##3.4. 安装 scrapy-deltafetch
+3.4. 安装 scrapy-deltafetch
+---
 
 ```
 pip3 install scrapy-deltafetch
@@ -109,6 +112,7 @@ pip3 install scrapy-deltafetch
 ![image.png](https://upload-images.jianshu.io/upload_images/14502986-c109442f6bb4634e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-#4.补充说明
+4.补充说明
+===
 
 **注意：我使用的电脑为Mac，Windows环境下是情况不清楚。**
