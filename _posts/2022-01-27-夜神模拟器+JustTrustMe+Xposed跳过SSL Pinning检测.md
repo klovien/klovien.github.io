@@ -40,7 +40,7 @@ SSL Pinning技术指的是在应用程序中只信任固定证书或是公钥。
 
 下载后直接模拟器安装，安装成功后依次打开 `Xposed Installer > 框架 > 安装/更新`，之后 `重启模拟器`，重新打开 `Xposed Installer`，此时发现 `激活` 下方连个数字已经变 `绿色`，表示安装成功。
 
-[安装成功后的界面]({{site.baseurl}}/img-post/xposed-installler.png)
+![安装成功后的界面]({{site.baseurl}}/img-post/xposed-installler.png)
 
 >注意：在安装好 Xposed Installer 以后，就要完成更新，否则安装 JustTrustMe 会失败！
 
@@ -50,5 +50,5 @@ SSL Pinning技术指的是在应用程序中只信任固定证书或是公钥。
 
 安装好以后启动 Xposed点击 `模块`，进入以后勾选JustTrustMe尾部的复选框，即完成了配置。
 
-[配置成功后的界面]({{site.baseurl}}/img-post/just-trus-me.png)
+![配置成功后的界面]({{site.baseurl}}/img-post/just-trus-me.png)
 
