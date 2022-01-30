@@ -36,13 +36,19 @@ SSL Pinning技术指的是在应用程序中只信任固定证书或是公钥。
 
 ##### 安装 Xposed 并更新
 
-[点击此处下载 de.robv.android.xposed.installer_v33_36570c.apk](https://pan.baidu.com/s/1NW1Oq9au5xVg_j47heiLng?pwd=m9av)，下载成功够直接拖进模拟器安装。
+[点击此处下载 de.robv.android.xposed.installer_v33_36570c.apk](https://pan.baidu.com/s/1fsPidu_IjP-fS1d0OZP7iw?pwd=v7tm)，下载成功够直接拖进模拟器安装。
 
 下载后直接模拟器安装，安装成功后依次打开 `Xposed Installer > 框架 > 安装/更新`，之后 `重启模拟器`，重新打开 `Xposed Installer`，此时发现 `激活` 下方连个数字已经变 `绿色`，表示安装成功。
+
+[安装成功后的界面]({{site.baseurl}}/img-post/xposed-installler.png)
 
 >注意：在安装好 Xposed Installer 以后，就要完成更新，否则安装 JustTrustMe 会失败！
 
 ##### 安装 JustTrustMe 
 
-[点击此处下载 JustTrustMe](https://pan.baidu.com/s/1UaJunJ6z70UKaZu6oJWO3w?pwd=95wo)，下载成功后直接安装。
+[点击此处下载 JustTrustMe.apk](https://pan.baidu.com/s/1lB7ON43SHXUQ-3yTS1mq7g?pwd=kin2)，下载成功后直接拖进模拟器进行安装。
+
+安装好以后启动 Xposed点击 `模块`，进入以后勾选JustTrustMe尾部的复选框，即完成了配置。
+
+[配置成功后的界面]({{site.baseurl}}/img-post/just-trus-me.png)
 
