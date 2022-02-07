@@ -11,7 +11,7 @@ tags:
 ---
 
 
-# 1. Mitmproxy 简介
+## 1. Mitmproxy 简介
 
 - Mitmproxy本意为中间人攻击代理；
 - 在爬虫中主要用作抓取 http_connect、request、response 等数据；
@@ -20,7 +20,7 @@ tags:
 **Mitmproxy 相较于 fillder、wireshark 的不同：**
 --  *mitmproxy 不仅可以截获请求、帮助开发者查看、分析、更可以通过自定义脚本进行二次开发，修改爬虫行为*；
 
-# 2. 配置 Mitmproxy
+## 2. 配置 Mitmproxy
 
 ##### 2.1 安装 mitmproxy
 ```
@@ -101,7 +101,7 @@ ifconfig
 
 到这里，就成功完成了 mitmproxy配置。
 
-# 3. mitmproxy 获取APP数据
+## 3. mitmproxy 获取APP数据
 
 ##### 3.1. 编辑 script.py 文件
 
@@ -145,7 +145,7 @@ cd /XXX   # 进入 script.py 文件所在文件夹
 mitmdump -s script.py
 ```
 
-### 3.3. 启动 京东APP，抓取数据
+##### 3.3. 启动 京东APP，抓取数据
 
 >注意：如果手机尚未配置好，请参考本博另一篇文章：[[爬虫]使用mitmproxy抓包手机APP的配置步骤](https://www.jianshu.com/p/8ee3f9f46d7a)
 - 启动 APP
