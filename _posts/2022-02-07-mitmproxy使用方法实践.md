@@ -22,7 +22,7 @@ tags:
 
 # 2. 配置 Mitmproxy
 
-### 2.1 安装 mitmproxy
+##### 2.1 安装 mitmproxy
 ```
 brew install mitmproxy
 ```
@@ -34,7 +34,7 @@ mitmdump --version
 
 ![安装成功后的界面]({{site.baseurl}}/img/mitm-1.jpg)
 
-### 2.2. 启动 mitmproxy
+##### 2.2. 启动 mitmproxy
 
 ```
 mitmweb    # mitmproxy有三种启动方式，此处使用的命令可以提供一个web交互界面
@@ -57,7 +57,7 @@ mitmweb    # mitmproxy有三种启动方式，此处使用的命令可以提供�
 此时，浏览器自动打开下图页面，这是 mitmproxy 提供的 web 交互界面。
 ![上图为mitmproxy自动打开的web交互界面]({{site.baseurl}}/img/mitm-3.jpg)
 
-### 2.3. 安装CA证书
+##### 2.3. 安装CA证书
 
 第一步，将电脑和手机连到同一个 WiFi 中；
 
@@ -84,7 +84,7 @@ ifconfig
 
 ![61543663399_.pic.jpg]({{site.baseurl}}/img/mitm-8.jpg)
 
-### 2.4. 开启证书
+##### 2.4. 开启证书
 
 手机依次点击：**设置** -> **通用** -> **关于本机** -> **证书信任设置**，开启 mitmproxy 证书。
 
@@ -94,7 +94,7 @@ ifconfig
 >- 有小伙伴反馈，安卓 7.0 以上版本不再信任证书，需要将证书安装到 root 路径下，这导致数据抓包不成功、手机应用网络不通。
 >- 博主还没有做过研究，想提示一下安卓 7.0 用户如果遇到这类问题，可以尝试使用模拟器降低安卓版本，看是否能解决问题，有时间的话麻烦把结果给博主反馈一下，谢谢！
 
-### 2.5 配置完成
+##### 2.5 配置完成
 
 此时，mitmweb 页面出现下图内容，红框中的为 mitmproxy 抓取的手机的请求。
 ![红框中的为 mitmproxy 抓取的手机的请求]({{site.baseurl}}/img/mitm-10.jpg)
@@ -103,7 +103,7 @@ ifconfig
 
 # 3. mitmproxy 获取APP数据
 
-### 3.1. 编辑 script.py 文件
+##### 3.1. 编辑 script.py 文件
 
 - script.py 是用来处理 mitmproxy 获取到的 request 和 response 的 .py 脚本；
 - 用户根据业务需求，在该文件中 筛选、处理 request 和 response ；
@@ -137,7 +137,7 @@ def response(flow):
 				print(goods_info)
 
 ```
-### 3.2. 运行 script.py 文件
+##### 3.2. 运行 script.py 文件
 
 - 进入 script.py 文件所在文件夹
 ```
