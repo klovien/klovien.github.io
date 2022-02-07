@@ -11,7 +11,7 @@ tags:
 ---
 
 
-#1. Mitmproxy 简介
+# 1. Mitmproxy 简介
 
 - Mitmproxy本意为中间人攻击代理；
 - 在爬虫中主要用作抓取 http_connect、request、response 等数据；
@@ -20,7 +20,7 @@ tags:
 **Mitmproxy 相较于 fillder、wireshark 的不同：**
 --  *mitmproxy 不仅可以截获请求、帮助开发者查看、分析、更可以通过自定义脚本进行二次开发，修改爬虫行为*；
 
-#2. 配置 Mitmproxy
+# 2. 配置 Mitmproxy
 
 ### 2.1 安装 mitmproxy
 ```
