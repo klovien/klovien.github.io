@@ -4,7 +4,7 @@ title:      夜神模拟器+JustTrustMe+Xposed跳过SSL Pinning检测
 subtitle:   
 date:       2022-01-27
 author:     dex0423
-header-img: img/post-bg-cook.jpg
+header-img: img/post-bg-universe.jpg
 catalog: true
 tags:
     - 安卓逆向
