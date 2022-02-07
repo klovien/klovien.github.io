@@ -1,8 +1,8 @@
 ---
 layout:     post
-title:      处理 AndroidKiller 反编译失败问题
-subtitle:   报错内容：AndroidKiller 反编译失败，无法继续下一步源码反编译!
-date:       2022-01-28
+title:      mitmproxy使用方法实践
+subtitle:   使用 mitmproxy 抓取 APP 数据
+date:       2022-02-07
 author:     dex0423
 header-img: img/post-bg-hacker.jpg
 catalog: true
