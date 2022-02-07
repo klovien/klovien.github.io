@@ -103,7 +103,7 @@ ifconfig
 
 # 3. mitmproxy 获取APP数据
 
-### 3。1. 编辑 script.py 文件
+### 3.1. 编辑 script.py 文件
 
 - script.py 是用来处理 mitmproxy 获取到的 request 和 response 的 .py 脚本；
 - 用户根据业务需求，在该文件中 筛选、处理 request 和 response ；
