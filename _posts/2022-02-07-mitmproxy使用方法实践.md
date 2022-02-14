@@ -149,7 +149,6 @@ ifconfig
 
 ##### 3.3. 启动 京东APP，抓取数据
 
->注意：如果手机尚未配置好，请参考本博另一篇文章：[[爬虫]使用mitmproxy抓包手机APP的配置步骤](https://www.jianshu.com/p/8ee3f9f46d7a)
 - 启动 APP
   启动 京东APP 后，命令行窗口得到下图所示返回信息，数据获取成功。
   ![image.png]({{site.baseurl}}/img/mitm-11.jpg)
