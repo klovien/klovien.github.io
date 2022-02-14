@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      mitmproxy使用方法实践
-subtitle:   使用 mitmproxy 抓取 APP 数据
+subtitle:   使用 mitmproxy 抓取 京东APP 数据
 date:       2022-02-07
 author:     dex0423
 header-img: img/post-bg-hacker.jpg
@@ -108,42 +108,44 @@ ifconfig
 - script.py 是用来处理 mitmproxy 获取到的 request 和 response 的 .py 脚本；
 - 用户根据业务需求，在该文件中 筛选、处理 request 和 response ；
 - 本文模拟的获取 **京东APP** 数据，需要筛选出 url 包含 **jd** 字符的  请求和响应；
-```
-import json
-from urllib.parse import unquote
-import re
 
-def response(flow):
-	# 提取请求的 url 地址
-	request_url = flow.request.url
-    # 通过 jd 字符串，过滤出 京东APP 的请求和返回数据
-	if bool(re.search(r"jd", request_url)):     
-		print("request_url >>> ", request_url)
-		response_body = flow.response.text
-		response_url = flow.request.url
-		print("response_url >>> ", response_url)
-		data = json.loads(response_body)
-		ware_infos = data.get("wareInfo")
-		goods_info = {}
-		if ware_infos is not None:
-			for ware_info in ware_infos:
-				goods_info["wareId"] 	= ware_info.get("wareId")
-				goods_info["wname"] 	= ware_info.get("wname")
-				goods_info["jdPrice"] 	= ware_info.get("jdPrice")
-				goods_info["goodrate"] 	= ware_info.get("good")
-				goods_info["reviews"] 	= ware_info.get("reviews")
-				goods_info["shopId"] 	= ware_info.get("shopId")
-				goods_info["ShopName"] 	= ware_info.get("goodShop").get("goodShopName")
-				print(goods_info)
+    ```
+    import json
+    from urllib.parse import unquote
+    import re
+    
+    def response(flow):
+        # 提取请求的 url 地址
+        request_url = flow.request.url
+        # 通过 jd 字符串，过滤出 京东APP 的请求和返回数据
+        if bool(re.search(r"jd", request_url)):     
+            print("request_url >>> ", request_url)
+            response_body = flow.response.text
+            response_url = flow.request.url
+            print("response_url >>> ", response_url)
+            data = json.loads(response_body)
+            ware_infos = data.get("wareInfo")
+            goods_info = {}
+            if ware_infos is not None:
+                for ware_info in ware_infos:
+                    goods_info["wareId"] 	= ware_info.get("wareId")
+                    goods_info["wname"] 	= ware_info.get("wname")
+                    goods_info["jdPrice"] 	= ware_info.get("jdPrice")
+                    goods_info["goodrate"] 	= ware_info.get("good")
+                    goods_info["reviews"] 	= ware_info.get("reviews")
+                    goods_info["shopId"] 	= ware_info.get("shopId")
+                    goods_info["ShopName"] 	= ware_info.get("goodShop").get("goodShopName")
+                    print(goods_info)
+    
+    ```
 
-```
 ##### 3.2. 运行 script.py 文件
 
 - 进入 script.py 文件所在文件夹
-```
-cd /XXX   # 进入 script.py 文件所在文件夹
-mitmdump -s script.py
-```
+    ```
+    cd /XXX   # 进入 script.py 文件所在文件夹
+    mitmdump -s script.py
+    ```
 
 ##### 3.3. 启动 京东APP，抓取数据
 
