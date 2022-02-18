@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Objection快速逆向安装使用及实践.md
+title:      Objection快速逆向安装使用及实践
 subtitle:   过程全记录
 date:       2022-02-10
 author:     dex0423
