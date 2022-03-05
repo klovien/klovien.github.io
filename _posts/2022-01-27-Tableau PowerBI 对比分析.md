@@ -1,8 +1,8 @@
 ---
 layout:     post
-title:      2022-01-26-Tableau PowerBI 对比分析
+title:      2022-01-27-Tableau PowerBI 对比分析
 subtitle:   
-date:       2022-01-26
+date:       2022-01-27
 author:     dex0423
 header-img: img/post-bg-os-metro.jpg
 catalog: true
