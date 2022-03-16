@@ -36,6 +36,7 @@ cd zkData
 ```
 
 - 修改 myid 为 2
+
 ```aidl
 vim myid
 ```
@@ -45,6 +46,7 @@ vim myid
 - 保存退出
 
 - 编辑 cfg 文件
+
 ```aidl
 cd ../conf
 mv zoo_sample.cfg zoo.cfg
@@ -79,6 +81,7 @@ sudo xsync zookeeper-3.5.7/ salve 1 2
 ##### 3.2. 修改 slave1 和 slave2 的设置
 
 - slave1
+
 ```aidl
 # 链接 slave1
 ssh slave1
@@ -94,6 +97,7 @@ vim /指定目录/zookeeper-3.5.7/zkData/myid
 # 保存退出
 ```
 - slave2
+
 ```aidl
 # 链接 slave2
 ssh slave2
