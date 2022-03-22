@@ -1,10 +1,10 @@
 # Site settings
 title: RNNK食堂准备室
-SEOTitle: 三叶草国际语 - 让沟通更容易
+SEOTitle: 整点饭吃
 header-img: img/post-bg-desk.jpg
-email: klovien@gmail.com
+email: rnnk@gmail.com
 description: "备用外链存档仓库"
-keyword: "人工语言, 国际语, 世界语, 三叶草国际语, 三叶语"
+keyword: "rnnk"
 url: "https://mryrnnk.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/mryrnnk/mryrnnk.github.io.git" # you code repository
