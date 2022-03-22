@@ -2,12 +2,12 @@
 layout:     post
 title:      模板
 subtitle:   模板
-date:       2018-12-01
-author:     Henri Jambo
+date:       2022-03-22
+author:     rnnk bot
 header-img: img/the-first.png
-catalog: false
+catalog: true
 tags:
-    - 新闻故事
+    - 模板
 ---
 
 
