@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      数仓：Hadoop 集群搭建过程示例
-subtitle:   以 Windows + CentOS 7 虚拟机为例
+title:      数仓：Hadoop 集群搭建过程
+subtitle:   
 date:       2022-01-27
 author:     dex0423
 header-img: img/post-bg-os-metro.jpg
