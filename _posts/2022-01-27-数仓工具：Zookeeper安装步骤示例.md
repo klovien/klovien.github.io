@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      数仓：Zookeeper安装步骤示例
+title:      数仓工具：Zookeeper安装步骤示例
 subtitle:   
 date:       2022-01-27
 author:     dex0423
