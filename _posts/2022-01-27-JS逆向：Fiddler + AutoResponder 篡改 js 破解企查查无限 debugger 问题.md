@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      JS逆向：Fiddler + AutoResponder 篡改 js 破解企查查无限 debugger 问题
-subtitle:   
+title:      JS逆向：破解企查查无限 debugger 反爬策略
+subtitle:   Fiddler + AutoResponder 篡改 js 代码
 date:       2022-01-27
 author:     dex0423
 header-img: img/post-bg-universe.jpg
