@@ -380,6 +380,7 @@ tags:
   - 杨辉三角示例如下图：
 
 ![20190307104242486.png](https://upload-images.jianshu.io/upload_images/14502986-8f1d1a6652aa0be0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 - 杨辉三角特性：
   - 每个数等于它上方两数之和；
   - 每行数字左右对称，由1开始逐渐变大；
