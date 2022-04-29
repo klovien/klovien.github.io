@@ -80,7 +80,8 @@ tags:
 - Session 需要基于 Cookie 实现，即服务器生成 session 之后将 session id 发送给客户端，客户端下次访问的时候通过 session id 找到对应的 Session ，验证用户身份并服务于访问请求处理；
 - 如果浏览器禁用 Cookie，则需要 Session + url 重写，即在请求 url 后面加上 session id；
 
-# 5. 实际应用
+# 6. 实际应用
+
 ##### 6.1. Cookie
 
 - 登录 Github 账号的时候，Github 服务器会在登录成功后返回 Cookie 给客户端，当用户下次请求的时候就不用再进行登录操作；
