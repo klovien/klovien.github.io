@@ -56,23 +56,31 @@ tags:
 Grafana 和 InfluxDB 安装非常方便，这一点可以和 Graphite 做一个鲜明的对比。
 ## 4.1.安装  InfluxDB
 - 安装 InfluxDB
+
 ```python
 brew update
 brew install influxdb
 ```
+
 ## 4.2.安装 & 配置 Grafana
+
 - 安装 Grafana
+
 ```python
 brew update
 brew install grafana
 ```
+
 - 配置 Grafana
-  -- 使用 vi 命令修改 Grafana 配置文件
-```python
+  - 使用 vi 命令修改 Grafana 配置文件
+  
+```
 vi /usr/local/etc/grafana/grafana.ini
 ```
+
 修改 内容如下：
-```python
+
+```
 [server]
 # Protocol (http, https, socket)
 ;protocol = http
@@ -109,7 +117,7 @@ vi /usr/local/etc/grafana/grafana.ini
 # 6.编写监控脚本
 >*考虑到可能要增加爬虫到监控中，因此这里使用了热更新对监控进行动态配置*。
 ## 6.1.监控脚本 *influx_monitor.py*
-```python
+```
 import ast
 import time
 import pymongo
@@ -260,7 +268,7 @@ if __name__ == '__main__':
 ```
 ## 6.2.配置文件 *influx_settings.conf*
 >*配置文件主要用于热更新相关设置* 。
-```python
+```
 # [需要监控的 MongoDB 数据的 数据库名 和 集合名]
 [db]
 db_collection_dict = {
@@ -273,11 +281,11 @@ interval = 8
 ```
 # 7.配置 Grafana
 ## 7.1. 运行 influxDB
-```python
+```
 python3 influx_monitor.py 
 ```
 新建一个 terminal 窗口，使用 vi 命令修改配置文件 *influx_settings.conf* 。
-```python
+```
 vi influx_settings.conf
 ```
 修改间隔时间为8秒，并保存退出。
@@ -289,7 +297,7 @@ brew services start grafana
 ```
 # 7.3. 运行爬虫文件
 启动 MongoDB 数据库服务。
-```python
+```
 brew services mongodb start
 ```
 ## 7.4. Grafana web窗口设置
