@@ -119,8 +119,11 @@ vi /usr/local/etc/grafana/grafana.ini
 
 
 # 6.编写监控脚本
+
 >*考虑到可能要增加爬虫到监控中，因此这里使用了热更新对监控进行动态配置*。
+
 ##### 6.1.监控脚本 *influx_monitor.py*
+
 ```
 import ast
 import time
