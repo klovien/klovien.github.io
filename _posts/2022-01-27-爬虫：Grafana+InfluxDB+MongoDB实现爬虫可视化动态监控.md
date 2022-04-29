@@ -270,7 +270,9 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+
 ##### 6.2.配置文件 *influx_settings.conf*
+
 >*配置文件主要用于热更新相关设置* 。
 ```
 # [需要监控的 MongoDB 数据的 数据库名 和 集合名]
@@ -283,8 +285,11 @@ db_collection_dict = {
 [time]
 interval = 8
 ```
+
 # 7.配置 Grafana
+
 ##### 7.1. 运行 influxDB
+
 ```
 python3 influx_monitor.py 
 ```
@@ -299,11 +304,13 @@ vi influx_settings.conf
 ```
 brew services start grafana
 ```
+
 ##### 7.3. 运行爬虫文件
 启动 MongoDB 数据库服务。
 ```
 brew services mongodb start
 ```
+
 ##### 7.4. Grafana web窗口设置
 - 打开 Chrome 浏览器，输入 http://127.0.0.1:3000 登录 grafana 页面。
 - 连接本地 influxDB 数据库。
