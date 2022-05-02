@@ -2,7 +2,7 @@
 layout:     post
 title:      Scrapy：安装 scrapy-deltafetch 并处理安装 BerkelyDB、bdsdb4 异常问题
 subtitle:   处理Command "python setup.py egg_info" failed ...报错
-date:       2022-10-01
+date:       2022-11-01
 author:     dex0423
 header-img: img/post-bg-os-metro.jpg
 catalog: false
