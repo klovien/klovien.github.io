@@ -2,7 +2,7 @@
 layout:     post
 title:      Python：Python 常用代码段总结
 subtitle:   
-date:       2022-10-01
+date:       2022-02-01
 author:     dex0423
 header-img: img/post-bg-universe.jpg
 catalog: true

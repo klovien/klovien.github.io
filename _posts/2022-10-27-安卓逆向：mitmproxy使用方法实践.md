@@ -2,7 +2,7 @@
 layout:     post
 title:      安卓逆向：mitmproxy使用方法实践
 subtitle:   使用 mitmproxy 抓取 京东APP 数据
-date:       2022-10-27
+date:       2022-02-07
 author:     dex0423
 header-img: img/post-bg-hacker.jpg
 catalog: true
