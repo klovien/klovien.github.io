@@ -1,5 +1,5 @@
 ---
-layout:     post
+layout:     
 title:      BI：Tableau PowerBI 对比分析
 subtitle:   
 date:       2022-01-27

@@ -1,5 +1,5 @@
 ---
-layout:     post
+layout:     
 title:      BI：Tableau 地理及地图数据实例
 subtitle:   
 date:       2022-01-27
