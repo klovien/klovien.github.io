@@ -1,6 +1,6 @@
 ---
-layout:     
-title:      BI：Tableau PowerBI 对比分析
+layout:     post  BI：Tableau PowerBI 对比分析
+title:      
 subtitle:   
 date:       2022-01-27
 author:     dex0423

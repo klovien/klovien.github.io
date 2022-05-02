@@ -1,6 +1,6 @@
 ---
-layout:     
-title:      BI：Tableau 地理及地图数据实例
+layout:     post  BI：Tableau 地理及地图数据实例
+title:      
 subtitle:   
 date:       2022-01-27
 author:     dex0423
