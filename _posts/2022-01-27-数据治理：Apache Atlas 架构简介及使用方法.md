@@ -7,7 +7,7 @@ author:     dex0423
 header-img: img/post-bg-os-metro.jpg
 catalog: true
 tags:
-    - 数仓
+    - 数据治理
 ---
 
 # Apache Atlas 架构

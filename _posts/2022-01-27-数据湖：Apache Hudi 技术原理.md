@@ -5,7 +5,7 @@ subtitle:
 date:       2022-01-27
 author:     dex0423
 header-img: img/post-bg-os-metro.jpg
-catalog: true
+catalog: 数据湖
 tags:
     - 数仓
 ---
