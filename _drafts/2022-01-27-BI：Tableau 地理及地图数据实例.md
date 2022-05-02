@@ -1,24 +1,14 @@
-[//]: # (---)
-
-[//]: # (layout:     post  )
-
-[//]: # (title:      BI：Tableau 地理及地图数据实例)
-
-[//]: # (subtitle:   )
-
-[//]: # (date:       2022-01-27)
-
-[//]: # (author:     dex0423)
-
-[//]: # (header-img: img/post-bg-os-metro.jpg)
-
-[//]: # (catalog: true)
-
-[//]: # (tags:)
-
-[//]: # (    - BI)
-
-[//]: # (---)
+---
+layout:     post  
+title:      BI：Tableau 地理及地图数据实例
+subtitle:   
+date:       2022-01-27
+author:     dex0423
+header-img: img/post-bg-os-metro.jpg
+catalog: true
+tags:
+    - BI
+---
 
 
 # Tableau 地图数据

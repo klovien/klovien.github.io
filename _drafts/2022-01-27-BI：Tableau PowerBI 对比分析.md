@@ -1,24 +1,14 @@
-[//]: # (---)
-
-[//]: # (layout:     post  )
-
-[//]: # (title:      BI：Tableau PowerBI 对比分析)
-
-[//]: # (subtitle:   )
-
-[//]: # (date:       2022-01-27)
-
-[//]: # (author:     dex0423)
-
-[//]: # (header-img: img/post-bg-os-metro.jpg)
-
-[//]: # (catalog: true)
-
-[//]: # (tags:)
-
-[//]: # (    - BI)
-
-[//]: # (---)
+---
+layout:     post  
+title:      BI：Tableau PowerBI 对比分析
+subtitle:   
+date:       2022-01-27
+author:     dex0423
+header-img: img/post-bg-os-metro.jpg
+catalog: true
+tags:
+    - BI
+---
 
 
 # Tableau
