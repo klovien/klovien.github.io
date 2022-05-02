@@ -105,6 +105,7 @@ vi /usr/local/etc/grafana/grafana.ini
 # If you use reverse proxy and sub path specify full url (with sub path)
 ;root_url = http://localhost:3000
 ```
+
 # 5.编写爬虫代码
 
 这里我使用的是以前写的一个爬取豆瓣电影的的爬虫代码。
@@ -274,6 +275,7 @@ if __name__ == '__main__':
 ##### 6.2.配置文件 *influx_settings.conf*
 
 >*配置文件主要用于热更新相关设置* 。
+
 ```
 # [需要监控的 MongoDB 数据的 数据库名 和 集合名]
 [db]
@@ -293,20 +295,26 @@ interval = 8
 ```
 python3 influx_monitor.py 
 ```
+
 新建一个 terminal 窗口，使用 vi 命令修改配置文件 *influx_settings.conf* 。
+
 ```
 vi influx_settings.conf
 ```
+
 修改间隔时间为8秒，并保存退出。
 这时运行 influxDB 的窗口，提示配置更新，说明配置热更新可用。
 
 ##### 7.2. 启动 grafana
+
 ```
 brew services start grafana
 ```
 
 ##### 7.3. 运行爬虫文件
+
 启动 MongoDB 数据库服务。
+
 ```
 brew services mongodb start
 ```
