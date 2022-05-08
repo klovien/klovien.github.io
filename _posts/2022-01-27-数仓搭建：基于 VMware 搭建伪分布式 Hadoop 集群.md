@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      数仓工具：Hadoop 集群搭建过程
+title:      数仓搭建：基于 VMware 搭建伪分布式 Hadoop 集群
 subtitle:
 date:       2022-01-27
 author:     dex0423
@@ -385,11 +385,7 @@ ssh-copy-id -i slave2
 
 - NameNode and Datanode: http://master:9870
 
-<<<<<<< HEAD
-    
-=======
     ![]({{site.baseurl}}/img-post/hadoop-5.png)
->>>>>>> f7eab2634b31f119f6a91c4c4456f5b3bf2ecc96
 
 - 关闭全部
 
