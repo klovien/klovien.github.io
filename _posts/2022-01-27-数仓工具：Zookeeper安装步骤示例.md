@@ -10,13 +10,17 @@ tags:
     - 数仓
 ---
 
-# 1. 下载安装
+# 1. 准备工作
 
-##### 1.1. 下载
+##### 1.1. 集群规划
+
+  ![]({{site.baseurl}}/img-post/zookeeper.png)
+
+##### 1.2. 下载
 
 <li>点击此处下载：<a href="https://yuyan.fandom.com/zh/wiki/%E4%B8%89%E5%8F%B6%E8%8D%89%E5%9B%BD%E9%99%85%E8%AF%AD">apache-zookeeper-3.5.7-bin.tar.gz</a></li>
 
-##### 1.2. 安装
+##### 1.3. 安装
 
 - 解压缩文件，到常用软件安装位置。
 
