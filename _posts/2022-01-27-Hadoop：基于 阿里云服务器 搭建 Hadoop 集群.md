@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      数仓搭建：基于 阿里云服务器 搭建 Hadoop 集群
+title:      Hadoop：基于 阿里云服务器 搭建 Hadoop 集群
 subtitle:
 date:       2022-01-27
 author:     dex0423
@@ -422,7 +422,24 @@ tags:
   javapsall
   
   # 下面的提示标识启动成功
-  
+  xcall jps
+  -------hadoop102------
+  13586 DataNode
+  13994 Jps
+  13933 JobHistoryServer
+  13455 NameNode
+  -------hadoop102------
+  13586 DataNode
+  14009 Jps
+  13933 JobHistoryServer
+  13455 NameNode
+  -------hadoop103------
+  5040 Jps
+  4703 NodeManager
+  4575 ResourceManager
+  -------hadoop104------
+  3408 SecondaryNameNode
+  3443 Jps
   ```
 
 

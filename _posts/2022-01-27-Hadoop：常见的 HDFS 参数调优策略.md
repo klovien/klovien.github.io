@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      数仓工具：常见的 HDFS 参数调优策略
+title:      Hadoop：常见的 HDFS 参数调优策略
 subtitle:   
 date:       2022-01-27
 author:     dex0423
@@ -68,34 +68,6 @@ tags:
   echo never > /sys/kernel/mm/transparent_hugepage/defrag
   ```
 
-# 数据均衡
-##### 不同服务器间的均衡；
-- start-balancer.sh -threshold，默认为 10，指的是集群中各个节点的磁盘空间利用相差不超过 10%；
-- 注意指的是单个节点的磁盘使用，占集群总磁盘空间的比值；
-- 停止数据均衡：
-  ```aidl
-  stop-balancer.sh
-  ```
-##### 磁盘间的数据均衡
-- 生成执行计划
-
-  ```aidl
-  # 生成一个shufang102.plan.json文件，类似于kafka的分区重分配生成的计划
-  hdfs diskbalancer -plan hadoop101
-  ```
-
-- 执行均衡计划
-  ```
-  hdfs diskbalancer -execute hadoop101.plan.json
-  ```
-- 查看当前均衡任务的执行情况
-  ```aidl
-  hdfs diskbalancer -query hadoop101
-  ```
-- 取消均衡任务
-  ```aidl
-  hdfs diskbalancer -cancel hadoop101.plan.json
-  ```
 
 
 # 4. HDFS 调优
@@ -124,19 +96,31 @@ tags:
 ##### 日志存储路径 & 镜像文件存储路径
 - 编辑日志存储路径dfs.namenode.edits.dir设置与镜像文件存储路径dfs.namenode.name.dir尽量分开，达到最低写入延迟，提高集群的读写方面性能
 
-#5. YARN调优
+#5. YARN 调优
 
-- yarn的资源表示模型为 ceontainer（容器）,container 将资源抽象为两个维度，内存和虚拟cpu(vcore)
-  - 兼容各种计算框架 
-  - 动态分配资源，减少资源浪费
+- yarn的资源表示模型为 ceontainer（容器），container 将资源抽象为两个维度，内存和虚拟cpu(vcore)
+  - 兼容各种计算框架；
+  - 动态分配资源，减少资源浪费；
 
-##### 4.6. 容器内存
+##### 5.1. 容器内存
+
 - yarn.nodemanager.resource.memory-mb
-- 表示该节点上YARN可使用的物理内存总量，默认是8192（MB）；
-- 注意，如果你的节点内存资源不够 8GB，则需要调减小这个值，YARN 不会智能的探测节点的物理内存总量。
+  - 表示该节点上YARN可使用的物理内存总量，默认是8192（MB）；
+  - 如果你的节点内存资源不够 8GB，则需要调减小这个值；
+- 注意：
+  - YARN 不会智能的探测节点的物理内存总量，必须手动修改；
+  - 如果不修改会导致内存使用率过低，洪峰过来时集群会挂掉。
+- 调优方法：
+  - 根据电脑内存来调节；
+  - 比如：
+    - 电脑内存是 128G 的，那这里的值就调成 100G。
 
 ##### 4.7. 最小容器内存
+
 - yarn.scheduler.minimum-allocation-mb
+  - 表示单个任务可申请的最多物理内存容量，默认是 8192(MB)；
+  - MR 过程并不吃内存，所以这里一般不需要修改，除非代码写的太烂；
+  - 如果确有需要，调大到 16G 就可以。
 
 ##### 4.8. 容器内存增量
 - yarn.scheduler.increment-allocation-mb
