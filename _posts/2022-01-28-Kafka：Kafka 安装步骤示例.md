@@ -184,110 +184,45 @@ tags:
 ##### 3.3. kafka 群启群停
 
 - 进入 `/usr/local/apache-zookeeper-3.5.7/bin` 目录
-    ```
-    cd /usr/local/apache-zookeeper-3.5.7/bin
-    ```
-- 编辑 zkEnv.sh
-    ```
-    vim zkEnv.sh
-    ```
 
-    找到下面这段代码：
+  ```
+  #!/bin/bash
 
-    ```
-    if [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]];  then
-    JAVA="$JAVA_HOME/bin/java"
-    elif type -p java; then
-    JAVA=java
-    else
-    echo "Error: JAVA_HOME is not set and java could not be found in PATH." 1>&2
-    exit 1
-    fi
-    ```
-  
-    在上面这段代码前，添加 `JAVA_HOME`
+  case $1 in
+  "start" ){
+    for(( i = 2;i <= 4;i = $i +1));do
+      echo ============ hadoop10$i kafka $1 ===================
+      ssh hadoop10$i "source /etc/profile;nohup /usr/local/kafka/bin/kafka-server-start.sh /usr/local/kafka/config/server.properties"
+    done
+  };;
+  "stop" ){
+    for(( i = 2;i <= 4;i = $i +1));do
+      echo ============ hadoop10$i kafka $1 ===================
+      ssh hadoop10$i "source /etc/profile;kafka-server-stop.sh"
+    done
+  };;
+  esac
+  ```
 
-    ```aidl
-    JAVA_HOME="/usr/local/bin/jdk1.8"
-    ```
-- 分发 `zkEnv.sh`
-    ```
-    xsync ./zkEnv.sh
-    ```
-- 编辑 `zk.sh`
+- 集群启动
+  ```
+  kafka.sh start
+  ```
+- 集群关闭
+  ```
+  kafka.sh stop
+  ```
 
-    ```
-    vim zk.sh
-    ```
 
-    ```aidl
-    #!/bin/bash
-    
-    case $1 in
-    "start"){
-        for i in hadoop102 hadoop103 hadoop104
-        do
-            ssh $i "/usr/local/apache-zookeeper-3.5.7/bin/zkServer.sh start"
-        done
-    };;
-    "stop"){
-        for i in hadoop102 hadoop103 hadoop104
-        do
-            ssh $i "/usr/local/apache-zookeeper-3.5.7/bin/zkServer.sh stop"
-        done
-    };;
-    "status"){
-        for i in hadoop102 hadoop103 hadoop104
-        do
-            ssh $i "/usr/local/apache-zookeeper-3.5.7/bin/zkServer.sh status"
-        done
-    };;
-    esac
-    ```
+# 4. Kafka 常用命令
 
-    ```aidl
-    # 修改权限
-    chmod 777 zk.sh
-    ```
-- 集群启动 Zookeeper
-
-    ```
-    ./zk.sh start
-  
-  
-    ZooKeeper JMX enabled by default
-    Using config: /usr/local/apache-zookeeper-3.5.7/bin/../conf/zoo.cfg
-    Starting zookeeper ... STARTED
-    ZooKeeper JMX enabled by default
-    Using config: /usr/local/apache-zookeeper-3.5.7/bin/../conf/zoo.cfg
-    Starting zookeeper ... already running as process 7970.
-    ZooKeeper JMX enabled by default
-    Using config: /usr/local/apache-zookeeper-3.5.7/bin/../conf/zoo.cfg
-    Starting zookeeper ... STARTED
-    ```
-
-# 4. Zookeeper 常用命令
+#### 4.1. topic 命令
 
 - 命令基本语法及功能描述
 
   - `bin/zkCli.sh help`，显示所有操作命令
 
-  - `bin/zkCli.sh ls path [watch]`，使用 ls 命令来查看当前znode中所包含的内容
 
-  - `bin/zkCli.sh ls2 path [watch]`，查看当前节点数据并能看到更新次数等数据
+##### 4.2. 消息命令
 
-  - `bin/zkCli.sh create`，普通创建
-
-  - `bin/zkCli.sh -s`，含有序列
-
-  - `bin/zkCli.sh -e`，临时（重启或者超时消失）
-
-  - `bin/zkCli.sh get path [watch]`，获得节点的值
-
-  - `bin/zkCli.sh set`，设置节点的具体值
-
-  - `bin/zkCli.sh stat`，查看节点状态
-
-  - `bin/zkCli.sh delete`，删除节点
-
-  - `bin/zkCli.sh rmr`，递归删除节点
+- 
