@@ -1,13 +1,13 @@
 ---
 layout:     post
-title:      作业调度：Airflow 使用方法及注意问题
+title:      Airflow：Airflow 使用方法及注意问题
 subtitle:   
 date:       2022-01-27
 author:     dex0423
 header-img: img/post-bg-os-metro.jpg
 catalog: true
 tags:
-    - 数仓
+    - Airflow
 ---
 
 > 关于 Airflow 的介绍，请参考 <a href="https://dex0423.github.io/2022/01/27/ETL-ETL%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">《ETL：ETL的基本概念》</a> 中 ***5.3. Airflow*** 一节的内容。
@@ -174,7 +174,6 @@ dws_delivery_reach_result_test_1 | test.py  | admin | True
 ##### 4.1. 概念简介
 
 - task 是用来做数据清洗同步的具体任务，内容是用 python 编写的 SQL 相关语句，数据清洗工作在此处完成；
--
 
 ##### 4.2. 文件位置
 
