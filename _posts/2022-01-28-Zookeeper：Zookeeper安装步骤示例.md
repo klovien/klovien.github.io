@@ -265,3 +265,59 @@ tags:
   - `bin/zkCli.sh delete`，删除节点
 
   - `bin/zkCli.sh rmr`，递归删除节点
+
+# 5. 常见错误
+
+##### 5.1. 启动 zookeeper 时报错：`Error contacting service. It is probably not running`
+
+- 原因分析：
+  - myid 文件编辑错误。
+
+- 解决方法：
+
+  - 重新边界 myid 文件：
+    - hadoop102： 1；
+    - hadoop103： 2；
+    - hadoop104： 3。
+    
+  - 保存退出后重新启动 zookeeper。
+
+##### 5.2. `zk.sh start` 时报错：`Zookeeper JAVA_HOME is not set and java could not be found in PATH`
+
+- 原因分析：
+  - `zkEnv.sh` 中未配置 JAVA_HOME。
+
+- 解决方法：
+  - 进入 `/usr/local/apache-zookeeper-3.5.7/bin` 目录
+    ```
+    cd /usr/local/apache-zookeeper-3.5.7/bin
+    ```
+  - 编辑 zkEnv.sh
+
+    ```
+    vim zkEnv.sh
+    ```
+
+  - 找到下面这段代码：
+
+    ```
+    if [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]];  then
+    JAVA="$JAVA_HOME/bin/java"
+    elif type -p java; then
+    JAVA=java
+    else
+    echo "Error: JAVA_HOME is not set and java could not be found in PATH." 1>&2
+    exit 1
+    fi
+    ```
+
+  - 在上面这段代码前，添加 `JAVA_HOME`
+
+    ```aidl
+    JAVA_HOME="/usr/local/bin/jdk1.8"
+    ```
+  - 分发 `zkEnv.sh`
+
+    ```
+    xsync ./zkEnv.sh
+    ```

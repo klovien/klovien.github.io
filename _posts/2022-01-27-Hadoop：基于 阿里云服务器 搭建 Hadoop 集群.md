@@ -442,9 +442,18 @@ tags:
   3443 Jps
   ```
 
+##### 3.6. 群启群停
 
+- 群启
 
-https://www.cnblogs.com/latiaotaba/p/10180099.html
+  ```aidl
+  start-all.sh
+  ```
 
+- 群停
+
+  ```aidl
+  stop-all.sh
+  ```
 
 
