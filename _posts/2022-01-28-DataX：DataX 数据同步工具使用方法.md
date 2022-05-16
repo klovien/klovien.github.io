@@ -1,13 +1,13 @@
 ---
 layout:     post
-title:      作业调度：DataX 数据同步工具使用注意事项
+title:      DataX：DataX 数据同步工具使用注意事项
 subtitle:   
-date:       2022-01-27
+date:       2022-01-28
 author:     dex0423
 header-img: img/post-bg-os-metro.jpg
 catalog: true
 tags:
-    - 数仓
+    - DataX
 ---
 
 > 关于 DataX 的介绍，请参考 <a href="https://dex0423.github.io/2022/01/27/ETL-ETL%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">《ETL：ETL的基本概念》</a> 中 ***5.2. DataX*** 一节的内容。

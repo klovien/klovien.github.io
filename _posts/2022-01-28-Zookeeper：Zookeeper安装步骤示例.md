@@ -2,7 +2,7 @@
 layout:     post
 title:      Zookeeper：Zookeeper安装步骤示例
 subtitle:   
-date:       2022-01-27
+date:       2022-01-28
 author:     dex0423
 header-img: img/post-bg-os-metro.jpg
 catalog: true
