@@ -7,7 +7,7 @@ author:     dex0423
 header-img: img/post-bg-os-metro.jpg
 catalog: true
 tags:
-    - 数仓
+    - 数仓,Zookeeper
 ---
 
 # 1. 准备工作
