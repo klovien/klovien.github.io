@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      DataX：DataX 数据同步工具部署使用方法
+title:      DataX：DataX 部署使用方法及注意问题
 subtitle:   
 date:       2022-01-28
 author:     dex0423
