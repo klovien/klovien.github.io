@@ -65,10 +65,10 @@ tags:
 
 - 使用文本阅读程序打开 elasticsearch.yml 文件，在最底部添加下面两行内容：
 
-```
-http.cors.enabled: true    # 开启跨域访问支持，默认为false
-http.cors.allow-origin: "*"   # 跨域访问允许的域名地址
-```
+  ```
+  http.cors.enabled: true    # 开启跨域访问支持，默认为false
+  http.cors.allow-origin: "*"   # 跨域访问允许的域名地址
+  ```
 
 - 找到 ES 服务重启后跳出的命令行窗口，ctrl + C 终止服务；
   
