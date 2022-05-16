@@ -271,11 +271,28 @@ tags:
 ##### 5.1. 启动 zookeeper 时报错：`Error contacting service. It is probably not running`
 
 - 原因分析：
-  - myid 文件编辑错误。
+  - myid 配置错误。
 
 - 解决方法：
 
-  - 重新边界 myid 文件：
+  - 重新编辑 `vim zoo.cfg`
+
+    ```aidl
+    vim zoo.cfg
+    ```
+  
+    ```
+    #######################cluster##########################
+    
+    server.1=hadoop102:2888:3888
+    
+    server.2=hadoop103:2888:3888
+    
+    server.3=hadoop104:2888:3888
+    ```
+  
+  - 重新编辑 `/zkData` 目录下的 `myid` 文件：
+
     - hadoop102： 1；
     - hadoop103： 2；
     - hadoop104： 3。
