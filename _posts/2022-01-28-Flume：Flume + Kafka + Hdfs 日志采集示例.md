@@ -1,13 +1,13 @@
 ---
 layout:     post
-title:      日志采集：Kafka + Flume + Hdfs 日志采集示例
+title:      Flume：Flume + Kafka + Hdfs 日志采集示例
 subtitle:   
 date:       2022-01-28
 author:     dex0423
 header-img: img/post-bg-os-metro.jpg
 catalog: true
 tags:
-    - Zookeeper
+    - Flume
 ---
 
 
