@@ -14,7 +14,9 @@ tags:
 
 ##### 1.1. 集群规划
 
-  ![]({{site.baseurl}}/img-post/zookeeper.png)
+  ![]({{site.baseurl}}/img-post/flume-1.png)
+
+  
 
 ##### 1.2. 下载
 
