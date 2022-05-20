@@ -145,12 +145,24 @@ tags:
     com.alibaba.datax.common.exception.DataXException: Code:[Common-00], Description:[您提供的配置文件存在错误信息，请检查您的作业配置。].
      -配置信息错误 ,您提供的配置文件:/home/work/datax/plugin/reader/._hbase11xreader/plugin.json]不存在，请检查您的配置文件。
     `
+
+- 原因分析：操作过 reader 目录的内容，系统会自动生成一个.DS_Store 的系统文件，dataX默认plugin/render都是文件夹，没有做操作系统这种层面的差异处理所以需要手动把错误路径下的._hbase11xreader文件删除即可。
+    
 - 处理方法：
 
-    - 原因分析：操作过 reader 目录的内容，系统会自动生成一个.DS_Store 的系统文件，dataX默认plugin/render都是文件夹，没有做操作系统这种层面的差异处理所以需要手动把错误路径下的._hbase11xreader文件删除即可。
+    ```
+    find . -name '._*'|xargs rm -rf
+    ```
+
+# 9. 回滚此次写入, 采用每次写入一行方式提交
+
+- 报错内容：
+  
+    `
+    WARN  CommonRdbmsWriter$Task - 回滚此次写入, 采用每次写入一行方式提交. 因为:[9001, 2022052000014319216820803603453360741] unsupport packet=>030000001B0100, packet_name=mysql_set_server_option
+    `
+      
+- 解决方法：
     
-    - 处理方法：
+    - 删除低版本 `mysql-connector-java-xxx.jar` jar 包。
     
-        ```
-        find . -name '._*'|xargs rm -rf
-        ```
