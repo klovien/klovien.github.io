@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Flume：Flume 安装步骤及日志采集示例
+title:      Flume：Flume 安装步骤示例
 subtitle:   
 date:       2022-01-28
 author:     dex0423
