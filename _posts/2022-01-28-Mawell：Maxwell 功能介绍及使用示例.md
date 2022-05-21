@@ -100,7 +100,7 @@ Maxwell官网：http://maxwells-daemon.io/
 - Maxwell 启动关闭 .sh 脚本
 
   ```aidl
-  #！/bin/bash
+  #!/bin/bash
 
   MAXWELL_HOME=/usr/local/maxwell
   
