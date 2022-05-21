@@ -213,25 +213,3 @@ tags:
   kafka.sh stop
   ```
 
-
-# 4. Kafka 常用命令
-
-#### 4.1. topic 命令
-
-- 命令基本语法及功能描述
-
-  - `bin/zkCli.sh help`，显示所有操作命令
-
-
-##### 4.2. 消息命令
-
-
-
-##### 4.3. offsite 重置 & -- from-beginning
-
-
-##### kafka 断点续传
-
-##### 分区内有序，分区间无序
-
-##### kafka 监控

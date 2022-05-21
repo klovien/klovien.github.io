@@ -82,4 +82,223 @@ tags:
 
 # TailDirSource
 
-Kafka Channel 省去了 Sink
+##### 编辑 Flume 配置文件
+
+- 在 `/flume/job` 目录下编辑 `file_to_kafka.conf`
+
+  ```aidl
+  a1.sources=r1
+  a1.channels=c1 c2
+  
+  # configure source
+  a1.sources.r1.type = TAILDIR
+  a1.sources.r1.positionFile = /usr/local/flume/log_position.json
+  a1.sources.r1.filegroups = f1
+  a1.sources.r1.filegroups.f1 = /usr/local/applog/log/app.*
+  a1.sources.r1.fileHeader = true
+  a1.sources.r1.channels = c1 c2
+  
+  #interceptor
+  a1.sources.r1.interceptors =  i1 i2
+  a1.sources.r1.interceptors.i1.type = com.dex0423.flume.interceptor.ETLInterceptor$Builder
+  a1.sources.r1.interceptors.i2.type = com.dex0423.flume.interceptor.ETLInterceptor$Builder
+  
+  a1.sources.r1.selector.type = multiplexing
+  a1.sources.r1.selector.header = topic
+  a1.sources.r1.selector.mapping.topic_start = c1
+  a1.sources.r1.selector.mapping.topic_event = c2
+  
+  # configure channel
+  a1.channels.c1.type = org.apache.flume.channel.kafka.KafkaChannel
+  a1.channels.c1.kafka.bootstrap.servers = hadoop102:9092,hadoop103:9092,hadoop104:9092
+  a1.channels.c1.kafka.topic = topic_start
+  a1.channels.c1.parseAsFlumeEvent = false
+  a1.channels.c1.kafka.consumer.group.id = flume-consumer
+  
+  a1.channels.c2.type = org.apache.flume.channel.kafka.KafkaChannel
+  a1.channels.c2.kafka.bootstrap.servers = hadoop102:9092,hadoop103:9092,hadoop104:9092
+  a1.channels.c2.kafka.topic = topic_event
+  a1.channels.c2.parseAsFlumeEvent = false
+  a1.channels.c2.kafka.consumer.group.id = flume-consumer
+  ```
+
+##### 编辑 Flume 拦截器
+
+- 具体 JAVA 工程步骤，这里不再赘述，下面是两个核心文件。
+  
+  - <a href="{{site.baseurl}}/files/flume-interceptor.rar">点击下载站内资源：flume-interceptor.rar</a></li>
+
+- `pom.xml`
+
+  ```aidl
+  <?xml version="1.0" encoding="UTF-8"?>
+  <project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+      <groupId>org.example</groupId>
+      <artifactId>flume-interceptor</artifactId>
+      <version>1.0-SNAPSHOT</version>
+  
+      <properties>
+          <maven.compiler.source>8</maven.compiler.source>
+          <maven.compiler.target>8</maven.compiler.target>
+      </properties>
+  
+      <dependencies>
+          <dependency>
+              <groupId>org.apache.flume</groupId>
+              <artifactId>flume-ng-core</artifactId>
+              <version>1.9.0</version>
+              <scope>provided</scope>
+          </dependency>
+  
+          <dependency>
+              <groupId>com.alibaba</groupId>
+              <artifactId>fastjson</artifactId>
+              <version>1.2.62</version>
+          </dependency>
+      </dependencies>
+  
+      <build>
+          <plugins>
+              <plugin>
+                  <artifactId>maven-compiler-plugin</artifactId>
+                  <version>2.3.2</version>
+                  <configuration>
+                      <source>1.8</source>
+                      <target>1.8</target>
+                  </configuration>
+              </plugin>
+              <plugin>
+                  <artifactId>maven-assembly-plugin</artifactId>
+                  <configuration>
+                      <descriptorRefs>
+                          <descriptorRef>jar-with-dependencies</descriptorRef>
+                      </descriptorRefs>
+                  </configuration>
+                  <executions>
+                      <execution>
+                          <id>make-assembly</id>
+                          <phase>package</phase>
+                          <goals>
+                              <goal>single</goal>
+                          </goals>
+                      </execution>
+                  </executions>
+              </plugin>
+          </plugins>
+      </build>
+  
+  
+  </project>
+  ```
+
+- `ETLInterceptor.java`，我们在这里自己创建拦截器，根据业务不同可以创建不同的拦截器。
+
+  ```aidl
+  package com.dex0423.flume.interceptor;
+  
+  import org.apache.flume.Context;
+  import org.apache.flume.Event;
+  import org.apache.flume.interceptor.Interceptor;
+  
+  import java.nio.charset.StandardCharsets;
+  import java.util.Iterator;
+  import java.util.List;
+  
+  public class ETLInterceptor implements Interceptor {
+  
+  
+      @Override
+      public void initialize() {
+  
+      }
+  
+      @Override
+      public Event intercept(Event event) {
+  
+          byte[] body = event.getBody();
+  
+          String log = new String(body, StandardCharsets.UTF_8);
+  
+          // 过滤 event 中的数据是否是 JSON 格式
+          if (JSONUtils.isJSONValidate(log)){
+              return event;
+          }else {
+              return null;
+          }
+      }
+  
+      @Override
+      public List<Event> intercept(List<Event> list) {
+  
+          Iterator<Event> iterator = list.iterator();
+  
+          while (iterator.hasNext()) {
+              Event next = iterator.next();
+  
+              if (intercept(next) == null){
+                  iterator.remove();
+              }
+          }
+  
+          return list;
+      }
+  
+      @Override
+      public void close() {
+  
+      }
+  
+      public static class Builder implements Interceptor.Builder{
+  
+          @Override
+          public Interceptor build() {
+              return new ETLInterceptor();
+          }
+  
+          @Override
+          public void configure(Context context) {
+  
+          }
+      }
+  
+  }
+  ```
+
+- build jar 包，推送到 `/usr/local/flume/lib` 目录下。
+
+# 采集日志
+
+- 确保 Hadoop 集群和 Kafka 正常运行。
+
+##### Kafka 创建 topic
+
+- 在 hadoop103 `kafka/bin` 目录下创建 topic，挂一个消费者。
+
+  ```aidl
+  kafka-topics.sh --bootstrap-server hadoop102:9092 --alter --topic topic_log --partitions 3
+  ```
+
+##### 启动 flume 
+
+- 在 hadoop102 执行
+
+  ```aidl
+  bin/flume-ng agent --name a1 --conf-file /usr/local/flume/job/file_to_kafka.conf -Dflume.root.logger=info,console
+  ```
+- 如下即表示日志同步成功
+  ```aidl
+  ...
+  2022-05-21 18:02:22,016 INFO taildir.TaildirSource: r1 TaildirSource source starting with directory: {f1=/usr/local/applog/log/app.*}
+  2022-05-21 18:02:22,020 INFO taildir.ReliableTaildirEventReader: taildirCache: [{filegroup='f1', filePattern='/usr/local/applog/log/app.*', cached=true}]
+  2022-05-21 18:02:22,023 INFO taildir.ReliableTaildirEventReader: headerTable: {}
+  2022-05-21 18:02:22,029 INFO taildir.ReliableTaildirEventReader: Opening file: /usr/local/applog/log/app.2022-05-17.log, inode: 1453474, pos: 0
+  2022-05-21 18:02:22,031 INFO taildir.ReliableTaildirEventReader: Updating position from position file: /usr/local/flume/log_position.json
+  2022-05-21 18:02:22,037 INFO taildir.TailFile: Updated position, file: /usr/local/applog/log/app.2022-05-17.log, inode: 1453474, pos: 3192719
+  2022-05-21 18:02:22,040 INFO instrumentation.MonitoredCounterGroup: Monitored counter group for type: SOURCE, name: r1: Successfully registered new MBean.
+  2022-05-21 18:02:22,040 INFO instrumentation.MonitoredCounterGroup: Component type: SOURCE, name: r1 started
+  2022-05-21 18:04:22,052 INFO taildir.TaildirSource: Closed file: /usr/local/applog/log/app.2022-05-17.log, inode: 1453474, pos: 3192719
+  ```
