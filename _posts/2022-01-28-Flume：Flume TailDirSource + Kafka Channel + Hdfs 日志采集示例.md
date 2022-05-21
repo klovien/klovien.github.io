@@ -80,9 +80,9 @@ tags:
   ============ hadoop104 start applog ===================
   ```
 
-# TailDirSource
+# 2. 采集日志
 
-##### 编辑 Flume 配置文件
+##### 2.1. 编辑 Flume 配置文件
 
 - 在 `/flume/job` 目录下编辑 `file_to_kafka.conf`
 
@@ -122,7 +122,7 @@ tags:
   a1.channels.c2.kafka.consumer.group.id = flume-consumer
   ```
 
-##### 编辑 Flume 拦截器
+##### 2.2. 编辑 Flume 拦截器
 
 - 具体 JAVA 工程步骤，这里不再赘述，下面是两个核心文件。
   
@@ -270,11 +270,9 @@ tags:
 
 - build jar 包，推送到 `/usr/local/flume/lib` 目录下。
 
-# 采集日志
+##### 2.3. 采集日志
 
 - 确保 Hadoop 集群和 Kafka 正常运行。
-
-##### Kafka 创建 topic
 
 - 在 hadoop103 `kafka/bin` 目录下创建 topic，挂一个消费者。
 
@@ -282,23 +280,115 @@ tags:
   kafka-topics.sh --bootstrap-server hadoop102:9092 --alter --topic topic_log --partitions 3
   ```
 
-##### 启动 flume 
-
-- 在 hadoop102 执行
+- 在 hadoop102 启动 flume 将日志写入 kafka
 
   ```aidl
   bin/flume-ng agent --name a1 --conf-file /usr/local/flume/job/file_to_kafka.conf -Dflume.root.logger=info,console
   ```
-- 如下即表示日志同步成功
+
+[//]: # (- 如下即表示日志同步成功)
+
+[//]: # (  ```aidl)
+
+[//]: # (  ...)
+
+[//]: # (  2022-05-21 18:02:22,016 INFO taildir.TaildirSource: r1 TaildirSource source starting with directory: {f1=/usr/local/applog/log/app.*})
+
+[//]: # (  2022-05-21 18:02:22,020 INFO taildir.ReliableTaildirEventReader: taildirCache: [{filegroup='f1', filePattern='/usr/local/applog/log/app.*', cached=true}])
+
+[//]: # (  2022-05-21 18:02:22,023 INFO taildir.ReliableTaildirEventReader: headerTable: {})
+
+[//]: # (  2022-05-21 18:02:22,029 INFO taildir.ReliableTaildirEventReader: Opening file: /usr/local/applog/log/app.2022-05-17.log, inode: 1453474, pos: 0)
+
+[//]: # (  2022-05-21 18:02:22,031 INFO taildir.ReliableTaildirEventReader: Updating position from position file: /usr/local/flume/log_position.json)
+
+[//]: # (  2022-05-21 18:02:22,037 INFO taildir.TailFile: Updated position, file: /usr/local/applog/log/app.2022-05-17.log, inode: 1453474, pos: 3192719)
+
+[//]: # (  2022-05-21 18:02:22,040 INFO instrumentation.MonitoredCounterGroup: Monitored counter group for type: SOURCE, name: r1: Successfully registered new MBean.)
+
+[//]: # (  2022-05-21 18:02:22,040 INFO instrumentation.MonitoredCounterGroup: Component type: SOURCE, name: r1 started)
+
+[//]: # (  2022-05-21 18:04:22,052 INFO taildir.TaildirSource: Closed file: /usr/local/applog/log/app.2022-05-17.log, inode: 1453474, pos: 3192719)
+
+[//]: # (  ```)
+
+# 3. 消费日志
+
+- kafka_to_hdfs.conf
+
   ```aidl
-  ...
-  2022-05-21 18:02:22,016 INFO taildir.TaildirSource: r1 TaildirSource source starting with directory: {f1=/usr/local/applog/log/app.*}
-  2022-05-21 18:02:22,020 INFO taildir.ReliableTaildirEventReader: taildirCache: [{filegroup='f1', filePattern='/usr/local/applog/log/app.*', cached=true}]
-  2022-05-21 18:02:22,023 INFO taildir.ReliableTaildirEventReader: headerTable: {}
-  2022-05-21 18:02:22,029 INFO taildir.ReliableTaildirEventReader: Opening file: /usr/local/applog/log/app.2022-05-17.log, inode: 1453474, pos: 0
-  2022-05-21 18:02:22,031 INFO taildir.ReliableTaildirEventReader: Updating position from position file: /usr/local/flume/log_position.json
-  2022-05-21 18:02:22,037 INFO taildir.TailFile: Updated position, file: /usr/local/applog/log/app.2022-05-17.log, inode: 1453474, pos: 3192719
-  2022-05-21 18:02:22,040 INFO instrumentation.MonitoredCounterGroup: Monitored counter group for type: SOURCE, name: r1: Successfully registered new MBean.
-  2022-05-21 18:02:22,040 INFO instrumentation.MonitoredCounterGroup: Component type: SOURCE, name: r1 started
-  2022-05-21 18:04:22,052 INFO taildir.TaildirSource: Closed file: /usr/local/applog/log/app.2022-05-17.log, inode: 1453474, pos: 3192719
+  ## 组件
+  a1.sources=r1 r2
+  a1.channels=c1 c2
+  a1.sinks=k1 k2
+  
+  ## source1
+  a1.sources.r1.type = org.apache.flume.source.kafka.KafkaSource
+  a1.sources.r1.batchSize = 5000
+  a1.sources.r1.batchDurationMillis = 2000
+  a1.sources.r1.kafka.bootstrap.servers = hadoop102:9092,hadoop103:9092,hadoop104:9092
+  a1.sources.r1.kafka.topics=topic_start
+  
+  ## source2
+  a1.sources.r2.type = org.apache.flume.source.kafka.KafkaSource
+  a1.sources.r2.batchSize = 5000
+  a1.sources.r2.batchDurationMillis = 2000
+  a1.sources.r2.kafka.bootstrap.servers = hadoop102:9092,hadoop103:9092,hadoop104:9092
+  a1.sources.r2.kafka.topics=topic_event
+  
+  ## channel1
+  a1.channels.c1.type = file
+  a1.channels.c1.checkpointDir = /usr/local/flume/checkpoint/behavior1
+  a1.channels.c1.dataDirs = /usr/local/flume/data/behavior1/
+  a1.channels.c1.maxFileSize = 2146435071
+  a1.channels.c1.capacity = 1000000
+  a1.channels.c1.keep-alive = 6
+  
+  ## channel2
+  a1.channels.c2.type = file
+  a1.channels.c2.checkpointDir = /usr/local/flume/checkpoint/behavior2
+  a1.channels.c2.dataDirs = /usr/local/flume/data/behavior2/
+  a1.channels.c2.maxFileSize = 2146435071
+  a1.channels.c2.capacity = 1000000
+  a1.channels.c2.keep-alive = 6
+  
+  ## sink1
+  a1.sinks.k1.type = hdfs
+  a1.sinks.k1.hdfs.path = /origin_data/gmall/log/topic_start/%Y-%m-%d
+  a1.sinks.k1.hdfs.filePrefix = logstart-
+  a1.sinks.k1.hdfs.round = true
+  a1.sinks.k1.hdfs.roundValue = 10
+  a1.sinks.k1.hdfs.roundUnit = second
+  
+  ## sink2
+  a1.sinks.k2.type = hdfs
+  a1.sinks.k2.hdfs.path = /origin_data/gmall/log/topic_event/%Y-%m-%d
+  a1.sinks.k2.hdfs.filePrefix = logevent-
+  a1.sinks.k2.hdfs.round = true
+  a1.sinks.k2.hdfs.roundValue = 10
+  a1.sinks.k2.hdfs.roundUnit = second
+  
+  ## 不要产生大量小文件
+  a1.sinks.k1.hdfs.rollInterval = 10
+  a1.sinks.k1.hdfs.rollSize = 134217728
+  a1.sinks.k1.hdfs.rollCount = 0
+  
+  a1.sinks.k2.hdfs.rollInterval = 10
+  a1.sinks.k2.hdfs.rollSize = 134217728
+  a1.sinks.k2.hdfs.rollCount = 0
+  
+  ## 控制输出文件是原生文件。
+  a1.sinks.k1.hdfs.fileType = CompressedStream 
+  a1.sinks.k2.hdfs.fileType = CompressedStream 
+  
+  a1.sinks.k1.hdfs.codeC = lzop
+  a1.sinks.k2.hdfs.codeC = lzop
+  
+  ## 拼装
+  a1.sources.r1.channels = c1
+  a1.sinks.k1.channel= c1
+  
+  a1.sources.r2.channels = c2
+  a1.sinks.k2.channel= c2
   ```
+
