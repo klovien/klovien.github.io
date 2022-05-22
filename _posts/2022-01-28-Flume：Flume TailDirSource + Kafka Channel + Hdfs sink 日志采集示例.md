@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Flume：Flume TailDirSource + Kafka Channel + Hdfs 日志采集示例
+title:      Flume：Flume TailDirSource + Kafka Channel + Hdfs sink 日志采集示例
 subtitle:   
 date:       2022-01-28
 author:     dex0423
