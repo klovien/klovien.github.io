@@ -20,7 +20,7 @@ tags:
 
 # 2. Maxwell工作原理
 
-##### 2.1. Maxwell 把自己伪装成 MySQL 的 slave 从库
+#### 2.1. Maxwell 把自己伪装成 MySQL 的 slave 从库
 
 - Maxwell 工作原理与 Canal 工作原理一样，都是把自己伪装成 MySQL 的 slave 从库，同步 binlog 数据，来达到同步 MySQL 数据，与 Canal 相比，更加轻量。
 
@@ -28,7 +28,7 @@ tags:
 
   - 二进制日志（Binlog）是MySQL服务端非常重要的一种日志，它会保存MySQL数据库的所有数据变更记录。Binlog的主要作用包括主从复制和数据恢复。
 
-##### 2.2. Maxwell & MySQL 主从复制
+#### 2.2. Maxwell & MySQL 主从复制
 
 - Maxwell 的工作原理和主从复制密切相关。
 
@@ -47,7 +47,7 @@ tags:
 
 # 3. Maxwell 使用示例
 
-##### 3.1. 环境 & 版本准备
+#### 3.1. 环境 & 版本准备
 
 - 版本
   - maxwells :     1.2.X 以上
@@ -55,7 +55,7 @@ tags:
   - jdk       :     1.8 以上 
   - 操作系统  :     centos7
 
-##### 3.2. Mysql 配置
+#### 3.2. Mysql 配置
 
 - 编辑 conf
 
@@ -81,7 +81,7 @@ tags:
   mysql> GRANT SELECT, REPLICATION CLIENT, REPLICATION SLAVE ON *.* TO 'maxwell'@'%';
   ```
 
-##### 3.3. 配置 Maxwell 
+#### 3.3. 配置 Maxwell 
 
 - 配置 `config.properties`
   ```
@@ -175,7 +175,7 @@ tags:
   - 只支持在启动maxwell的命令指定，比如 `--init_postion=mysql-bin.0000456:4:0`。
   - maxwell 默认从连接上 mysql server 的当前位置开始解析，如果指定 init_postion，要确保文件确实存在，如果 binlog 已经被 purge 掉了，可能需要想其它办法。
 
-##### 3.4. Maxwell 启动关闭
+#### 3.4. Maxwell 启动关闭
 
 - 启动关闭 .sh 脚本
 
@@ -221,7 +221,7 @@ tags:
   esac
   ```
 
-##### 3.5. 使用 kafka 作为消息队列
+#### 3.5. 使用 kafka 作为消息队列
 
 - kafka是maxwell支持最完善的一个producer，并且内置了 多个版本的 kafka client(0.8.2.2, 0.9.0.1, 0.10.0.1, 0.10.2.1 or 0.11.0.1)，默认 kafka_version=0.11.0.1
 

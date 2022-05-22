@@ -12,15 +12,15 @@ tags:
 
 # 1. 准备工作
 
-##### 1.1. 集群规划
+#### 1.1. 集群规划
 
   ![]({{site.baseurl}}/img-post/zookeeper.png)
 
-##### 1.2. 下载
+#### 1.2. 下载
 
 <li>点击此处下载：<a href="https://yuyan.fandom.com/zh/wiki/%E4%B8%89%E5%8F%B6%E8%8D%89%E5%9B%BD%E9%99%85%E8%AF%AD">apache-zookeeper-3.5.7-bin.tar.gz</a></li>
 
-##### 1.3. 安装
+#### 1.3. 安装
 
 - 解压缩文件，到常用软件安装位置。
 
@@ -32,7 +32,7 @@ tags:
 
 # 2. 修改配置
 
-##### 2.1. 配置 dataDir 和 myid
+#### 2.1. 配置 dataDir 和 myid
 
 - 创建 `zkData` 目录
 
@@ -84,7 +84,7 @@ tags:
     - D，执行选举时服务器相互通信的端口。`
 
 
-##### 2.2. 分发到 hadoop103 和 hadoop104
+#### 2.2. 分发到 hadoop103 和 hadoop104
 
 - xsync 分发
 
@@ -92,7 +92,7 @@ tags:
     sudo xsync zookeeper-3.5.7/ 
     ```
 
-##### 2.3. 修改 hadoop103 和 hadoop104 的设置
+#### 2.3. 修改 hadoop103 和 hadoop104 的设置
 
 - hadoop103
 
@@ -128,7 +128,7 @@ tags:
     ```
 # 3. 运行
 
-##### 3.1. 启动
+#### 3.1. 启动
 
 - 在 hadoop102、hadoop103、hadoop104 上逐个启动
 
@@ -142,7 +142,7 @@ tags:
     Starting zookeeper ... STARTED
     ```
 
-##### 3.2. 关闭
+#### 3.2. 关闭
 
 - 逐个关闭
   ```
@@ -155,7 +155,7 @@ tags:
   Stopping zookeeper ... STOPPED
   ```
 
-##### 3.3. Zookeeper 群启群停
+#### 3.3. Zookeeper 群启群停
 
 - 进入 `/usr/local/apache-zookeeper-3.5.7/bin` 目录
     ```
@@ -268,7 +268,7 @@ tags:
 
 # 5. 常见错误
 
-##### 5.1. 启动 zookeeper 时报错：`Error contacting service. It is probably not running`
+#### 5.1. 启动 zookeeper 时报错：`Error contacting service. It is probably not running`
 
 - 原因分析：
   - myid 配置错误。
@@ -299,7 +299,7 @@ tags:
     
   - 保存退出后重新启动 zookeeper。
 
-##### 5.2. `zk.sh start` 时报错：`Zookeeper JAVA_HOME is not set and java could not be found in PATH`
+#### 5.2. `zk.sh start` 时报错：`Zookeeper JAVA_HOME is not set and java could not be found in PATH`
 
 - 原因分析：
   - `zkEnv.sh` 中未配置 JAVA_HOME。

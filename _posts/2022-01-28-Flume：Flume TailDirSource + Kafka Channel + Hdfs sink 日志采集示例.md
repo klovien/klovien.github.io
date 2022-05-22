@@ -13,7 +13,7 @@ tags:
 
 # 1. 模拟生成日志
 
-##### 1.1. 日志生成脚本
+#### 1.1. 日志生成脚本
 
 - 下载脚本
   - 链接：https://pan.baidu.com/s/1OqriA6Yr5B-W90vR71RPkg?pwd=0qnm
@@ -28,7 +28,7 @@ tags:
   <property name="LOG_HOME" value="/usr/local/applog/log" />
   ```
   
-##### 1.2. 修改日志的日期
+#### 1.2. 修改日志的日期
 
 - 修改要生成的日志的日期，具体的日期可以自行修改。
 
@@ -41,7 +41,7 @@ tags:
   mock.date: "2021-06-08"
   ```
 
-##### 1.3. 生成日志
+#### 1.3. 生成日志
 
 - 后台运行
 
@@ -49,7 +49,7 @@ tags:
   nohup java -jar gmall2020-mock-log-2021-01-22.jar 1>/dev/null 2>/dev/null &
   ```
   
-##### 1.4. 群启日志生成脚本
+#### 1.4. 群启日志生成脚本
 
 - 在 `/usr/local/bin` 目录下编辑 `start_applog.sh`
 
@@ -82,7 +82,7 @@ tags:
 
 # 2. 采集日志
 
-##### 2.1. 编辑 Flume 配置文件
+#### 2.1. 编辑 Flume 配置文件
 
 - 在 `/flume/job` 目录下编辑 `file_to_kafka.conf`
 
@@ -122,7 +122,7 @@ tags:
   a1.channels.c2.kafka.consumer.group.id = flume-consumer
   ```
 
-##### 2.2. 编辑 Flume 拦截器
+#### 2.2. 编辑 Flume 拦截器
 
 - 具体 JAVA 工程步骤，这里不再赘述，下面是两个核心文件。
   
@@ -270,7 +270,7 @@ tags:
 
 - build jar 包，推送到 `/usr/local/flume/lib` 目录下。
 
-##### 2.3. 采集日志
+#### 2.3. 采集日志
 
 - 确保 Hadoop 集群和 Kafka 正常运行。
 

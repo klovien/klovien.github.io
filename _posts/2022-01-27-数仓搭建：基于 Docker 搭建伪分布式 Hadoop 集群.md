@@ -12,12 +12,12 @@ tags:
 
 # 1. Windows 环境安装 docker
 
-##### 1.1. 更新 WSL 2 Linux 内核
+#### 1.1. 更新 WSL 2 Linux 内核
 
 - 下载  WSL 2 Linux 内核，下载地址：[https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-kernel](https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-kernel)
 - 双击下载好的 wsl_update_x64.msi 文件，安装 WSL；
 
-##### 1.2. 安装 docker for windows 到 D 盘
+#### 1.2. 安装 docker for windows 到 D 盘
 
 - 在 `D:\Program Files` 目录下，新建 `Docker` 文件夹；
 - 创建 mklink 链接
@@ -31,7 +31,7 @@ tags:
 - 下载 docker for windows，下载地址：[https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe)
 - 双击 Docker Desktop Installer，开始安装；
 
-##### 1.3. 配置阿里云镜像加速器
+#### 1.3. 配置阿里云镜像加速器
 
 - 如果没有阿里云账号，需要注册阿里云开发账号，[https://dev.aliyun.com/](https://dev.aliyun.com/)；
 
@@ -56,7 +56,7 @@ tags:
   ![]({{site.baseurl}}/img-post/docker-hadoop-4.png)
 - 等待 docker desktop 重启，配置完成。
 
-##### 1.4. WSL 2 installation is incomplete. 错误
+#### 1.4. WSL 2 installation is incomplete. 错误
 
   ![]({{site.baseurl}}/img-post/docker-hadoop-1.png)
 
@@ -66,11 +66,11 @@ tags:
 
 # 2. 准备 CentOS 镜像环境
 
-##### 2.1. 获取一个 CnetOS 镜像
+#### 2.1. 获取一个 CnetOS 镜像
 
 - 直接获取官方镜像即可，此处我是用 CentOS 8，具体步骤不再赘述。
 
-##### 2.2. 替换 mirror 源
+#### 2.2. 替换 mirror 源
 
 - 由于 CentOS8 于 2021年12月31日 停止了源的服务，所以需要手动替换 mirror 源，否则 yum 安装的时候会报错。
   - 报错内容：
@@ -118,7 +118,7 @@ tags:
   - 注意：
     - push 前一定要给上传的镜像重新打一个 tag，否则 push 的时候会报错：`denied: requested access to the resource is denied`。
 
-##### 2.3. 创建 dockerfile
+#### 2.3. 创建 dockerfile
 
 - 创建 dockerfile 文件，注意没有后缀。
 
@@ -156,7 +156,7 @@ tags:
   CMD ["/usr/sbin/sshd", "-D"]
   ```
 
-##### 2.4.  build 环境镜像
+#### 2.4.  build 环境镜像
 
 - 创建环境准备镜像
   ```aidl
@@ -170,7 +170,7 @@ tags:
 
 # 3. 搭建 hadoop 集群
 
-##### 3.1. 创建包含 Hadoop 和 JDK 的镜像
+#### 3.1. 创建包含 Hadoop 和 JDK 的镜像
 
 - 创建 dockerfile
   - 刚才已经创建了一个Dockerfile了，先将他移开。
@@ -252,7 +252,7 @@ tags:
   docker network create --driver bridge hadoop-br
   ```
 
-##### 3.2. 启动 hadoop 容器
+#### 3.2. 启动 hadoop 容器
 - 启动容器
   ```aidl
   docker run -itd --network hadoop-br --name hadoop1 -p 50260:50070 -p 8088:8088 centos8-jdk1.8-hadoop3.1.3:v1.0
@@ -337,7 +337,7 @@ tags:
   - hadoop3
     - 略
 
-##### 3.3. 安装配置 Hadoop
+#### 3.3. 安装配置 Hadoop
 
 - 进入 $Hadoop
   ```aidl

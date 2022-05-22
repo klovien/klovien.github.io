@@ -53,7 +53,7 @@ tags:
 
 ## 3. Frida安装配置
 
-##### 电脑安装 frida & frida-tools
+#### 电脑安装 frida & frida-tools
 
 ```
 pip install frida
@@ -62,11 +62,11 @@ pip install frida-tools
 
 > 注意：frida 版本与 python 版本之间的对应关系，可以参考：[https://pypi.org/project/frida/#files](https://pypi.org/project/frida/#files)。
 
-##### 下载 frida-server
+#### 下载 frida-server
 
 - 下载地址：[https://github.com/frida/frida/releases](https://github.com/frida/frida/releases)。
 
-##### 手机运行 frida-server
+#### 手机运行 frida-server
 
 ```
 adb push frida-server-15.1.14-android-x86 /data/local/tmp/
@@ -82,7 +82,7 @@ chmod 777 frida-server-15.1.14-android-x86
 
 ```
 
-##### 电脑上运行
+#### 电脑上运行
 
 ```
 frida-ps -U

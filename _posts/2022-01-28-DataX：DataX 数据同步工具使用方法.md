@@ -14,25 +14,25 @@ tags:
 
 # 1. 环境准备
 
-##### 1.1. python
+#### 1.1. python
 
 - 网上文章推荐 python 2.6，但实际 python 3.7 一样支持，自行根据需要选择；
 - 注意安装好以后配置环境变量； 
 - 安装配置细节，此处不再赘述；
 
-##### 1.2. JDK 
+#### 1.2. JDK 
 
 - JDK 需要 1.6 以上，推荐使用 1.6；
 - 细节此处不再赘述；
 
-##### 1.3. Apache Maven 
+#### 1.3. Apache Maven 
 
 - 安装 Apache Maven 3.x (Compile DataX)；
 - 细节此处不再赘述；
 
 # 2. DataX 安装部署
 
-##### 2.1. 安装步骤
+#### 2.1. 安装步骤
 
 - 环境准备
 
@@ -80,7 +80,7 @@ tags:
     ...
   ```
 
-##### 2.2. 修改 DB 配置
+#### 2.2. 修改 DB 配置
 
 - 修改 datax 服务器本地 MySQL 数据库，用于存储 datax 账号密码、同步任务、数据源连接信息等；
 
@@ -95,7 +95,7 @@ tags:
     DB_DATABASE=dataxweb
     ```
 
-##### 2.3. 初始化
+#### 2.3. 初始化
 
 - 初始化操作时，会重新在 MySQL 中新建用户和任务信息，如果是重新初始化，记得将 MySQL dataxweb 库中的数据做备份。
 
@@ -112,7 +112,7 @@ tags:
     ...
     ```
 
-##### 2.4. 添加 MySQL8 需要的 jar 包
+#### 2.4. 添加 MySQL8 需要的 jar 包
 
 - mysql-connector-java-8.0.28.jar 文件下载地址
   
@@ -143,7 +143,7 @@ tags:
 
 # 3. DataX 使用
 
-##### 3.1. DataX 启动命令
+#### 3.1. DataX 启动命令
 
 - 在启动前，记得先执行关闭操作；
   
@@ -153,20 +153,20 @@ tags:
     ./start-all.sh
     ```
 
-##### 3.2. 访问 datax-web
+#### 3.2. 访问 datax-web
 
 - 访问地址：http://xxx.xxx.xxx.xxx:9527/index.html
 
 - 访问datax-web 记住务必加/index.html，不加会提示 `Whitelabel Error Page` 报错！
 
-##### 3.3. DataX 用户管理
+#### 3.3. DataX 用户管理
 
 - 注意：首次启动，一定要修改 admin 密码！
 
     修改路径： `用户管理 > admin > 编辑 > 密码`
 
 
-##### 3.4. MySQL8 修改 jdbc 驱动类
+#### 3.4. MySQL8 修改 jdbc 驱动类
 
 - EDS 如果连接 MySQL8，数据源连接需要修改 jdbc 驱动类
 
@@ -178,7 +178,7 @@ tags:
 
 # 4. DataX 任务管理
 
-##### 4.1. DataX 任务模板
+#### 4.1. DataX 任务模板
 
 - 阻塞处理
   
@@ -187,7 +187,7 @@ tags:
         ![]({{site.baseurl}}/img-post/datax-2.png)
   
 
-##### 4.2. 创建任务：reader 增量同步
+#### 4.2. 创建任务：reader 增量同步
 
 - 增量同步 where 条件：
 
@@ -199,7 +199,7 @@ tags:
   "where": "last_update_time>=subdate(current_date, 7)",    # 更新七天内的数据
   ```
 
-#####  4.3. 创建任务：writer 替换更新
+####  4.3. 创建任务：writer 替换更新
 
 - 写入模式使用 replace；
     
@@ -209,7 +209,7 @@ tags:
   "writeMode": "replace",
   ```
   
-##### 4.4. 切分字段
+#### 4.4. 切分字段
 
 - 如果要同步的数据量比较大，需要在创建任务的时候，添加主键作为切分字段。
   
@@ -217,7 +217,7 @@ tags:
   "splitPk": "sales_order_id"
   ```
 
-##### 4.5. 任务示例
+#### 4.5. 任务示例
 
 ```
 {
