@@ -1,13 +1,13 @@
 ---
 layout:     post
-title:      Mawell：Maxwell 功能介绍及使用示例
+title:      Maxwell：Maxwell 功能介绍及使用示例
 subtitle:   
 date:       2022-01-28
 author:     dex0423
 header-img: img/post-bg-os-metro.jpg
 catalog: true
 tags:
-    - Mawell
+    - Maxwell
 ---
 
 
