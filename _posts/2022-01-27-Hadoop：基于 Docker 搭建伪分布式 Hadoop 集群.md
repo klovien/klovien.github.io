@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      数仓搭建：基于 Docker 搭建伪分布式 Hadoop 集群
+title:      Hadoop：基于 Docker 搭建伪分布式 Hadoop 集群
 subtitle:
 date:       2022-01-27
 author:     dex0423
