@@ -16,12 +16,12 @@ tags:
 作为爬虫工程师需要具备的基本知识，对于 Http/Https 的概念以及区别的理解是爬虫工程师必须要掌握的。
 
 # 2. Http & Https 协议基本概念
-##### 2.1. Http 协议
+#### 2.1. Http 协议
 - Http 协议是 Hyper Text Transfer Protocal （超文本传输协议）的缩写，适用于从万维网服务器传输超文本协议到本地浏览器的传输协议；
   
     ![]({{site.baseurl}}/img-post/http-1.png)
   
-##### 2.2. Https 协议
+#### 2.2. Https 协议
 - Http 协议是 Hyper Text Transfer Protocal over Secure Socket Layer（基于安全层套接的超文本传输协议）的缩写，是在 Http 基础上加了 SSL（Secure Socket Layer）层；
 - SSL 主要用于 web 的安全传输协议，在传输层对网络连接进行加密，保障在网络上的数据传输安全；
 - CA（Certificate Authority）证书被应用于 Https 加密操作中，该证书由证书认证机构颁布，里面包含了公钥；

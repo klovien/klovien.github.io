@@ -12,15 +12,15 @@ tags:
 
 # 1. 准备工作
 
-##### 1.1. 集群规划
+#### 1.1. 集群规划
 
   ![]({{site.baseurl}}/img-post/kafka.png)
 
-##### 1.2. 下载
+#### 1.2. 下载
 
 <li>点击此处下载：<a href="https://archive.apache.org/dist/kafka/2.4.1/kafka_2.12-2.4.1.tgz">https://archive.apache.org/dist/kafka/2.4.1/kafka_2.12-2.4.1.tgz</a></li>
 
-##### 1.3. 安装
+#### 1.3. 安装
 
 - 解压缩文件，到常用软件安装位置。
 
@@ -33,7 +33,7 @@ tags:
 
 # 2. 修改配置
 
-##### 2.1. 修改配置文件
+#### 2.1. 修改配置文件
 
 - 修改 `server.properties`
 
@@ -80,7 +80,7 @@ tags:
     zookeeper.connect=hadoop102:2181,hadoop103:2181,hadoop104:2181/kafka
     ```
   
-##### 2.2. 配置环境变量
+#### 2.2. 配置环境变量
 
 - 编辑 `/etc/profile`
 
@@ -98,7 +98,7 @@ tags:
   source /etc/profile
   ```
 
-##### 2.3. 分发 kafka
+#### 2.3. 分发 kafka
 
 - 分发 kafka
 
@@ -117,7 +117,7 @@ tags:
     ```
   - 注：broker.id 不得重复。
 
-##### 2.4. 分发 `/etc/profile`
+#### 2.4. 分发 `/etc/profile`
 
 - 分发文件
 
@@ -134,7 +134,7 @@ tags:
 
 # 3. 运行
 
-##### 3.1. 依次启动
+#### 3.1. 依次启动
 
 - 注意：
   - **kafka 依赖于 zookeeper，需要先启动 zookeeper**。
@@ -166,7 +166,7 @@ tags:
   1476 QuorumPeerMain
   ```
 
-##### 3.2. 依次关闭
+#### 3.2. 依次关闭
 
 - 逐个关闭
   ```
@@ -181,7 +181,7 @@ tags:
 - 注意：
   - **关闭 kafaka 之后，需要等一会才能关闭，如果关闭 kafka 以后立刻关闭 zookeeper 可能会无法关闭成功**。
 
-##### 3.3. kafka 群启群停
+#### 3.3. kafka 群启群停
 
 - 进入 `/usr/local/apache-zookeeper-3.5.7/bin` 目录
 
@@ -213,25 +213,3 @@ tags:
   kafka.sh stop
   ```
 
-
-# 4. Kafka 常用命令
-
-#### 4.1. topic 命令
-
-- 命令基本语法及功能描述
-
-  - `bin/zkCli.sh help`，显示所有操作命令
-
-
-##### 4.2. 消息命令
-
-
-
-##### 4.3. offsite 重置 & -- from-beginning
-
-
-##### kafka 断点续传
-
-##### 分区内有序，分区间无序
-
-##### kafka 监控

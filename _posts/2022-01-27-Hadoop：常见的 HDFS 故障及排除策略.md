@@ -18,7 +18,7 @@ Hadoop宕机
 
 （2）如果写入文件过量造成NameNode宕机。那么调高Kafka的存储大小，控制从Kafka到HDFS的写入速度。高峰期的时候用Kafka进行缓存，高峰期过去数据同步会自动跟上。
 
-##### 报错：no YARN_RESOURCEMANAGER_USER defined
+#### 报错：no YARN_RESOURCEMANAGER_USER defined
 
 - 报错内容：
     `ERROR: but there is no YARN_RESOURCEMANAGER_USER defined. Aborting operation.`
@@ -68,7 +68,7 @@ Hadoop宕机
     YARN_NODEMANAGER_USER=root
     ```
 
-##### Error: JAVA_HOME is not set and could not be found.
+#### Error: JAVA_HOME is not set and could not be found.
 
 - 报错内容：
   ```
@@ -107,7 +107,7 @@ Hadoop宕机
   - 对于 hadoop 集群而言，前面所说的环境变量配置，必须要在 master 上进行，并在集群内部分发、而且启动生效；
   - 如果按照上面的操作进行以后仍然报错，请 **仔细检查是否是在 master 上进行这些配置操作，检查集群机器是否全部配置生效**。
 
-##### bash: jps: command not found
+#### bash: jps: command not found
 
 - 报错内容：
   ```aidl
@@ -121,4 +121,4 @@ Hadoop宕机
     ln -s /usr/local/bin/jdk1.8/bin/jps /usr/local/bin/jps
     ```
     
-##### 
+#### 

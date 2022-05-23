@@ -12,14 +12,14 @@ tags:
 
 # 1. 集群配置
 
-##### 1.1. 获取 root 权限
+#### 1.1. 获取 root 权限
 
 ```aidl
 su
 # 输入密码
 ```
 
-##### 1.2. 修改主机名
+#### 1.2. 修改主机名
 
 - hadoop-1
 ```aidl
@@ -34,7 +34,7 @@ hostnamectl set-hostname hadoop-2
 hostnamectl set-hostname hadoop-3
 ```
 
-##### 1.3. 修改网卡配置
+#### 1.3. 修改网卡配置
 
 ```aidl
 cd /etc/sysconfig/network-scripts/
@@ -59,7 +59,7 @@ DNS1=192.168.1.254      # 注意：这里不配置会导致虚拟机上不了网
 systemctl restart network
 ```
 
-##### 1.4. 主机名与IP映射
+#### 1.4. 主机名与IP映射
 
 ```aidl
 
@@ -70,7 +70,7 @@ vi /etc/hosts
 192.168.1.103 slave2
 ```
 
-##### 1.5. 配置SSH免密登录
+#### 1.5. 配置SSH免密登录
 
 >此处只在 master 上配置免密登录 slave
 
@@ -93,7 +93,7 @@ ssh-copy-id -i slave1
 ssh-copy-id -i slave2
 ```
 
-##### 1.6. NAT配置
+#### 1.6. NAT配置
 
 ![]({{site.baseurl}}/img-post/hadoop-1.png)
 
@@ -105,7 +105,7 @@ ssh-copy-id -i slave2
 
 # 2. 安装 Hadoop
 
-##### 2.1. 配置 jdk 
+#### 2.1. 配置 jdk 
 
 - 删除原生 java，注意 master 和 slave 机器都要删掉
   - 查找jdk 安装位置
@@ -173,7 +173,7 @@ ssh-copy-id -i slave2
     scp -r /home/用户名/jdk1.8.0 用户名@slave2:/home/用户名/
     ```
 
-##### 2.2. 安装配置Hadoop
+#### 2.2. 安装配置Hadoop
 
 - 在 home 目录下，解压缩 Hadoop 压缩文件。
 
@@ -196,7 +196,7 @@ ssh-copy-id -i slave2
     export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
     ```
 
-##### 2.3. 修改hadoop配置文件
+#### 2.3. 修改hadoop配置文件
 
 - 修改 .bashrc 中的 YARN 和 HDFS 配置
     ```aidl
@@ -316,7 +316,7 @@ ssh-copy-id -i slave2
     slave2
     ```
 
-##### 2.4. 复制文件到子节点
+#### 2.4. 复制文件到子节点
 
     ```aidl
     scp -r /home/用户名/hadoop-3.1.3 用户名@slave1:/home/用户名/
@@ -330,7 +330,7 @@ ssh-copy-id -i slave2
     scp -r .bashrc 用户@slave2:/home/用户/
     ```
 
-##### 2.5. 格式化
+#### 2.5. 格式化
 
 - 关闭enforce
 
@@ -356,7 +356,7 @@ ssh-copy-id -i slave2
     hdfs namenode -format
     ```
 
-##### 2.6. 启动hadoop
+#### 2.6. 启动hadoop
 
 - 运行全部
 

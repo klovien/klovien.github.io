@@ -17,7 +17,7 @@ Elasticsearch 是一个分布式可扩展的实时搜索和分析引擎，它建
 
 # 1. 反向索引
 
-##### 1.1. 正向索引
+#### 1.1. 正向索引
 
 - 什么是正向索引
   - 在解释反向索引之前，需要先了解一下什么是正向索引，这也将解释倒排索引之所以会出现的背景原因。
@@ -42,7 +42,7 @@ Elasticsearch 是一个分布式可扩展的实时搜索和分析引擎，它建
   - 实际上，受制于时间、内存、处理器等等资源的限制，技术上正向索引是不能实现的。
   - 在这种背景下，倒排索引出现了。
   
-##### 1.2. 反向索引
+#### 1.2. 反向索引
 
 - 什么是反向索引
   反向索引（Inverted Index），也叫倒排索引，相比于正向索引，其采用的是 **“关键词-文档”** 矩阵，关键词与网页文档之间的映射关系是 **一个关键词对应多个网页文档**，如下图所示：
@@ -68,7 +68,7 @@ Elasticsearch 是一个分布式可扩展的实时搜索和分析引擎，它建
 
 # 2. Term Index
 
-##### 2.1. Term & Posting List
+#### 2.1. Term & Posting List
 
 - 在上面的例子中，创建的是一个简单的反向索引，但 Elasticsearch 的索引结构实际上并不表现为这种形态，首先网页文档在索引中只表现为一个 int 类型的 **文档di**，而且索引中用于查找网页文档的只有 **关键词** 一项，实际我们在做业务中需要面对的情况要复杂得多。
   下面展示了一个商品信息的二维数据表样例：
@@ -106,7 +106,7 @@ Elasticsearch 是一个分布式可扩展的实时搜索和分析引擎，它建
 - 在这个索引中，Name、Color、Rate 这些字段被称为 **filed**， iphone 666 plus、blue、middle 这些被称作 **Term**，而 Term 对应的所有商品的 id 比如 [1, 3] 就是 **Posting List**。
 - 当用户要查找 **Color=blue** 的商品时，通过索引三的 Term 和 Posting List 很快就可以找到，目标是 id 为 2 的商品，进而通过索引一找到商品 Name 为 华为 mate 98k。
 
-##### 2.2. Term Dictionary
+#### 2.2. Term Dictionary
 
 - 上面简单解释了 Term 和 Posting List，但实际生产中 Elasticsearch 需要面对的是数以亿计的数据记录，数据的 Term 的数量是惊人的，这样往往需要花费大量时间才能命中，而且多数时候查找是多条件查找，这就需要多次进行重复查找，效率仍然不高。
 - 这时就需要对 Term 进行优化排序，即使用 [二分查找](https://baike.baidu.com/item/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/10628618?fr=aladdin) 查找 Term，这种查找方法类似于通过字典查找，被称为 Term Dictionary 。
@@ -124,7 +124,7 @@ Elasticsearch 是一个分布式可扩展的实时搜索和分析引擎，它建
 
 当用户想要查找 rate 为 high 的商品时，通过二分法很快就可以查到，查找过程的时间复杂度为 log N，这样就大大提高了查找的速度。关于二分查找，细节这里就不做赘述了，如果不清楚的朋友们可以自行百度，或点击 [二分查找](https://baike.baidu.com/item/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/10628618?fr=aladdin) 获取更多信息。
 
-##### 2.3. Term Index
+#### 2.3. Term Index
 
 - 到这里很多人会有疑问，那这和传统的 B-tree 有什么区别呢，这就需要引入另一个概念 Term Index。
 - Term Index 其实也可以理解为一个树形结构，从 Term 的第一个字母开始进行第一层排序，如果有多个 Term 首字母相同，则从该字母为起始点进行第二层排序，如果以该字母为首的只有一个 Term，则不再进行第二次排序。
@@ -138,7 +138,7 @@ Elasticsearch 是一个分布式可扩展的实时搜索和分析引擎，它建
 
 - 在 Term Index 中需要保存的是 Term 的前面部分字段，以及与 Term Dictionary 之间的映射关系，这使得存储的信息量减少。再结合 FST（Finite State Transducer）压缩技术，Term Iindex 可以被压缩到足够小，以至于可以被缓存进服务器内存中。这样，在用户查找的时候，先在内存里从 Term Index 找到 Term Dictionary 中的位置映射关系，然后再去磁盘上找对应的 Term，进而查找对应的 Posting List，这就大大减少了磁盘的读取次数，也就提高了效率和速度。
 
-##### 2.4. FST（Finite State Transducer）
+#### 2.4. FST（Finite State Transducer）
 
 - 关于 FST 压缩技术，请参考这篇文章：[https://www.shenyanchao.cn/blog/2018/12/04/lucene-fst/](https://www.shenyanchao.cn/blog/2018/12/04/lucene-fst/)，英语好的可以看下这篇论文[https://cs.nyu.edu/~mohri/pub/fla.pdf](https://cs.nyu.edu/~mohri/pub/fla.pdf)，里面对FST有详细的解释。
 

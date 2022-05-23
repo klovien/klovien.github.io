@@ -15,14 +15,14 @@ tags:
 
 ### 按代码逻辑划分
 
-##### 无限循环
+#### 无限循环
 
 - for 循环
 - while 循环
 
 > 注意：使用 while 循环一定会有次数上限，否则浏览器会卡死掉。
 
-##### 无限递归
+#### 无限递归
 
 - 调用自身
 
@@ -30,7 +30,7 @@ tags:
 
 - 顾名思义
 
-##### 计时器
+#### 计时器
 
 `setInterval` 这个是 JS 语言当中的 `定时器`，它有两个参数：第一个是要执行的代码，第二个执行时间。
 下方是 sojson 混淆后的一段代码，其中使用了 `setInterval` 定时器进行了反 debugger 操作。
@@ -39,7 +39,7 @@ tags:
 
 ### 按是否可混淆划分
 
-##### 不可混淆
+#### 不可混淆
 
 直接使用代码，
 
@@ -47,13 +47,13 @@ tags:
 debugger;
 ```
 
-##### 可混淆
+#### 可混淆
 
 ```
 eval("debugger;")
 ```
 
-##### 可重度混淆
+#### 可重度混淆
 
 ```
 Function("debugger").call()/apply() 或赋值 bind()
@@ -82,23 +82,23 @@ Fuction.constructor("debugger").call("action")
 
 ### 针对静态文件
 
-##### conditional breakpoint
+#### conditional breakpoint
 
 在 JS 代码 debugger 行数位置，鼠标右键添加 conditional breakpoint，其中条件 condition 设为 false；
 
-##### Fiddler AutoResponder 篡改 JS 代码
+#### Fiddler AutoResponder 篡改 JS 代码
 这种方式的核心思路，是替换 JS 文件中的 debugger 关键字，并保存为本地文件，在请求返回的时候、通过正则匹配等方式、拦截并替换返回的 JS 代码，已达到绕过 debugger 的目的。
 关于这种方法，请参考我的另一篇文章：《[JS逆向：fiddler 篡改 js 破解企查查无限 debugger 问题](https://www.jianshu.com/p/9f72c4e0fd34)》，文中有详细的描述。
 
 ### 针对动态文件
 
-##### 手动在浏览器中 Hook
+#### 手动在浏览器中 Hook
 
-##### 第一步、打 script 断点
+#### 第一步、打 script 断点
 
 这一步的目的，是为了让浏览器在刚运行时就被断下来，以方便进行 Hook
 
-##### 第二步、Hook 无限 debugger 函数
+#### 第二步、Hook 无限 debugger 函数
 
 - 手动置空 debugger 函数。
   打 `script` 断点，使网页在 debugger 之前下断，手动将debugger所在函数置空。这种方法简单粗暴，但是会影响原有的业务逻辑。
@@ -172,7 +172,7 @@ Hook console.log：
     }
     ```
 
-##### Fiddler + 编程猫插件 + Hook
+#### Fiddler + 编程猫插件 + Hook
 
 使用这种方法，就不需要再打 `script` 断点。
 >注意：如果 `script` 断点无法在 debugger 函数之前断下来，那就只能用这种方式进行拦截 Hook，才能过掉 debugger。
