@@ -7,7 +7,7 @@ author:     dex0423
 header-img: img/post-bg-os-metro.jpg
 catalog: true
 tags:
-    - 数仓
+    - Hadoop
 ---
 
 # 1. 集群配置

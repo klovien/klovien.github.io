@@ -7,7 +7,7 @@ author:     dex0423
 header-img: img/post-bg-os-metro.jpg
 catalog: true
 tags:
-    - 数仓
+    - Hadoop
 ---
 
 # 1. MapReduce 概念简介
@@ -22,20 +22,17 @@ tags:
     - 大规模集群；
     - 海量数据集。
 
-#### 1.2. 修改主机名
+#### 1.2. MapReduce 的作用
 
-- hadoop-1
-```aidl
-hostnamectl set-hostname hadoop-1
-```
-- hadoop-2
-```aidl
-hostnamectl set-hostname hadoop-2
-```
-- hadoop-3
-```aidl
-hostnamectl set-hostname hadoop-3
-```
+- MapReduce 擅长处理大数据
+
+    >MapReduce的思想就是“分而治之”。
+
+　　（1）Mapper 负责“分”，即把复杂的任务分解为若干个“简单的任务”来处理。“简单的任务”包含三层含义：
+
+一是数据或计算的规模相对原任务要大大缩小；二是就近计算原则，即任务会分配到存放着所需数据的节点上进行计算；三是这些小任务可以并行计算，彼此间几乎没有依赖关系。
+
+　　（2）Reducer负责对map阶段的结果进行汇总。至于需要多少个Reducer，用户可以根据具体问题，通过在mapred-site.xml配置文件里设置参数mapred.reduce.tasks的值，缺省值为1。
 
 #### 1.3. 修改网卡配置
 
