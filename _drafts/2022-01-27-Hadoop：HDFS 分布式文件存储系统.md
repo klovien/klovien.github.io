@@ -10,385 +10,118 @@ tags:
     - 数仓
 ---
 
-# 1. HDFS 工作原理
+# 1. HDFS 概念
 
-#### 1.1. 获取 root 权限
+HDFS 是Hadoop Distribute File System 的简称，HDFS 是 Hadoop 生态的核心。它是允许文件通过网络在多台主机上分享的文件系统，可以让多台机器上的多个用户分享文件和存储空间。
+>HDFS只是分布式文件管理系统中的一种。
 
-```aidl
-su
-# 输入密码
-```
+#### 1.1. HDFS 工作原理
 
-#### 1.2. 修改主机名
+![]({{site.baseurl}}/img-post/hdfs-1.png)
 
-- hadoop-1
-```aidl
-hostnamectl set-hostname hadoop-1
-```
-- hadoop-2
-```aidl
-hostnamectl set-hostname hadoop-2
-```
-- hadoop-3
-```aidl
-hostnamectl set-hostname hadoop-3
-```
+#### 1.2. HDFS 架构
 
-#### 1.3. 修改网卡配置
-
-```aidl
-cd /etc/sysconfig/network-scripts/
-vim ifcfg-ens33
-```
+- HDFS 遵循主/从架构，由单个 NameNode(NN) 和多个 DataNode(DN) 组成：
 
-```aidl
-PROXY_METHOD="nc"
-BROWSER_ONLY="nc"
-BOOTPROTO="static"
-NAME="ens33"
-DEVICE="ens33"
-ONBOOT="yes"
-IPADDR=192.168.1.101
-NETMASK=255.255.255.0
-GATEWAY=192.168.1.254
-DNS1=192.168.1.254      # 注意：这里不配置会导致虚拟机上不了网
-```
-
-```
-# 启动生效
-systemctl restart network
-```
-
-#### 1.4. 主机名与IP映射
-
-```aidl
-
-vi /etc/hosts
-
-192.168.1.101 master
-192.168.1.102 slave1
-192.168.1.103 slave2
-```
-
-#### 1.5. 配置SSH免密登录
-
->此处只在 master 上配置免密登录 slave
-
-```
-
-#进入用户目录
-cd /home/用户名
-
-#生成密钥,回车即可
-ssh-keygen -t rsa
-
-#到.ssh目录下
-cd /root/.ssh/
-
-#将id_rsa.pub添加到authorized_keys目录
-cp id_rsa.pub authorized_keys
-
-ssh-copy-id -i slave1
-
-ssh-copy-id -i slave2
-```
-
-#### 1.6. NAT配置
-
-![]({{site.baseurl}}/img-post/hadoop-1.png)
-
-![]({{site.baseurl}}/img-post/hadoop-2.png)
-
-![]({{site.baseurl}}/img-post/hadoop-3.png)
-
-
-
-# 2. 安装 Hadoop
-
-#### 2.1. 配置 jdk 
-
-- 删除原生 java，注意 master 和 slave 机器都要删掉
-  - 查找jdk 安装位置
-    ```
-    rpm -qa | grep java
-    javapackages-tools-3.4.1-11.el7.noarch
-    java-1.8.0-openjdk-headless-1.8.0.262.b10-1.el7.x86_64
-    tzdata-java-2020a-1.el7.noarch
-    java-1.7.0-openjdk-headless-1.7.0.261-2.6.22.2.el7_8.x86_64
-    java-1.8.0-openjdk-1.8.0.262.b10-1.el7.x86_64
-    python-javapackages-3.4.1-11.el7.noarch
-    java-1.7.0-openjdk-1.7.0.261-2.6.22.2.el7_8.x86_64
-    ```
-  - 删除
-  
-    ```
-    rpm -e --nodeps javapackages-tools-3.4.1-11.el7.noarch
-    rpm -e --nodeps java-1.8.0-openjdk-headless-1.8.0.262.b10-1.el7.x86_64
-    rpm -e --nodeps tzdata-java-2020a-1.el7.noarch
-    rpm -e --nodeps java-1.7.0-openjdk-headless-1.7.0.261-2.6.22.2.el7_8.x86_64
-    rpm -e --nodeps java-1.8.0-openjdk-1.8.0.262.b10-1.el7.x86_64
-    rpm -e --nodeps python-javapackages-3.4.1-11.el7.noarch
-    rpm -e --nodeps java-1.7.0-openjdk-1.7.0.261-2.6.22.2.el7_8.x86_64
-    ```
-
-  - 检查有没有删除
-    ```
-    java -version
-    bash: java: command not found...
-    ```
-
-- 在 home 目录下，解压缩 jdk-8u162-linux-x64.tar.gz 文件，并保存到 `jdk1.8.0` 文件目录下。
-
-    ```aidl
-    tar -zxvf jdk-8u162-linux-x64.tar.gz jdk1.8.0
-    ```
-
-- 配置环境变量
-    ```aidl
-    export JAVA_HOME=/home/用户名/jdk1.8.0
-    export JRE_HOME=${JAVA_HOME}/jre
-    export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
-    export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
-    
-    ```
-
-- 环境变量生效
-    ```aidl
-    source .bashrc
-    ```
-
-- 检查安装情况
-    ```aidl
-    java -version
-    
-    java version "1.8.0_162"
-    Java(TM) SE Runtime Environment (build 1.8.0_162-b12)
-    Java HotSpot(TM) 64-Bit Server VM (build 25.162-b12, mixed mode)
-    ```
-
-- 复制文件到子节点
-    ```aidl
-    scp -r /home/用户名/jdk1.8.0 用户名@slave1:/home/用户名/
-    
-    scp -r /home/用户名/jdk1.8.0 用户名@slave2:/home/用户名/
-    ```
-
-#### 2.2. 安装配置Hadoop
-
-- 在 home 目录下，解压缩 Hadoop 压缩文件。
-
-    ```aidl
-    tar -zxvf hadoop-3.1.3.tar.gz
-    ```
-- 配置环境变量
-    ```aidl
-    vim .bashrc
-    ```
-
-    ```aidl
-    export HADOOP_HOME=/home/用户/hadoop-3.1.3
-    export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
-    export HADOOP_INSTALL=$HADOOP_HOME
-    export HADOOP_MAPRED_HOME=$HADOOP_HOME
-    export HADOOP_COMMON_HOME=$HADOOP_HOME
-    export HADOOP_HDFS_HOME=$HADOOP_HOME
-    export YARN_HOME=$HADOOP_HOME
-    export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
-    ```
-
-#### 2.3. 修改hadoop配置文件
-
-- 修改 .bashrc 中的 YARN 和 HDFS 配置
-    ```aidl
-    vim .bashrc
-    ```
-
-    ```aidl
-    export HDFS_NAMENODE_USER=root
-    export HDFS_DATANODE_USER=root
-    export HDFS_SECONDARYNAMENODE_USER=root
-    export YARN_RESOURCEMANAGER_USER=root
-    export YARN_NODEMANAGER_USER=root
-    ```
-
-    ```aidl
-    cd hadoop-3.1.3/etc/hadoop/
-    ```
-- 修改 core-site.xml
-
-    ```aidl
-    vim core-site.xml
-    ```
-
-    ```aidl
-    # 在 configuration 中添加
-    <property>
-        <name>fs.defaultFS</name>
-        <value>hdfs://master:9000</value>
-    </property>
-    <property>
-        <name>hadoop.tmp.dir</name>
-        <value>file:/home/pandong/hadoop-3.1.3/tmp</value>
-        <description>Abase for other temporary directories.</description>
-    </property>
-    ```
-
-- 修改 hadoop-env.sh
-    ```aidl
-    vim hadoop-env.sh
-    ```
-    
-    ```aidl
-    # 在 hadoop-env.sh 添加内容
-    export JAVA_HOME=/home/用户名/jdk1.8.0
-    ```
-- 修改 hdfs-site.xml
-
-    ```aidl
-    vim hdfs-site.xml
-    ```
-    
-    ```aidl
-    <property>
-         <name>dfs.namenode.secondary.http-address</name>
-         <value>master:50090</value>
-    </property>
-    <property>
-        <name>dfs.replication</name>
-        <value>1</value>
-    </property>
-    <property>
-        <name>dfs.namenode.name.dir</name>
-        <value>file:/home/用户名/hadoop-3.1.3/tmp/dfs/name</value>
-    </property>
-    <property>
-        <name>dfs.datanode.data.dir</name>
-        <value>file:/home/用户名/hadoop-3.1.3/tmp/dfs/data</value>
-    </property>
-    ```
-
-- 修改 mapred-site.xml
-
-    ```aidl
-    vim mapred-site.xml
-    ```
-    
-    ```aidl
-    <property>
-        <name>mapreduce.framework.name</name>
-        <value>yarn</value>
-    </property>
-    <property>
-        <name>mapreduce.jobhistory.address</name>
-        <value>master:10020</value>
-    </property>
-    <property>
-        <name>mapreduce.jobhistory.webapp.address</name>
-        <value>master:19888</value>
-    </property>
-    ```
-
-- 修改 yarn-site.xml
-
-    ```aidl
-    vim yarn-site.xml
-    ```
-    
-    ```aidl
-    <property>
-        <name>yarn.resourcemanager.hostname</name>
-        <value>master</value>
-    </property>
-    <property>
-        <name>yarn.nodemanager.aux-services</name>
-        <value>mapreduce_shuffle</value>
-    </property>
-    ```
-
-- workers
-
-    ```aidl
-    vim workers
-    ```
-    
-    ```aidl
-    slave1
-    slave2
-    ```
-
-#### 2.4. 复制文件到子节点
-
-    ```aidl
-    scp -r /home/用户名/hadoop-3.1.3 用户名@slave1:/home/用户名/
-    
-    scp -r /home/用户名/hadoop-3.1.3 用户名@slave2:/home/用户名/
-    ```
-    
-    ```aidl
-    scp -r .bashrc 用户@slave1:/home/用户/
-    
-    scp -r .bashrc 用户@slave2:/home/用户/
-    ```
-
-#### 2.5. 格式化
-
-- 关闭enforce
-
-    ```aidl
-    vi /etc/selinux/config
-    ```
-
-- 切换 root 权限
-
-    ```aidl
-    su
-    ```
-
-- 修改SELINUX
-
-    ```aidl
-    SELINUX=disabled
-    ```
-
-- 退出 root，格式化
-
-    ```aidl
-    hdfs namenode -format
-    ```
-
-#### 2.6. 启动hadoop
-
-- 运行全部
-
-    ```aidl
-    start-all.sh
-    ```
-
-    ```aidl
-    WARNING: HADOOP_SECURE_DN_USER has been replaced by HDFS_DATANODE_SECURE_USER. Using value of HADOOP_SECURE_DN_USER.
-    Starting namenodes on [master]
-    Last login: Mon Mar  7 08:10:16 PST 2022 on pts/0
-    Starting datanodes
-    Last login: Mon Mar  7 08:10:36 PST 2022 on pts/0
-    Starting secondary namenodes [master]
-    Last login: Mon Mar  7 08:10:39 PST 2022 on pts/0
-    2022-03-07 08:10:55,169 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-    Starting resourcemanager
-    Last login: Mon Mar  7 08:10:46 PST 2022 on pts/0
-    Starting nodemanagers
-    Last login: Mon Mar  7 08:10:57 PST 2022 on pts/0
-    ```
-
-- mapreduce：http://master:8088/cluster
-
-    ![]({{site.baseurl}}/img-post/hadoop-4.png)
-
-- NameNode and Datanode: http://master:9870
-
-    ![]({{site.baseurl}}/img-post/hadoop-5.png)
-
-- 关闭全部
-
-    ```aidl
-    stop-all.sh
-    ```
+    - NameNode : 
+        - 负责执行有关文件系统命名空间的操作，例如打开，关闭、重命名文件和目录等。它同时还负责集群元数据的存储，记录着文件中各个数据块的位置信息。
+        - NameNode 其实就是 Master，它是一个管理者承担以下职责：
+            - 管理HDFS的名称空间
+            - 配置副本策略
+            - 管理数据块的映射信息
+            - 处理客户端读写请求
+    - DataNode：
+        负责提供来自文件系统客户端的读写请求，执行块的创建，删除等操作。
+
+                1）NameNode：就是Master，它是一个管理者
+
+                        ①管理HDFS的名称空间
+
+                        ②配置副本策略
+
+                        ③管理数据块的映射信息
+
+                        ④处理客户端读写请求
+
+                2）DateNode：就是Slave，NameNode下达命令，DateNode执行实际的操作
+
+                        ①存储实际的数据块
+
+                        ②执行数据块的读/写操作
+
+                3）Secondary NameNode：①辅助NameNode②在紧急情况下，可辅助恢复NameNode
+
+#### 1.3. 文件系统命名空间
+
+- HDFS 的文件系统命名空间的层次结构，支持目录和文件的创建、移动、删除和重命名等操作，支持配置用户和访问权限。
+- HDFS 不支持硬链接和软连接。
+- NameNode负责维护文件系统名称空间，记录对名称空间或其属性的任何更改。
+
+#### 1.4. 数据复制
+
+- 由于Hadoop被设计运行在廉价的机器上，这意味着硬件是不可靠的，为了保证容错性，HDFS提供了数据复制机制。
+- HDFS 将每一个文件存储为一系列块，每个块由多个副本来保证容错，块的大小和复制因子可以自行配置（默认情况下，块大小是128M，默认复制因子是3）。
+
+![]({{site.baseurl}}/img-post/hdfs-2.png)
+
+#### 1.5.  数据复制的实现原理
+- 大型的 HDFS 实例，通常分布在多个机架的多台服务器上，不同机架上的两台服务器之间通过交换机进行通讯。
+- 在大多数情况下，同一机架中的服务器间的网络带宽、大于不同机架中的服务器之间的带宽。
+- 因此 HDFS 采用 **机架感知副本放置策略**，对于常见情况，当复制因子为 3 时，HDFS 的放置策略是：
+
+    - 在写入程序位于datanode上时，就优先将写入文件的一个副本放置在该datanode上，否则放在随机datanode上。
+    - 之后在另一个远程机架上的任意一个节点上放置另一个副本，并在该机架上的另一个节点上放置最后一个副本。
+    - 此策略可以减少机架间的写入流量，从而提高写入性能。
+
+    ![]({{site.baseurl}}/img-post/hdfs-3.png)
+
+#### 1.6. 副本的选择
+
+- 为了最大限度地减少带宽消耗和读取延迟，HDFS 在执行读取请求时，优先读取距离读取器最近的副本。
+- 如果在与读取器节点相同的机架上存在副本，则优先选择该副本。
+- 如果 HDFS 群集跨越多个数据中心，则优先选择本地数据中心上的副本。
+
+# 2. HDFS 的稳定性
+
+#### 2.1. 心跳机制和重新复制
+
+- 每个 DataNode 定期向 NameNode 发送心跳消息，如果超过指定时间没有收到心跳消息，则将 DataNode 标记为死亡。
+- NameNode 不会将任何新的 IO 请求转发给标记为死亡的 DataNode，也不会再使用这些DataNode上的数据。
+- 由于数据不再可用，可能会导致某些块的复制因子小于其指定值，NameNode会跟踪这些块，并在必要的时候进行重新复制。
+
+#### 2.2. 数据的完整性
+
+- 由于存储设备故障等原因，存储在 DataNode 上的数据块也会发生损坏。
+- 为了避免读取到已经损坏的数据而导致错误，HDFS提供了数据完整性校验机制来保证数据的完整性，具体操作如下：
+
+    - 当客户端创建HDFS文件时，它会计算文件的每个块的校验和，并将校验和存储在同一HDFS命名空间下的单独的隐藏文件中。
+    - 当客户端检索文件内容时，它会验证从每个DataNode接收的数据是否与存储在关联校验和文件中的校验和匹配。
+    - 如果匹配失败，则证明数据已经损坏，此时客户端会选择从其他DataNode获取该块的其他可用副本。
+
+#### 2.3. 元数据的磁盘故障
+
+- FsImage 和 EditLog 是 HDFS 的核心数据，这些数据的意外丢失可能会导致整个 HDFS 服务不可用。
+- 为了避免这个问题，可以配置 NameNode 使其支持 FsImage 和 EditLog 多副本同步，这样 FsImage 或 EditLog 的任何改变都会引起每个副本 FsImage 和 EditLog 的同步更新。
+
+#### 2.6. 支持快照
+- 快照支持在特定时刻存储数据副本，在数据意外损坏时，可以通过回滚操作恢复到健康的数据状态。
+
+# 3. HDFS 特点
+
+#### 3.1 高容错
+ 
+ - 副本机制：
+    由于HDFS 采用数据的多副本方案，所以部分硬件的损坏不会导致全部数据的丢失。
+
+#### 3.2 高吞吐量
+- HDFS设计的重点是支持高吞吐量的数据访问，而不是低延迟的数据访问。
+
+#### 3.3 大文件支持
+- HDFS适合于大文件的存储，文档的大小应该是是GB到TB级别的。
+
+#### 3.3 简单一致性模型
+- HDFS 更适合于一次写入多次读取(write-once-read-many)的访问模型。
+- 支持将内容追加到文件末尾，但不支持数据的随机访问，不能从文件任意位置新增数据。
+
+#### 3.4 跨平台移植性
+- HDFS具有良好的跨平台移植性，这使得其他大数据计算框架都将其作为数据持久化存储的首选方案。
