@@ -7,7 +7,7 @@ author:     dex0423
 header-img: img/post-bg-os-metro.jpg
 catalog: true
 tags:
-    - Zookeeper
+    - Flume
 ---
 
 # 1. 准备工作
