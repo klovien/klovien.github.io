@@ -182,6 +182,6 @@ tags:
 - 客户端以 Packet 为单位接受，先在本地缓存，然后写入目标文件。
 
 
-# 常用命令一览表
+# 6. 常用命令一览表
 
 ![]({{site.baseurl}}/img-post/hdfs-4.png)
