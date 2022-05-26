@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Hadoop：Hadoop 概念详解
+title:      Hadoop：Hadoop 基础概念简介
 subtitle:
 date:       2022-01-27
 author:     dex0423
