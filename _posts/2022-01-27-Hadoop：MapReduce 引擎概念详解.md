@@ -40,17 +40,18 @@ tags:
 
 MapReduce的整个工作过程如上图所示，它包含如下4个独立的实体：
 
-　　实体一：客户端，用来提交 MapReduce 作业。
+- 实体一：客户端，用来提交 MapReduce 作业。
+- 实体二：JobTracker，用来协调作业的运行。
+- 实体三：TaskTracker，用来处理作业划分后的任务。
+- 实体四：HDFS，用来在其它实体间共享作业文件。
 
-　　实体二：JobTracker，用来协调作业的运行。
+# 2. MapReduce 知识全景
 
-　　实体三：TaskTracker，用来处理作业划分后的任务。
+![]({{site.baseurl}}/img-post/MapReduce-4.png)
 
-　　实体四：HDFS，用来在其它实体间共享作业文件。
+# 3. MapReduce 框架
 
-# 2. MapReduce 框架
-
-#### 2.1. MapReduce 框架的组成
+#### 3.1. MapReduce 框架的组成
 
 ![]({{site.baseurl}}/img-post/MapReduce-2.png)
 
@@ -66,325 +67,123 @@ MapReduce的整个工作过程如上图所示，它包含如下4个独立的实�
 - TaskTracker
     - TaskTracker负责执行由JobTracker指派的任务，这里我们就可以将其理解为开发工程师，完成项目经理安排的开发任务即可。
 
-#### 2.2. MapReduce的输入输出
+#### 3.2. MapReduce 的输入输出
 
->此处只在 master 上配置免密登录 slave
+- MapReduce借鉴了函数式语言中的思想，用Map和Reduce两个函数提供了高层的并行编程抽象模型。
+    - Map: 对一组数据元素进行某种重复式的处理；
+    - Reduce: 对Map的中间结果进行某种进一步的结果整理。
 
-```
+- MapReduce 中定义了如下的 Map 和 Reduce 两个抽象的编程接口，由用户去编程实现:
+    - map: [k1,v1] → [(k2,v2)]
+    - reduce: [k2, {v2,…}] → [k3, v3]
 
-#进入用户目录
-cd /home/用户名
+- MapReduce框架运转在<key,value>键值对上，也就是说，框架把作业的输入看成是一组<key,value>键值对，同样也产生一组<key,value>键值对作为作业的输出，这两组键值对有可能是不同的。
 
-#生成密钥,回车即可
-ssh-keygen -t rsa
+- 一个MapReduce作业的输入和输出类型如下图所示：可以看出在整个流程中，会有三组<key,value>键值对类型的存在。
 
-#到.ssh目录下
-cd /root/.ssh/
-
-#将id_rsa.pub添加到authorized_keys目录
-cp id_rsa.pub authorized_keys
-
-ssh-copy-id -i slave1
-
-ssh-copy-id -i slave2
-```
-
-#### 1.6. NAT配置
-
-![]({{site.baseurl}}/img-post/hadoop-1.png)
-
-![]({{site.baseurl}}/img-post/hadoop-2.png)
-
-![]({{site.baseurl}}/img-post/hadoop-3.png)
+![]({{site.baseurl}}/img-post/MapReduce-3.png)
 
 
+#### 3.3. MapReduce 优点
 
-# 2. 安装 Hadoop
+- MapReduce 最大的亮点在于，通过抽象模型和计算框架，把需要做什么(what need to do)与具体怎么做(how to do)分开了，为程序员提供一个抽象和高层的编程接口和框架。
+- 程序员仅需要关心其应用层的具体计算问题，仅需编写少量的处理应用本身计算问题的程序代码。
+- 如何具体完成这个并行计算任务所相关的诸多系统层细节被隐藏起来，从分布代码的执行、到大到数千小到单个节点集群的自动调度使用，都交给计算框架去处理。
 
-#### 2.1. 配置 jdk 
 
-- 删除原生 java，注意 master 和 slave 机器都要删掉
-  - 查找jdk 安装位置
-    ```
-    rpm -qa | grep java
-    javapackages-tools-3.4.1-11.el7.noarch
-    java-1.8.0-openjdk-headless-1.8.0.262.b10-1.el7.x86_64
-    tzdata-java-2020a-1.el7.noarch
-    java-1.7.0-openjdk-headless-1.7.0.261-2.6.22.2.el7_8.x86_64
-    java-1.8.0-openjdk-1.8.0.262.b10-1.el7.x86_64
-    python-javapackages-3.4.1-11.el7.noarch
-    java-1.7.0-openjdk-1.7.0.261-2.6.22.2.el7_8.x86_64
-    ```
-  - 删除
-  
-    ```
-    rpm -e --nodeps javapackages-tools-3.4.1-11.el7.noarch
-    rpm -e --nodeps java-1.8.0-openjdk-headless-1.8.0.262.b10-1.el7.x86_64
-    rpm -e --nodeps tzdata-java-2020a-1.el7.noarch
-    rpm -e --nodeps java-1.7.0-openjdk-headless-1.7.0.261-2.6.22.2.el7_8.x86_64
-    rpm -e --nodeps java-1.8.0-openjdk-1.8.0.262.b10-1.el7.x86_64
-    rpm -e --nodeps python-javapackages-3.4.1-11.el7.noarch
-    rpm -e --nodeps java-1.7.0-openjdk-1.7.0.261-2.6.22.2.el7_8.x86_64
-    ```
+# 4. MapReduce 工作流程
 
-  - 检查有没有删除
-    ```
-    java -version
-    bash: java: command not found...
-    ```
+![]({{site.baseurl}}/img-post/MapReduce-5.png)
 
-- 在 home 目录下，解压缩 jdk-8u162-linux-x64.tar.gz 文件，并保存到 `jdk1.8.0` 文件目录下。
+#### 4.1. 分片、格式化数据源
 
-    ```aidl
-    tar -zxvf jdk-8u162-linux-x64.tar.gz jdk1.8.0
-    ```
+- 输入 Map 阶段的数据源，必须经过分片和格式化操作。
+    - 分片操作：
+        - 指的是将源文件划分为大小相等的小数据块( Hadoop 2.x 中默认 128MB )，也就是分片( split )，Hadoop 会为每一个分片构建一个 Map 任务，并由该任务运行自定义的 map() 函数，从而处理分片里的每一条记录;
+    - 格式化操作：
+        - 将划分好的分片( split )格式化为键值对<key,value>形式的数据，其中， key 代表偏移量， value 代表每一行内容。
 
-- 配置环境变量
-    ```aidl
-    export JAVA_HOME=/home/用户名/jdk1.8.0
-    export JRE_HOME=${JAVA_HOME}/jre
-    export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
-    export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
-    
-    ```
+#### 4.2. 执行 MapTask
 
-- 环境变量生效
-    ```aidl
-    source .bashrc
-    ```
+- 每个 Map 任务都有一个内存缓冲区(缓冲区大小 100MB )，输入的分片( split )数据经过 Map 任务处理后的中间结果会写入内存缓冲区中。  
+- 如果写人的数据达到内存缓冲的阈值( 80MB )，会启动一个线程将内存中的溢出数据写入磁盘，同时不影响 Map 中间结果继续写入缓冲区。
+- 在溢写过程中， MapReduce 框架会对 key 进行排序，如果中间结果比较大，会形成多个溢写文件，最后的缓冲区数据也会全部溢写入磁盘形成一个溢写文件，如果是多个溢写文件，则最后合并所有的溢写文件为一个文件。
 
-- 检查安装情况
-    ```aidl
-    java -version
-    
-    java version "1.8.0_162"
-    Java(TM) SE Runtime Environment (build 1.8.0_162-b12)
-    Java HotSpot(TM) 64-Bit Server VM (build 25.162-b12, mixed mode)
-    ```
+#### 4.3. 执行 Shuffle 过程
 
-- 复制文件到子节点
-    ```aidl
-    scp -r /home/用户名/jdk1.8.0 用户名@slave1:/home/用户名/
-    
-    scp -r /home/用户名/jdk1.8.0 用户名@slave2:/home/用户名/
-    ```
+- MapReduce 工作过程中， Map 阶段处理的数据如何传递给 Reduce 阶段，这是 MapReduce 框架中关键的一个过程，这个过程叫作 Shuffle 。
+- Shuffle 会将 MapTask 输出的处理结果数据分发给 ReduceTask ，并在分发的过程中，对数据按 key 进行分区和排序。
 
-#### 2.2. 安装配置Hadoop
+#### 4.4. 执行 ReduceTask
 
-- 在 home 目录下，解压缩 Hadoop 压缩文件。
+- 输入 ReduceTask 的数据流是<key, {value list}>形式，用户可以自定义 reduce()方法进行逻辑处理，最终以<key, value>的形式输出。
 
-    ```aidl
-    tar -zxvf hadoop-3.1.3.tar.gz
-    ```
-- 配置环境变量
-    ```aidl
-    vim .bashrc
-    ```
+#### 4.5. 写入文件
 
-    ```aidl
-    export HADOOP_HOME=/home/用户/hadoop-3.1.3
-    export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
-    export HADOOP_INSTALL=$HADOOP_HOME
-    export HADOOP_MAPRED_HOME=$HADOOP_HOME
-    export HADOOP_COMMON_HOME=$HADOOP_HOME
-    export HADOOP_HDFS_HOME=$HADOOP_HOME
-    export YARN_HOME=$HADOOP_HOME
-    export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
-    ```
+- MapReduce 框架会自动把 ReduceTask 生成的<key, value>传入 OutputFormat 的 write 方法，实现文件的写入操作。
 
-#### 2.3. 修改hadoop配置文件
 
-- 修改 .bashrc 中的 YARN 和 HDFS 配置
-    ```aidl
-    vim .bashrc
-    ```
+# 5. MapTask
 
-    ```aidl
-    export HDFS_NAMENODE_USER=root
-    export HDFS_DATANODE_USER=root
-    export HDFS_SECONDARYNAMENODE_USER=root
-    export YARN_RESOURCEMANAGER_USER=root
-    export YARN_NODEMANAGER_USER=root
-    ```
+![]({{site.baseurl}}/img-post/MapReduce-7.png)
 
-    ```aidl
-    cd hadoop-3.1.3/etc/hadoop/
-    ```
-- 修改 core-site.xml
+#### 5.1. Read 阶段
 
-    ```aidl
-    vim core-site.xml
-    ```
+- MapTask 通过用户编写的 RecordReader ，从输入的 InputSplit 中解析出一个个 key / value 。
 
-    ```aidl
-    # 在 configuration 中添加
-    <property>
-        <name>fs.defaultFS</name>
-        <value>hdfs://master:9000</value>
-    </property>
-    <property>
-        <name>hadoop.tmp.dir</name>
-        <value>file:/home/pandong/hadoop-3.1.3/tmp</value>
-        <description>Abase for other temporary directories.</description>
-    </property>
-    ```
+#### 5.2. Map 阶段
 
-- 修改 hadoop-env.sh
-    ```aidl
-    vim hadoop-env.sh
-    ```
-    
-    ```aidl
-    # 在 hadoop-env.sh 添加内容
-    export JAVA_HOME=/home/用户名/jdk1.8.0
-    ```
-- 修改 hdfs-site.xml
+- 将解析出的 key / value 交给用户编写的 Map ()函数处理，并产生一系列新的 key / value 。
 
-    ```aidl
-    vim hdfs-site.xml
-    ```
-    
-    ```aidl
-    <property>
-         <name>dfs.namenode.secondary.http-address</name>
-         <value>master:50090</value>
-    </property>
-    <property>
-        <name>dfs.replication</name>
-        <value>1</value>
-    </property>
-    <property>
-        <name>dfs.namenode.name.dir</name>
-        <value>file:/home/用户名/hadoop-3.1.3/tmp/dfs/name</value>
-    </property>
-    <property>
-        <name>dfs.datanode.data.dir</name>
-        <value>file:/home/用户名/hadoop-3.1.3/tmp/dfs/data</value>
-    </property>
-    ```
+#### 5.3. Collect 阶段
 
-- 修改 mapred-site.xml
+- 在用户编写的 map() 函数中，数据处理完成后，一般会调用 outputCollector.collect() 输出结果，在该函数内部，它会将生成的 key / value 分片(通过调用 partitioner )，并写入一个环形内存缓冲区中(该缓冲区默认大小是 100MB )。
 
-    ```aidl
-    vim mapred-site.xml
-    ```
-    
-    ```aidl
-    <property>
-        <name>mapreduce.framework.name</name>
-        <value>yarn</value>
-    </property>
-    <property>
-        <name>mapreduce.jobhistory.address</name>
-        <value>master:10020</value>
-    </property>
-    <property>
-        <name>mapreduce.jobhistory.webapp.address</name>
-        <value>master:19888</value>
-    </property>
-    ```
+#### 5.4. Spill 阶段
 
-- 修改 yarn-site.xml
+- 即“溢写”，当缓冲区快要溢出时(默认达到缓冲区大小的 80 %)，会在本地文件系统创建一个溢出文件，将该缓冲区的数据写入这个文件。
+- 将数据写入本地磁盘前，先要对数据进行一次本地排序，并在必要时对数据进行合并、压缩等操作。
+- 写入磁盘之前，线程会根据 ReduceTask 的数量，将数据分区，一个 Reduce 任务对应一个分区的数据。
+- 这样做的目的是为了避免有些 Reduce 任务分配到大量数据，而有些 Reduce 任务分到很少的数据，甚至没有分到数据的尴尬局面。
+- 如果此时设置了 Combiner ，将排序后的结果进行 Combine 操作，这样做的目的是尽可能少地执行数据写入磁盘的操作。
 
-    ```aidl
-    vim yarn-site.xml
-    ```
-    
-    ```aidl
-    <property>
-        <name>yarn.resourcemanager.hostname</name>
-        <value>master</value>
-    </property>
-    <property>
-        <name>yarn.nodemanager.aux-services</name>
-        <value>mapreduce_shuffle</value>
-    </property>
-    ```
+#### 5.5. Combine 阶段
 
-- workers
+- 当所有数据处理完成以后， MapTask 会对所有临时文件进行一次合并，以确保最终只会生成一个数据文件
 
-    ```aidl
-    vim workers
-    ```
-    
-    ```aidl
-    slave1
-    slave2
-    ```
+- 合并的过程中会不断地进行排序和 Combine 操作，
+其目的有两个：一是尽量减少每次写人磁盘的数据量;二是尽量减少下一复制阶段网络传输的数据量。
+- 最后合并成了一个已分区且已排序的文件。
 
-#### 2.4. 复制文件到子节点
+# 6. ReduceTask
 
-    ```aidl
-    scp -r /home/用户名/hadoop-3.1.3 用户名@slave1:/home/用户名/
-    
-    scp -r /home/用户名/hadoop-3.1.3 用户名@slave2:/home/用户名/
-    ```
-    
-    ```aidl
-    scp -r .bashrc 用户@slave1:/home/用户/
-    
-    scp -r .bashrc 用户@slave2:/home/用户/
-    ```
+![]({{site.baseurl}}/img-post/MapReduce-6.png)
 
-#### 2.5. 格式化
+#### 6.1. Copy 阶段
 
-- 关闭enforce
+- Reduce 会从各个 MapTask 上远程复制一片数据（每个 MapTask 传来的数据都是有序的），并针对某一片数据，如果其大小超过一定國值，则写到磁盘上，否则直接放到内存中
 
-    ```aidl
-    vi /etc/selinux/config
-    ```
+#### 6.2. Merge 阶段
 
-- 切换 root 权限
+- 在远程复制数据的同时， ReduceTask 会启动两个后台线程，分别对内存和磁盘上的文件进行合并，以防止内存使用过多或者磁盘文件过多。
 
-    ```aidl
-    su
-    ```
+#### 6.3. Sort 阶段
 
-- 修改SELINUX
+- 用户编写 reduce() 方法输入数据是按 key 进行聚集的一组数据。
+- 为了将 key 相同的数据聚在一起， Hadoop 采用了基于排序的策略。
+- 由于各个 MapTask 已经实现对自己的处理结果进行了局部排序，因此， ReduceTask 只需对所有数据进行一次归并排序即可。
+- 为了将 key 相同的数据聚在一起， Hadoop 采用了基于排序的策略。
+- 由于各个 MapTask 已经实现对自己的处理结果进行了局部排序，因此， ReduceTask 只需对所有数据进行一次归并排序即可。
 
-    ```aidl
-    SELINUX=disabled
-    ```
+#### 6.4. Reduce 阶段
 
-- 退出 root，格式化
+- 对排序后的键值对调用 reduce() 方法，键相等的键值对调用一次 reduce()方法，每次调用会产生零个或者多个键值对，最后把这些输出的键值对写入到 HDFS 中
 
-    ```aidl
-    hdfs namenode -format
-    ```
+#### 6.5. Write 阶段
 
-#### 2.6. 启动hadoop
+- reduce() 函数将计算结果写到 HDFS 上。
 
-- 运行全部
+- 合并的过程中会产生许多的中间文件(写入磁盘了)，但 MapReduce 会让写入磁盘的数据尽可能地少，并且最后一次合并的结果并没有写入磁盘，而是直接输入到 Reduce 函数。
+- 合并的过程中会产生许多的中间文件(写入磁盘了)，但 MapReduce 会让写入磁盘的数据尽可能地少，并且最后一次合并的结果并没有写入磁盘，而是直接输入到 Reduce 函数。
 
-    ```aidl
-    start-all.sh
-    ```
 
-    ```aidl
-    WARNING: HADOOP_SECURE_DN_USER has been replaced by HDFS_DATANODE_SECURE_USER. Using value of HADOOP_SECURE_DN_USER.
-    Starting namenodes on [master]
-    Last login: Mon Mar  7 08:10:16 PST 2022 on pts/0
-    Starting datanodes
-    Last login: Mon Mar  7 08:10:36 PST 2022 on pts/0
-    Starting secondary namenodes [master]
-    Last login: Mon Mar  7 08:10:39 PST 2022 on pts/0
-    2022-03-07 08:10:55,169 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-    Starting resourcemanager
-    Last login: Mon Mar  7 08:10:46 PST 2022 on pts/0
-    Starting nodemanagers
-    Last login: Mon Mar  7 08:10:57 PST 2022 on pts/0
-    ```
-
-- mapreduce：http://master:8088/cluster
-
-    ![]({{site.baseurl}}/img-post/hadoop-4.png)
-
-- NameNode and Datanode: http://master:9870
-
-    ![]({{site.baseurl}}/img-post/hadoop-5.png)
-
-- 关闭全部
-
-    ```aidl
-    stop-all.sh
-    ```
