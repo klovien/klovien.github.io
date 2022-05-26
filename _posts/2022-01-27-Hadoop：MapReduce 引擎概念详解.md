@@ -214,3 +214,28 @@ MapReduce的整个工作过程如上图所示，它包含如下4个独立的实�
 - 合并的过程中会产生许多的中间文件(写入磁盘了)，但 MapReduce 会让写入磁盘的数据尽可能地少，并且最后一次合并的结果并没有写入磁盘，而是直接输入到 Reduce 函数。
 
 
+# 7. Shuffle 
+
+#### 7.1. Shuffle 作用
+
+- 将 maptask 输出的处理结果数据，分发给 reducetask，并在分发的过程中，对数据按key进行了分区和排序，这个过程称为shuffle。
+- 完整的 shuffle 是由 Map 端和 Reduce 端组成：
+    - Map 端负责数据的溢写；
+    - Reduce 负责将 Map 的数据拷贝到本地，并进行归并排序。
+
+    ![]({{site.baseurl}}/img-post/MapReduce-8.png)
+
+#### 7.2. Map 端 Shuffle
+
+- Map端把数据源源不断的写入到一个环形缓冲区（RingBuffer）
+- 当达到一定阀值时会新启一个线程，将缓冲区的数据溢写到磁盘
+- 在溢写过程中，调用Partitioner进行分组，对于每个组按照Key进行排序
+- Map处理完毕后对磁盘的多个文件进行Merge操作，将大量文件合并为一个大文件（数据文件）和一个索引文件（每个partition在文件中的起始位置、长度等等）
+
+
+#### 7.3. Reduce 端的 Shuffle
+
+- Map 端 Shuffle 结束后，会暴露一个 Http 服务，供 Reduce 端获取数据；
+- Reduce 端启动拷贝线程，从各个 Map 端拷贝数据，一边拷贝一边进行归并排序操作，便于数据的下一步处理。
+
+
