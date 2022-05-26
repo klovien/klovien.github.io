@@ -12,7 +12,7 @@ tags:
 
 # 1. MapReduce 概念简介
 
-#### 1.1. 获取 root 权限
+#### 1.1. MapReduce 定义
 
 - MapReduce 是一个软件框架，基于该框架能够容易地编写应用程序，这些应用程序能够运行在由上千个商用机器组成的大集群上，并以一种可靠的、具有容错能力的方式并行地处理上TB级别的海量数据集。
 - 这个定义里面有着这些关键词：
@@ -28,49 +28,46 @@ tags:
 
     >MapReduce的思想就是“分而治之”。
 
-　　（1）Mapper 负责“分”，即把复杂的任务分解为若干个“简单的任务”来处理。“简单的任务”包含三层含义：
+　　- Mapper 负责“分”，即把复杂的任务分解为若干个“简单的任务”来处理。“简单的任务”包含三层含义：
+        - 一是数据或计算的规模相对原任务要大大缩小；
+        - 二是就近计算原则，即任务会分配到存放着所需数据的节点上进行计算；
+        - 三是这些小任务可以并行计算，彼此间几乎没有依赖关系。
 
-一是数据或计算的规模相对原任务要大大缩小；二是就近计算原则，即任务会分配到存放着所需数据的节点上进行计算；三是这些小任务可以并行计算，彼此间几乎没有依赖关系。
+　　- Reducer 负责对 map 阶段的结果进行汇总。至于需要多少个 Reducer，用户可以根据具体问题，通过在 mapred-site.xml 配置文件里设置参数 mapred.reduce.tasks 的值，缺省值为1。
 
-　　（2）Reducer负责对map阶段的结果进行汇总。至于需要多少个Reducer，用户可以根据具体问题，通过在mapred-site.xml配置文件里设置参数mapred.reduce.tasks的值，缺省值为1。
+#### 1.3. MapReduce 工作机制
 
-#### 1.3. 修改网卡配置
+![]({{site.baseurl}}/img-post/MapReduce-1.png)
 
-```aidl
-cd /etc/sysconfig/network-scripts/
-vim ifcfg-ens33
-```
+MapReduce的整个工作过程如上图所示，它包含如下4个独立的实体：
 
-```aidl
-PROXY_METHOD="nc"
-BROWSER_ONLY="nc"
-BOOTPROTO="static"
-NAME="ens33"
-DEVICE="ens33"
-ONBOOT="yes"
-IPADDR=192.168.1.101
-NETMASK=255.255.255.0
-GATEWAY=192.168.1.254
-DNS1=192.168.1.254      # 注意：这里不配置会导致虚拟机上不了网
-```
+　　实体一：客户端，用来提交MapReduce作业。
 
-```
-# 启动生效
-systemctl restart network
-```
+　　实体二：JobTracker，用来协调作业的运行。
 
-#### 1.4. 主机名与IP映射
+　　实体三：TaskTracker，用来处理作业划分后的任务。
 
-```aidl
+　　实体四：HDFS，用来在其它实体间共享作业文件。
 
-vi /etc/hosts
+# 2. MapReduce 框架
 
-192.168.1.101 master
-192.168.1.102 slave1
-192.168.1.103 slave2
-```
+#### 2.1. MapReduce 框架的组成
 
-#### 1.5. 配置SSH免密登录
+![]({{site.baseurl}}/img-post/MapReduce-2.png)
+
+- 一个MapReduce作业通常会把输入的数据集切分为若干独立的数据块，由Map任务以完全并行的方式去处理它们。
+
+- 框架会对Map的输出先进行排序，然后把结果输入给Reduce任务。通常作业的输入和输出都会被存储在文件系统中，整个框架负责任务的调度和监控，以及重新执行已经关闭的任务。
+
+- 通常，MapReduce框架和分布式文件系统是运行在一组相同的节点上，也就是说，计算节点和存储节点通常都是在一起的。这种配置允许框架在那些已经存好数据的节点上高效地调度任务，这可以使得整个集群的网络带宽被非常高效地利用。`
+
+- JobTracker
+    - JobTracker负责调度构成一个作业的所有任务，这些任务分布在不同的TaskTracker上（由上图的JobTracker可以看到2 assign map 和 3 assign reduce）。你可以将其理解为公司的项目经理，项目经理接受项目需求，并划分具体的任务给下面的开发工程师。
+
+- TaskTracker
+    - TaskTracker负责执行由JobTracker指派的任务，这里我们就可以将其理解为开发工程师，完成项目经理安排的开发任务即可。
+
+#### 2.2. MapReduce的输入输出
 
 >此处只在 master 上配置免密登录 slave
 
