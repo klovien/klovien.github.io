@@ -22,8 +22,7 @@ tags:
     - 大规模集群；
     - 海量数据集。
 
-#### 1.2. MapReduce 的作用
-
+#### 1.2. MapReduce 工作机制 
 - MapReduce 擅长处理大数据
     - Mapper 负责“分”，即把复杂的任务分解为若干个“简单的任务”来处理。
         >MapReduce的思想就是 **“分而治之”**。
@@ -37,7 +36,7 @@ tags:
     - Reducer 负责对 map 阶段的结果进行汇总。至于需要多少个 Reducer，用户可以根据具体问题，通过在 mapred-site.xml 配置文件里设置参数 mapred.reduce.tasks 的值，缺省值为1。
         - Reduce主要是 分解、缩小、归纳的过程。
 
-#### 1.3. MapReduce 工作机制
+#### 1.3. MapReduce 组成部分
 
 ![]({{site.baseurl}}/img-post/MapReduce-1.png)
 
