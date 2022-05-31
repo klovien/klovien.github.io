@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Hadoop：HDFS 分布式文件存储系统
+title:      Hadoop：HDFS 分布式文件存储系统概念详解
 subtitle:
 date:       2022-01-27
 author:     dex0423
