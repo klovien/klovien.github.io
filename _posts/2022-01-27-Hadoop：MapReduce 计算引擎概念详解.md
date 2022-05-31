@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Hadoop：MapReduce 引擎概念详解
+title:      Hadoop：MapReduce 计算引擎概念详解
 subtitle:
 date:       2022-01-27
 author:     dex0423
