@@ -2,7 +2,7 @@
 layout:     post
 title:      用户画像：ID Mapping 的设计与实现
 subtitle:   
-date:       2022-01-27
+date:       2022-01-24
 author:     dex0423
 header-img: img/post-bg-os-metro.jpg
 catalog: true
@@ -136,7 +136,7 @@ tags:
 
 - 图计算是将数据转为“点集合”，将数据之间的关系转化为“线集合”，通过最短路径规划、频繁子集等算法，形成 id映射字典。
 
-- 具体步骤：
+**具体步骤：**
 - 步骤一：根据日志获取 ID 号，获取每一行日志中的全部的 ID 号；
   - 数据格式：
     ```
