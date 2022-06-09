@@ -142,6 +142,8 @@ YARN 使得集群具备以下优点：
 
 
 # YARN 的通信协议
-分布式环境下，需要涉及跨机器跨网络通信，yarn底层使用RPC协议实现通信。
+- 分布式环境下，需要涉及跨机器跨网络通信，yarn底层使用RPC协议实现通信。
 
-RPC是远程过程调用( Remote procedure call)的缩写形式。基于RPC进行远程调用就像本地调用一样。在RPC协议中，通信双方有一端是Client，另一端为Server，且Client总是主动连接Server的。因此，yarn实际上采用的是拉式(pull-based)通信模型。
+- RPC是远程过程调用( Remote procedure call)的缩写形式。
+- 基于RPC进行远程调用就像本地调用一样。
+- 在RPC协议中，通信双方有一端是Client，另一端为Server，且Client总是主动连接Server的。因此，yarn实际上采用的是拉式(pull-based)通信模型。
