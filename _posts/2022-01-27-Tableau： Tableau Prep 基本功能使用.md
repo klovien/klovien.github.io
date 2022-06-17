@@ -65,9 +65,9 @@ tags:
 
 #### 字段拆分
 
-![]({{site.baseurl}}/img-post/tableau-map-8.png)
+![]({{site.baseurl}}/img-post/tableau-8.png)
 
-![]({{site.baseurl}}/img-post/tableau-map-9.png)
+![]({{site.baseurl}}/img-post/tableau-9.png)
 
 
 # 输出结果
