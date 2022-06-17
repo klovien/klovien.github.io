@@ -72,3 +72,13 @@ Tableau 的强项在于数据可视化，但在数据清洗、预处理方面并
 
 ![]({{site.baseurl}}/img-post/fwq-1-1.jpg)
 
+
+
+
+
+
+# Tableau 地图数据
+
+![]({{site.baseurl}}/img-post/tableau-map-1.jpg)
+
+![]({{site.baseurl}}/img-post/tableau-map-2.jpg)
