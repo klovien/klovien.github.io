@@ -61,6 +61,14 @@ tags:
 当任一表中的值在另一个表中没有匹配项时，您将在数据网格中看到 null 值。
 
 
+# 数据清洗
+
+#### 字段拆分
+
+![]({{site.baseurl}}/img-post/tableau-map-8.png)
+
+![]({{site.baseurl}}/img-post/tableau-map-9.png)
+
 
 # 输出结果
 
