@@ -75,7 +75,11 @@ tags:
 ![]({{site.baseurl}}/img-post/tableau-map-4.png)
 
 
+#### 发布流程
 
+![]({{site.baseurl}}/img-post/tableau-map-6.png)
+
+![]({{site.baseurl}}/img-post/tableau-map-7.png)
 
 
 
