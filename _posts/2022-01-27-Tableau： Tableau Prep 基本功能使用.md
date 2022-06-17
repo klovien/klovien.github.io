@@ -1,6 +1,6 @@
 ---
 layout:     post  
-title:      Tableau： Tableau 基本功能介绍
+title:      Tableau： Tableau Prep 基本功能介绍
 subtitle:   
 date:       2022-01-27
 author:     dex0423
