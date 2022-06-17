@@ -1,6 +1,6 @@
 ---
 layout:     post  
-title:      Tableau： Tableau Prep 基本功能介绍
+title:      Tableau： Tableau Prep 基本功能使用
 subtitle:   
 date:       2022-01-27
 author:     dex0423
@@ -17,15 +17,15 @@ tags:
 
 - 下面这种方式，并不能成功下载驱动；
 
-![]({{site.baseurl}}/img-post/tableau-1.jpg)
+![]({{site.baseurl}}/img-post/tableau-1.png)
 
 - 需要自己到 MySQL 网站，自行下载安装；
 
-![]({{site.baseurl}}/img-post/tableau-2.jpg)
+![]({{site.baseurl}}/img-post/tableau-2.png)
 
 - 安装好驱动以后，就可以正常连接 MySQL；
 
-![]({{site.baseurl}}/img-post/tableau-3.jpg)
+![]({{site.baseurl}}/img-post/tableau-3.png)
 
 
 # 多表连接
@@ -36,7 +36,7 @@ tags:
 
 - 一般使用自定义 SQL 跨库添加表；
 
-![]({{site.baseurl}}/img-post/tableau-5.jpg)
+![]({{site.baseurl}}/img-post/tableau-5.png)
 
 #### 内联接
 
@@ -68,7 +68,7 @@ tags:
 
 - Tableau Prep 只负责 ETL 相关工作，具体的数值计算不在 Tableau Prep 完成。
 
-![]({{site.baseurl}}/img-post/tableau-4.jpg)
+![]({{site.baseurl}}/img-post/tableau-4.png)
 
 #### 发布数据源
 
