@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      SQL 示例：使用 SQL 统计员工出勤情况
-subtitle:   
+title:      SQL：使用 CROSS JOIN 实现多表查询
+subtitle:   统计员工的出勤情况
 date:       2022-02-01
 author:     dex0423
 header-img: img/post-bg-universe.jpg
