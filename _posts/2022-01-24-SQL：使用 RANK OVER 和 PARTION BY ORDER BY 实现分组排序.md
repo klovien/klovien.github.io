@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      SQL：使用 RANK OVER 和 PARTION BY 语句多维度统计
-subtitle:   统计商品排行榜
+title:      SQL：使用 RANK OVER + PARTION BY + ORDER BY 实现分组排序
+subtitle:   统计商品畅销度排行榜
 date:       2022-01-24
 author:     dex0423
 header-img: img/post-bg-universe.jpg
@@ -9,6 +9,10 @@ catalog: true
 tags:
     - SQL
 ---
+
+# RANK OVER & PARTION BY
+
+- PARTION BY 进行分组，RANK OVER + ORDER BY 进行给每个分组内的记录进行排序
 
 # 创建表
 - 需求：
