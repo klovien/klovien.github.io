@@ -2,7 +2,7 @@
 layout:     post
 title:      SQL：使用 CROSS JOIN 实现多表查询
 subtitle:   统计员工的出勤情况
-date:       2022-02-01
+date:       2022-01-24
 author:     dex0423
 header-img: img/post-bg-universe.jpg
 catalog: true

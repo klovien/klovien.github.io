@@ -2,7 +2,7 @@
 layout:     post
 title:      SQL：CROSS JOIN、INNER JOIN 和 OUTER JOIN 的区别及使用
 subtitle:   以员工考勤记录统计为例
-date:       2022-02-01
+date:       2022-01-24
 author:     dex0423
 header-img: img/post-bg-universe.jpg
 catalog: true
