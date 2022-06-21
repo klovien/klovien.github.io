@@ -16,7 +16,9 @@ tags:
 
 # 创建表
 - 需求：
-  - 需要根据 employee、attendance、calendar 三张表，统计员工的出勤情况；
+  - 按照产品的分类排名；
+  - 按照产品子类排名；
+  - 按照产品分类的飙升榜；
 - 创建日历表 calendar
 
   ```aidl
@@ -132,6 +134,7 @@ hourly_rank as(
 ),
 rank_gain as(
   select product_category, product_subcategory, product_name,
+         -- lag 有三个参数，第一个参数是列名，第二个参数是偏移的 offset，第三个参数是 超出记录窗口时的默认值。
          rk, lag(rk, 1) over (partition by product_category, product_name order by ymdh) pre_rk,
          100 * (ifnull(lag(rk, 1) over (partition by product_category, product_name order by ymdh), 9999) - rk)
          /rk as gain
