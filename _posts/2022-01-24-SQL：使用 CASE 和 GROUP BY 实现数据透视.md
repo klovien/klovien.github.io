@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      SQL：使用 CASE 和 GROUP BY 实现数据透视
-subtitle:   统计不同产品、不同
+subtitle:   统计不同产品、不同渠道销售情况
 date:       2022-01-24
 author:     dex0423
 header-img: img/post-bg-universe.jpg
