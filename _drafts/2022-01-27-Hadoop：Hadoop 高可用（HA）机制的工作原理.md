@@ -11,6 +11,13 @@ tags:
 ---
 
 
+https://blog.csdn.net/weixin_44825085/article/details/119645899
+
+
+
+
+
+
 # 1. HDFS 概念
 
 #### 1.1. HDFS 工作原理
