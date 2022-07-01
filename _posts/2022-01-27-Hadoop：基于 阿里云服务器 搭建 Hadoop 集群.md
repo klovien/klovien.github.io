@@ -456,4 +456,17 @@ tags:
   stop-all.sh
   ```
 
+# 4. Web UI
 
+#### 4.1. 安全组设置
+
+  ![]({{site.baseurl}}/img-post/hadoop-8.png)
+
+#### 4.2. 访问地址
+
+- hdfs
+    - http://mater节点IP:9870/
+        ![]({{site.baseurl}}/img-post/hadoop-9.png)
+- yarn
+    - http://ResourceManager节点IP:8088/
+        ![]({{site.baseurl}}/img-post/hadoop-10.png)
