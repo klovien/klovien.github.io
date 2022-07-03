@@ -1,0 +1,10 @@
+1	后羿	5986	1784	396	336	remotely	archer
+2	马可波罗	5584	200	362	344	remotely	archer
+3	鲁班七号	5989	1756	400	323	remotely	archer
+4	李元芳	5725	1770	396	340	remotely	archer
+5	孙尚香	6014	1756	411	346	remotely	archer
+6	黄忠	5898	1784	403	319	remotely	archer
+7	狄仁杰	5710	1770	376	338	remotely	archer
+8	虞姬	5669	1770	407	329	remotely	archer
+9	成吉思汗	5799	1742	394	329	remotely	archer
+10	百里守约	5611	1784	410	329	remotely	archer	assassin
