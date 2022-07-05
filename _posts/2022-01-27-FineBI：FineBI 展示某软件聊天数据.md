@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      FineBI：Hive SQL 分析某软件聊天数据
+title:      FineBI：FineBI 展示某软件聊天数据
 subtitle:   
 date:       2022-01-27
 author:     dex0423
