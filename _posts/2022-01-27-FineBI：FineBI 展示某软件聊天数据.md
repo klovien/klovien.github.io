@@ -4,7 +4,7 @@ title:      FineBI：FineBI 展示某软件聊天数据
 subtitle:   
 date:       2022-01-27
 author:     dex0423
-header-img: img/post-bg-os-metro.png
+header-img: img/post-bg-os-metro.jpg
 catalog: true
 tags:
     - FineBI
