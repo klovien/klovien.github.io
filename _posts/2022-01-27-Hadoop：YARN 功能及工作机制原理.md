@@ -27,8 +27,8 @@ tags:
 
 - YARN 具有良好的通用性和包容性：
 
-- 正是因为有了 YARN，更多的计算框架可以接入到 HDFS 中，不仅是 MapReduce，Flink、Spark 都可以顺利接入 HDFS。
-- 正是因为 YARN 的包容性，是的其他的计算框架可以专注于计算性能的提升。
+  - 正是因为有了 YARN，更多的计算框架可以接入到 HDFS 中，不仅是 MapReduce，Flink、Spark 都可以顺利接入 HDFS。
+  - 正是因为 YARN 的包容性，是的其他的计算框架可以专注于计算性能的提升。
 
 
 ![]({{site.baseurl}}/img-post/yarn-1.png)

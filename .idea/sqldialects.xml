@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="SqlDialectMappings">
-    <file url="file://D:/Hadoop生态零基础课程/Hadoop-资料/06_Hadoop生态综合案例：陌陌聊天数据分析/06_Hadoop生态综合案例：陌陌聊天数据分析/2、课程资料/06_陌陌聊天数据分析案例.sql" dialect="HiveQL" />
-  </component>
-</project>

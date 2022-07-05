@@ -21,7 +21,13 @@ tags:
     - 可靠且容错；
     - 大规模集群；
     - 海量数据集。
-
+- MapReduce 核心分为两个阶段：
+    - 第一阶段：映射
+        - MapTask 特征提取；
+        - 把具有相同特征的数值，提取变成 key-value 形式，经由网络发送到第二阶段的 Task 做逻辑计算；
+    - 第二阶段：聚合
+        - ReduceTask 逻辑计算；
+        - 将相同特折让的数据抽象成一个逻辑计算单位，调用用户定义的逻辑执行计算。
 #### 1.2. MapReduce 工作机制 
 - MapReduce 擅长处理大数据
     - Mapper 负责“分”，即把复杂的任务分解为若干个“简单的任务”来处理。
@@ -234,15 +240,16 @@ MapReduce的整个工作过程如上图所示，它包含如下4个独立的实�
 
     ![]({{site.baseurl}}/img-post/MapReduce-8.png)
 
-#### 7.2. Map 端 Shuffle
+#### 7.2. Map 端 Shuffle：输出
 
 - Map端把数据源源不断的写入到一个环形缓冲区（RingBuffer）
 - 当达到一定阀值时会新启一个线程，将缓冲区的数据溢写到磁盘
-- 在溢写过程中，调用Partitioner进行分组，对于每个组按照Key进行排序
-- Map处理完毕后对磁盘的多个文件进行Merge操作，将大量文件合并为一个大文件（数据文件）和一个索引文件（每个partition在文件中的起始位置、长度等等）
+- 在溢写过程中，调用 Partitioner 进行分组，对于每个组按照Key进行排序，partitioner 决定 map task 的哪一个输出对应下游 reduce 的哪一个 task；
+- Map 处理完毕后对磁盘的多个文件进行 Merge 操作，将大量文件合并为一个大文件（数据文件）和一个索引文件（每个partition在文件中的起始位置、长度等等）
+    - 一个 map 输入文件，经过 merge 后合并成一个输出文件，一个输入只会对应一个输出；
 
 
-#### 7.3. Reduce 端的 Shuffle
+#### 7.3. Reduce 端的 Shuffle：输入
 
 - Map 端 Shuffle 结束后，会暴露一个 Http 服务，供 Reduce 端获取数据；
 - Reduce 端启动拷贝线程，从各个 Map 端拷贝数据，一边拷贝一边进行归并排序操作，便于数据的下一步处理。
