@@ -13,7 +13,7 @@ tags:
 
 # 1. 结果展示
 
-![]({{site.baseurl}}/img-post/finebi-1.jpg)
+![]({{site.baseurl}}/img-post/finebi-1.png)
 
 # 2. 需求梳理
 
@@ -334,10 +334,7 @@ tags:
     select * from tb_rs_sender_os;  --结果验证
     ```
 
-# 
 
-
-![]({{site.baseurl}}/img-post/finebi-2.jpg)
 
 
 
