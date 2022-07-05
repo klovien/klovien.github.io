@@ -1,6 +1,6 @@
-- -
+---
 layout:     post
-title:      FineBI：Hive SQL + FineBI 展示某软件聊天数据
+title:      FineBI：Hive SQL 分析某软件聊天数据
 subtitle:   
 date:       2022-01-27
 author:     dex0423
@@ -8,7 +8,7 @@ header-img: img/post-bg-os-metro.jpg
 catalog: true
 tags:
     - FineBI
-- -
+---
 
 
 # 1. 结果展示
@@ -334,7 +334,10 @@ tags:
     select * from tb_rs_sender_os;  --结果验证
     ```
 
+# 
 
+
+![]({{site.baseurl}}/img-post/finebi-2.jpg)
 
 
 
