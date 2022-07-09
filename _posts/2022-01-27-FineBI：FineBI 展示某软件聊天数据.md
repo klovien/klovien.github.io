@@ -13,6 +13,9 @@ tags:
 
 # 1. Fine BI 配置
 
+- 添加本地 jar 包
+    ![]({{site.baseurl}}/img-post/finebi-12.png)
+
 - 上传 Hive 插件：
 
     ![]({{site.baseurl}}/img-post/finebi-3.png)
