@@ -31,6 +31,7 @@ HQL 是 Hibernate Query Language（Hibernate 查询语言）的缩写，提供�
 　在执行效率方面，不考虑其它的影响, 一般sql 效率要高于 hql ,如果考虑 缓存,关联映射,语句的质量就要看具体情况,不过sql 的功能是比hql大。
 
 
+
 #### 面向库表 VS 面向对象
 
 - sql 面向数据库表查询；
