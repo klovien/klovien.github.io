@@ -14,7 +14,7 @@ tags:
 
 HQL 是 Hibernate Query Language（Hibernate 查询语言）的缩写，提供更加丰富灵活、更为强大的查询能力；HQL 更接近 SQL 语句查询语法。Hibernate 查询语言（HQL）是一种面向对象的查询语言，类似于 SQL，但不是去对表和列进行操作，而是面向对象和它们的属性。 HQL 查询被 Hibernate 翻译为传统的 SQL 查询从而对数据库进行操作。
 
-# 执行HQL查询的步骤
+# 执行 HQL 查询的步骤
 
   1、获得HibernateSession对象
   2、编写HQL语句
@@ -29,7 +29,6 @@ HQL 是 Hibernate Query Language（Hibernate 查询语言）的缩写，提供�
 
 三、Hibernate把hql编译成sql语句传送到数据库进行查询。
 　在执行效率方面，不考虑其它的影响, 一般sql 效率要高于 hql ,如果考虑 缓存,关联映射,语句的质量就要看具体情况,不过sql 的功能是比hql大。
-
 
 
 #### 面向库表 VS 面向对象
@@ -48,6 +47,9 @@ HQL 是 Hibernate Query Language（Hibernate 查询语言）的缩写，提供�
 
 - 因为 HQL 是面向对象的，而对象类的名称和属性都是大小写敏感的，所以 HQL 是大小写敏感的；
 - HQL语句：`from Cat as cat where cat.id > 1;` 与 `from Cat as cat where cat.ID > 1;` 是不一样的，这点与 SQL 不同。
+
+
+
 
 
 
