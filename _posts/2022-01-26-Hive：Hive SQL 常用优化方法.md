@@ -2,7 +2,7 @@
 layout:     post
 title:      Hive：Hive SQL 常用优化方法
 subtitle:   
-date:       2022-01-30
+date:       2022-01-26
 author:     dex0423
 header-img: img/post-bg-os-metro.jpg
 catalog: true
