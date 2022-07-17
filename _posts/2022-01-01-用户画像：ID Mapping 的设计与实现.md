@@ -2,7 +2,7 @@
 layout:     post
 title:      用户画像：ID Mapping 的设计与实现
 subtitle:   
-date:       2022-01-24
+date:       2022-01-01
 author:     dex0423
 header-img: img/post-bg-os-metro.jpg
 catalog: true
@@ -221,3 +221,4 @@ tags:
 - ID Mapping历史数据：按周更新，代表上周用户的数据，迭代计算时，活跃度+1
 
 - 全量用户信息数据：代表全量用户，数据引入时，设置活跃度参数为一个合理值
+
