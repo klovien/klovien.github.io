@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      OLAP：HBase vs RDBMS vs HDFS vs Hive
+title:      HBase：HBase vs RDBMS vs HDFS vs Hive
 subtitle:   
 date:       2022-01-26
 author:     dex0423
