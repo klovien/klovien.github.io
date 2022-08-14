@@ -66,9 +66,5 @@ tags:
 
 
 
-![]({{site.baseurl}}/img-post/dolphinscheduler-1.png)
-
-
-
 
 

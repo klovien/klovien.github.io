@@ -119,6 +119,8 @@ tags:
 
 - 系统的前端页面，提供系统的各种可视化操作界面。
 
+# DolphinScheduler 工作流程
+
 ![]({{site.baseurl}}/img-post/dolphinscheduler-1.png)
 
 
