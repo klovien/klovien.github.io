@@ -42,45 +42,47 @@ tags:
 
 #### 1.3. 创建文件分发脚本
 
+- 分别在三台机器上安装 rsync
+  
+  ```aidl
+  yum install rsync
+  ```
+
 - 在 bin 目录下创建 xsync；
 
     ```aidl
-    cd /bin & vim xsync
+    cd /bin
+    
+    vim xsync
     ```
 
 - 编辑脚本；
-
+  
     ```aidl
-    #!/bin/sh
-    
-    # 获取输入参数个数，如果没有参数，直接退出
+    #!/bin/bash
+    #1 获取输入参数个数，如果没有参数，直接退出
     pcount=$#
-    if((pcount!=4)); then
-        echo Usage: $0 filename servername startno endno
-        exit;
+    if((pcount==0)); then
+    echo no args;
+    exit;
     fi
-    
-    
-    # 获取文件名称
+  
+    #2 获取文件名称
     p1=$1
     fname=`basename $p1`
     echo fname=$fname
-    
-    # 获取上级目录到绝对路径
+  
+    #3 获取上级目录到绝对路径
     pdir=`cd -P $(dirname $p1); pwd`
     echo pdir=$pdir
-    # 获取当前用户名称
+  
+    #4 获取当前用户名称
     user=`whoami`
-    # 获取hostname及起止号
-    slave=$2
-    startline=$3
-    endline=$4
-    
-    # 循环
-    for((host=$startline; host<=$endline; host++)); do
-        echo $pdir/$fname $user@$slave$host:$pdir
-        echo ==================$slave$host==================
-        rsync -rvl $pdir/$fname $user@$slave$host:$pdir
+  
+    #5 循环
+    for((host=103; host<105; host++)); do
+            echo ------------------- hadoop$host --------------
+            rsync -rvl $pdir/$fname $user@hadoop$host:$pdir
     done
     ```
 
