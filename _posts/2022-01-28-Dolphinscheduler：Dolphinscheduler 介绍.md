@@ -93,19 +93,21 @@ tags:
 
 #### WorkerServer
 
-- WorkerServer也采用分布式无中心设计理念，WorkerServer主要负责任务的执行和提供日志服务。WorkerServer服务启动时向Zookeeper注册临时节点，并维持心跳。
+- WorkerServer 也采用分布式无中心设计理念，WorkerServer 主要负责任务的执行和提供日志服务。 WorkerServer 服务启动时向 Zookeeper 注册临时节点，并维持心跳。
 
 - 该服务包含：
-  - FetchTaskThread：主要负责不断从Task Queue中领取任务，并根据不同任务类型调用TaskScheduleThread对应执行器；
+  - FetchTaskThread：主要负责不断从 Task Queue 中领取任务，并根据不同任务类型调用 TaskScheduleThread 对应执行器；
   - LoggerServer：是一个RPC服务，提供日志分片查看、刷新和下载等功能。
 
 #### ZooKeeper
 
-- ZooKeeper服务，系统中的MasterServer和WorkerServer节点都通过ZooKeeper来进行集群管理和容错。另外系统还基于ZooKeeper进行事件监听和分布式锁。 我们也曾经基于Redis实现过队列，不过我们希望EasyScheduler依赖到的组件尽量地少，所以最后还是去掉了Redis实现。
+- ZooKeeper 服务，系统中的 MasterServer 和 WorkerServer 节点都通过 ZooKeeper 来进行集群管理和容错。
+- 另外系统还基于 ZooKeeper 进行事件监听和分布式锁。 
 
 ####  Task Queue
 
-- 提供任务队列的操作，目前队列也是基于Zookeeper来实现。由于队列中存的信息较少，不必担心队列里数据过多的情况，实际上压测过百万级数据存队列，对系统稳定性和性能没影响。
+- 提供任务队列的操作，目前队列也是基于 Zookeeper 来实现。
+- 由于队列中存的信息较少，不必担心队列里数据过多的情况，实际上压测过百万级数据存队列，对系统稳定性和性能没影响。
 
 ####  Alert
 
@@ -113,7 +115,8 @@ tags:
 
 ####  API
 
-- API接口层，主要负责处理前端UI层的请求。该服务统一提供RESTful api向外部提供请求服务。 接口包括工作流的创建、定义、查询、修改、发布、下线、手工启动、停止、暂停、恢复、从该节点开始执行等等。
+- API接口层，主要负责处理前端UI层的请求。
+- 该服务统一提供 RESTful api 向外部提供请求服务。 接口包括工作流的创建、定义、查询、修改、发布、下线、手工启动、停止、暂停、恢复、从该节点开始执行等等。
 
 ####  UI
 
