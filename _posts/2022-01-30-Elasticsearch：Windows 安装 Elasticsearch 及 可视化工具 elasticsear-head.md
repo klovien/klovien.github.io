@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Elasticsearch：Windows 安装 Elasticsearch 及 可视化工具 elasticsear-head
+title:      Elasticsearch：Windows 安装 ES 及 elasticsear-head
 subtitle:   
 date:       2022-01-30
 author:     dex0423
