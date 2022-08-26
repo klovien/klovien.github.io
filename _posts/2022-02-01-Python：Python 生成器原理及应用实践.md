@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Python：Python生成器原理及应用实践
+title:      Python：Python 生成器原理及应用实践
 subtitle:   用生成器构建斐波那契数列和杨辉三角
 date:       2022-02-01
 author:     dex0423
