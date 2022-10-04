@@ -47,13 +47,13 @@ jQuery(document).ready(function($) {
 
     //primary navigation slide-in effect
     if ($(window).width() > MQL) {
-        var headerHeight = $('.navbar-custom').height(),
+        var headerHeight = $('.navbar-custom').height()，
             bannerHeight  = $('.intro-header .container').height();     
-        $(window).on('scroll', {
+        $(window).on('scroll'， {
                 previousTop: 0
-            },
+            }，
             function() {
-                var currentTop = $(window).scrollTop(),
+                var currentTop = $(window).scrollTop()，
                     $catalog = $('.side-catalog');
 
                 //check if user is scrolling up by mouse or keyborad
