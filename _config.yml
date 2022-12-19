@@ -65,8 +65,8 @@ gitalk:
   clientID: 21d2cf612ef37485c314                            #生成的clientID
   clientSecret: 596cba8c1dd2f939b39f8761c0f71da491c03c78    #生成的clientSecret
   repo: chile    #仓库名称
-  owner: chilewang0228    #github用户名
-  admin: chilewang0228
+  owner: ChileWang0228    #github用户名
+  admin: ChileWang0228
   distractionFreeMode: true #是否启用类似FB的阴影遮罩
   labels: ['21d2cf612ef37485c314']
 
