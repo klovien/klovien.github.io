@@ -68,6 +68,7 @@ gitalk:
   owner: chilewang0228    #github用户名
   admin: chilewang
   distractionFreeMode: true #是否启用类似FB的阴影遮罩
+  labels: ['21d2cf612ef37485c314']
 
 
 # 统计
