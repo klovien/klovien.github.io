@@ -2,24 +2,6 @@
 layout: page
 ---
 
-<!--
-<ul class="pager">
-  
-    <li class="next">
-        <a href="https://klovien.github.io/1-resources/" data-toggle="tooltip" data-placement="top" title="学习资料集">
-                        开始学习<br>
-        </a>
-    </li>           
-  
-    <li class="next">
-        <a href="https://klovien.github.io/2018/12/10/三叶语简介/" data-toggle="tooltip" data-placement="top" title="三叶语简介">
-                        了解更多<br>
-        </a>
-    </li>
-                    
-</ul>
--->
-
 {% for post in paginator.posts %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
