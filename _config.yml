@@ -1,10 +1,10 @@
 # Site settings
-title: 三叶草国际语
-SEOTitle: 三叶草国际语 - 让沟通更容易
+title: 阿力阿哩哩
+SEOTitle: alialili - Make learning Ai easier！
 header-img: img/post-bg-desk.jpg
 email: realchilewang@foxmail.com
-description: "中西融合, 即学即会, 从此不再辛苦背单词"
-keyword: "人工语言, 国际语, 世界语, 三叶草国际语, 三叶语"
+description: "一个方便你学习Ai的网站"
+keyword: "人工智能, 深度学习, 自然语言处理, transformer, NLP"
 url: "https://chilewang0228.github.io/chile/"          # your host, for absolute URL
 baseurl: "/chile"      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/ChileWang0228" # you code repository
@@ -64,9 +64,9 @@ gitalk:
   enable: true    #是否开启Gitalk评论
   clientID: d18b343dd9c7ca49518a                            #生成的clientID
   clientSecret: 539e88b8a7feffaddbb553b9c421dfefcbc6eced    #生成的clientSecret
-  repo: klovien.github.io    #仓库名称
-  owner: klovien    #github用户名
-  admin: klovien
+  repo: chile    #仓库名称
+  owner: chilewang    #github用户名
+  admin: chilewang
   distractionFreeMode: true #是否启用类似FB的阴影遮罩
 
 
@@ -99,13 +99,12 @@ service-worker: true
 # 友情链接，请尽量不要删除，谢谢！
 friends: [
     {
-        title: "星球国际语",
-        href: "https://globien.gitee.io"
+        title: "公众号：阿力阿哩哩",
     },{
-        title: "星球语互动社区",
-        href: "https://tieba.baidu.com/f?kw=%E6%A0%BC%E7%BD%97%E6%AF%94%E8%A8%80&fr=home"
+        title: "B站：阿力阿哩哩",
+        href: "https://space.bilibili.com/299585150"
     },{
-        title: "知乎：人造国际语",
-        href: "https://zhuanlan.zhihu.com/Artificial-International-Language"
+        title: "知乎：阿力阿哩哩",
+        href: "https://www.zhihu.com/people/bie-ying-xiang-zhi-li"
     }
 ]
