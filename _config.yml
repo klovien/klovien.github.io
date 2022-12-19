@@ -62,10 +62,10 @@ kramdown:
 # Gitalk
 gitalk:
   enable: true    #是否开启Gitalk评论
-  clientID: d18b343dd9c7ca49518a                            #生成的clientID
-  clientSecret: 539e88b8a7feffaddbb553b9c421dfefcbc6eced    #生成的clientSecret
+  clientID: 21d2cf612ef37485c314                            #生成的clientID
+  clientSecret: 596cba8c1dd2f939b39f8761c0f71da491c03c78    #生成的clientSecret
   repo: chile    #仓库名称
-  owner: chilewang    #github用户名
+  owner: chilewang0228    #github用户名
   admin: chilewang
   distractionFreeMode: true #是否启用类似FB的阴影遮罩
 
