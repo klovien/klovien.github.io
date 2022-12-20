@@ -39,7 +39,7 @@ prompt-learning本质上其实也是一种微调，但是它和之前的finetuni
 
 ![image-20220721085747933](img/image-20220721085747933.png)
 
-​																				<font color='orange'>图1</font>
+<p align="center" >图1</p>
 
 ### 2. prompt-learning的架构演变
 
@@ -57,10 +57,11 @@ prompt-learning本质上其实也是一种微调，但是它和之前的finetuni
 > 另一方面，添加到更深层的提示（例如图2中的LayerN Prompts）可以对输出预测产生更直接和重大的影响，而中间的transformer层则更少。
 
 
-
+    
 ![image-20220721090348063](img/image-20220721090348063.png)
 
-​																			   <font color='orange'>图2</font>
+<p align="center" >图2</p>
+
 
 ### 3. prompt-learning当前的缺陷
 
