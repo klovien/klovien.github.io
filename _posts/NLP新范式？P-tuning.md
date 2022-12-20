@@ -1,5 +1,4 @@
 ---
-​---
 layout:     post
 title:      NLP新范式？P-tuning
 subtitle:   P-tuning三件套：文本分类、阅读理解、命名实体识别
@@ -9,7 +8,6 @@ header-img: img/post-bg-ios9-web.jpg
 catalog: 	 true
 tags:
     - NLP
-​---
 ---
 
 
