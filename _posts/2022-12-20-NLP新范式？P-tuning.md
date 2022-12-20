@@ -37,7 +37,7 @@ prompt-learning本质上其实也是一种微调，但是它和之前的finetuni
 * 通过prompt-learning提示学习，使微调的过程与预训练的过程上下游一致，没有破坏预训练的训练方式，有效利用预训练的信息。
 * 图1的X轴是使用预训练模型的规模，Y轴是训练出来的模型性能
 
-![image-20220721085747933](C:\Users\alialili\Desktop\todo\封面文案模板_作者\image-20220721085747933.png)
+![image-20220721085747933](img\image-20220721085747933.png)
 
 ​																				<font color='orange'>图1</font>
 
@@ -58,7 +58,7 @@ prompt-learning本质上其实也是一种微调，但是它和之前的finetuni
 
 
 
-![image-20220721090348063](C:\Users\alialili\Desktop\todo\封面文案模板_作者\image-20220721090348063.png)
+![image-20220721090348063](img\image-20220721090348063.png)
 
 ​																			   <font color='orange'>图2</font>
 
