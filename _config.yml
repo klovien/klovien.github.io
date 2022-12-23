@@ -1,26 +1,26 @@
 # Site settings
-title: 三叶草国际语
-SEOTitle: 三叶草国际语 - 让沟通更容易
+title: alialili
+SEOTitle: alialili - Make learning Ai easier！
 header-img: img/post-bg-desk.jpg
-email: klovien@gmail.com
-description: "中西融合, 即学即会, 从此不再辛苦背单词"
-keyword: "人工语言, 国际语, 世界语, 三叶草国际语, 三叶语"
-url: "https://klovien.github.io"          # your host, for absolute URL
-baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/klovien/klovien.github.io.git" # you code repository
+email: realchilewang@foxmail.com
+description: "一个方便你学习Ai的网站"
+keyword: "人工智能, 深度学习, 自然语言处理, transformer, NLP"
+url: "https://chilewang0228.github.io/chile/"          # your host, for absolute URL
+baseurl: "/chile"      # for example, '/blog' if your blog hosted on 'host/blog'
+github_repo: "https://github.com/ChileWang0228" # you code repository
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "Goals determine what you're going to be!"
-sidebar-avatar: /img/about-HJ.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-about-description: "Take a shot!"
+# sidebar-avatar: "/img/cat.jpg"      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
 # SNS settings
 RSS: false
 # weibo_username:     qiubaiying
-# zhihu_username:     qiubaiying
-# github_username:    qiubaiying
+zhihu_username: bie-ying-xiang-zhi-li
+github_username: ChileWang0228
 # facebook_username:  baiying.qiu.7
 # jianshu_username:   e71990ada2fd
 # twitter_username:   qiubaiying
@@ -62,12 +62,13 @@ kramdown:
 # Gitalk
 gitalk:
   enable: true    #是否开启Gitalk评论
-  clientID: d18b343dd9c7ca49518a                            #生成的clientID
-  clientSecret: 539e88b8a7feffaddbb553b9c421dfefcbc6eced    #生成的clientSecret
-  repo: klovien.github.io    #仓库名称
-  owner: klovien    #github用户名
-  admin: klovien
+  clientID: 21d2cf612ef37485c314                            #生成的clientID
+  clientSecret: 596cba8c1dd2f939b39f8761c0f71da491c03c78    #生成的clientSecret
+  repo: chile    #仓库名称
+  owner: ChileWang0228    #github用户名
+  admin: ChileWang0228
   distractionFreeMode: true #是否启用类似FB的阴影遮罩
+  labels: ['21d2cf612ef37485c314']
 
 
 # 统计
@@ -99,13 +100,12 @@ service-worker: true
 # 友情链接，请尽量不要删除，谢谢！
 friends: [
     {
-        title: "星球国际语",
-        href: "https://globien.gitee.io"
+        title: "公众号：阿力阿哩哩",
     },{
-        title: "星球语互动社区",
-        href: "https://tieba.baidu.com/f?kw=%E6%A0%BC%E7%BD%97%E6%AF%94%E8%A8%80&fr=home"
+        title: "B站：阿力阿哩哩",
+        href: "https://space.bilibili.com/299585150"
     },{
-        title: "知乎：人造国际语",
-        href: "https://zhuanlan.zhihu.com/Artificial-International-Language"
+        title: "知乎：阿力阿哩哩",
+        href: "https://www.zhihu.com/people/bie-ying-xiang-zhi-li"
     }
 ]
