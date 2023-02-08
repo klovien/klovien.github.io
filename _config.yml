@@ -13,9 +13,7 @@ github_repo: "https://github.com/xyrct301/xyrct301.github.io.git" # you code rep
 
 # Sidebar settings   侧边栏设置
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "<!-- 本例不能添加链接内容，放在此处只是因为此接口比较方便，也许能够解决大部分的需求-->
-<script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
-"
+sidebar-about-description: "生命如同寓言，其价值不在于长短，而在于内容。"
 sidebar-avatar: /img/about-FY.webp      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
