@@ -2,7 +2,7 @@
 title: 星尘博客
 SEOTitle: 星尘博客 - 分享实用的资源
 header-img: img/post-bg-desk.jpg
-email: 2159954189@qq.com
+email: xyrct301@outlook.com
 description: "分享实用的资源"
 keyword: "blog, 资源, 分享"
 url: "https://xyrct301.github.io"          # your host, for absolute URL
@@ -59,7 +59,7 @@ kramdown:
 
 # 评论系统
 # Disqus（https://disqus.com/）
-# disqus_username: qiubaiying
+# disqus_username: xyrct301
 
 # Gitalk
 gitalk:
