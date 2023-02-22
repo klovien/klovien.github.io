@@ -1,6 +1,6 @@
 # Site settings
-title: 星尘博客
-SEOTitle: 星尘博客 - 分享实用的资源
+title: 仙科社
+SEOTitle: 仙科社 - 分享实用的资源
 header-img: img/post-bg-desk.jpg
 email: xyrct301@outlook.com
 description: "分享一般人用得到的技术与资源"
@@ -101,7 +101,7 @@ service-worker: true
 # 友情链接，请尽量不要删除，谢谢！
 friends: [
     {
-        title: "博客",
+        title: "星尘博客",
         href: "https://www.xingchenblog.xyz"
     }
 ]
