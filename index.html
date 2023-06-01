@@ -1,60 +1,160 @@
 ---
 layout: page
-description: "中西融合, 即学即会, 从此不再辛苦背单词"
+description: "Post-doc fellow at the University of Oslo"
+header-img: "img/post-bg-gesture1.jpg"
 ---
 
-<!--
-<ul class="pager">
-  
-    <li class="next">
-        <a href="https://klovien.github.io/1-resources/" data-toggle="tooltip" data-placement="top" title="学习资料集">
-                        开始学习<br>
-        </a>
-    </li>           
-  
-    <li class="next">
-        <a href="https://klovien.github.io/2018/12/10/三叶语简介/" data-toggle="tooltip" data-placement="top" title="三叶语简介">
-                        了解更多<br>
-        </a>
-    </li>
-                    
-</ul>
--->
+<!-- Language Selector -->
+<!-- <select class="sel-lang" onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
+    <option value="0" selected> 中文 Chinese </option>
+    <option value="1"> 英文 English </option>
+</select> -->
 
-{% for post in paginator.posts %}
-<div class="post-preview">
-    <a href="{{ post.url | prepend: site.baseurl }}">
-        <h2 class="post-title">
-            {{ post.title }}
-        </h2>
-        {% if post.subtitle %}
-        <h3 class="post-subtitle">
-            {{ post.subtitle }}
-        </h3>
-        {% endif %}
-        <div class="post-content-preview">
-            {{ post.content | strip_html | truncate:200 }}
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}
-    </p>
+<!-- Chinese Version -->
+<div class="zh post-container">
+ 
+<h3 id="toc_0">Hi, there!</h3>
+<font size="2",color="DimGrey"> 
+  <p style='text-indent:2em, margin: 0em 0em 0em 0em'>My name is Peng Li. I hold a Ph.D. degree from the Universitat Pompeu Fabra (Spain) . I am currently working as a post-doc fellow at the University of Oslo (Norway).</p>
+  <p style='text-indent:2em, margin: 0em 0em 0em 0em'>My research focuses on the second language pronunciation, especially the effects of hand gestures in learning L2 phonology. I also investigate L2 speech production with focuses on (a) how Chinese students produce an L2 and (b) how L2 learners produce Chinese. </p>
+  <p style='text-indent:2em, margin: 0em 0em 0em 0em'>In Chinese studies, I am interested in the prosody-pragmatic interface and lexical exchange between China and Japan. </p>
+  <p style='text-indent:2em, margin: 0em 0em 0em 0em'>Feel free to contact me when you have any questions or comments about my research, or if you are interested in collaboration!</p>
+</font>
+    
+ <h3 id="toc_0">Professional experience</h3>
+<ul class="disc"><font size="2",color="DimGrey"> 
+    <li>2022-now,  <b>Post-doctoral fellow in psycholinguistics</b> at University of Oslo (Norway).</li>
+    <li>2013-2017, <b>University Lecturer</b> at Hefei University (China).</li>
+</font>
+</ul>
+    
+ <h3 id="toc_0">Education background</h3>
+<ul class="disc"><font size="2",color="DimGrey"> 
+    <li>2018-2021, <b>Ph.D. in Translation and Language Science,</b> Universitat Pompeu Fabra (Spain) </li>
+    <li>2017-2018, <b>M. A. in Theoretical and Applied Linguistics,</b> Universitat Pompeu Fabra (Spain) </li>
+    <li>2010-2013, <b>M. A. in Japanese Language and Literature,</b> Tianjin Foreign Studies University (China) </li>
+    <li>2006-2010, <b>B. A. in Japanese,</b> Dezhou University (China) </li>
+</font></ul>
+<ul>
+</ul>
+    
+    <p><b>Download my CV <a href="https://pengli-pengli.github.io/Peng Li.pdf">here</a></b></p>
+    
+    <h3 id="toc_0">Find me on</h3>
+ <ul><font size="2",color="DimGrey">
+     <li>Twitter: <a href="https://twitter.com/PengGuillemLi">https://twitter.com/PengGuillemLi</a></li>
+     <li>Research gate: <a href="https://www.researchgate.net/profile/Peng-Li-98">https://www.researchgate.net/profile/Peng-Li-98</a></li>
+     <li>Google Scholar: <a href="https://scholar.google.com/citations?user=p0WmujEAAAAJ&hl=zh-CN">https://scholar.google.com/citations?user=p0WmujEAAAAJ&hl=zh-CN</a></li>
+     <li>Orcid: <a href="https://orcid.org/0000-0003-4488-3514">https://orcid.org/0000-0003-4488-3514</a></li>
+</font></ul>
+    
+<img src="img/praat.png"/>
+    
 </div>
-<hr>
-{% endfor %}
 
-<!-- Pager -->
-{% if paginator.total_pages > 1 %}
-<ul class="pager">
-    {% if paginator.previous_page %}
-    <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
-    </li>
-    {% endif %}
-    {% if paginator.next_page %}
-    <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
-    </li>
-    {% endif %}
-</ul>
+<!-- English Version -->
+<!-- <div class="en post-container">
+    <blockquote><p>Yet another iOS Developer. <br>
+    Yet another Life-long Student.</p></blockquote>
+    <p>Hi, I am <strong>Baiying Qiu</strong>，you can call me <strong>BY</strong>. I am an iOS software engineer and currently working in Xiamen</p>
+    <p>This is my personal blog, through making Github Pages and Jekyll.My GitHub  👉 <a href="http://github.com/qiubaiying">Github·BY</a>.</p>
+    
+    <p>I am a sports enthusiast, I like fitness, running and boxing.</p>
+    <h5>Talks</h5>
+    <ul>
+    <li><a href="https://github.com">GitHub</a></li>
+    <li><a href="http://jekyll.com.cn/">jekyll</a></li>
+    <li><a href="https://pages.github.com/">GitHub Pages</a></li>
+    <li><a href="https://qiubaiying.github.io">BY</a></li>
+    </ul>
+</div> -->
+
+<!-- Handle Language Change -->
+<script type="text/javascript">
+    // get nodes
+    var $zh = document.querySelector(".zh");
+    var $en = document.querySelector(".en");
+    var $select = document.querySelector("select");
+
+    // bind hashchange event
+    window.addEventListener('hashchange', _render);
+
+    // handle render
+    function _render(){
+        var _hash = window.location.hash;
+        // en
+        if(_hash == "#en"){
+            $select.selectedIndex = 1;
+            $en.style.display = "block";
+            $zh.style.display = "none";
+        // zh by default
+        }else{
+            // not trigger onChange, otherwise cause a loop call.
+            $select.selectedIndex = 0;
+            $zh.style.display = "block";
+            $en.style.display = "none";
+        }
+    }
+
+    // handle select change
+    function onLanChange(index){
+        if(index == 0){
+            window.location.hash = "#zh"
+        }else{
+            window.location.hash = "#en"
+        }
+    }
+
+    // init
+    _render();
+</script>
+
+
+<!-- Gitalk 评论 start  -->
+{% if site.gitalk.enable %}
+<!-- Gitalk link  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+    <script type="text/javascript">
+    var gitalk = new Gitalk({
+    clientID: '{{site.gitalk.clientID}}',
+    clientSecret: '{{site.gitalk.clientSecret}}',
+    repo: '{{site.gitalk.repo}}',
+    owner: '{{site.gitalk.owner}}',
+    admin: ['{{site.gitalk.admin}}'],
+    distractionFreeMode: {{site.gitalk.distractionFreeMode}},
+    id: 'resources',
+    });
+    gitalk.render('gitalk-container');
+</script>
 {% endif %}
+<!-- Gitalk end -->
+
+ <!-- disqus 评论框 start  -->
+{% if site.disqus.enable %}
+
+<div class="comment">
+    <div id="disqus_thread" class="disqus-thread">
+    </div>
+</div>
+<!-- disqus 评论框 end -->
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "{{site.disqus.username}}";
+    var disqus_identifier = "{{site.disqus.username}}/{{page.url}}";
+    var disqus_url = "{{site.url}}{{page.url}}";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+{% endif %}
+
+
