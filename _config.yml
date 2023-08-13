@@ -99,6 +99,6 @@ service-worker: true
 friends: [
     {
         title: "winterfrost",
-        href: "https://cnblogs.cn/winterfrost"
+        href: "https://cnblogs.com/winterfrost"
     }
 ]
