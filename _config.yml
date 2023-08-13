@@ -1,10 +1,10 @@
 # Site settings
-title: Alicia's blog
-SEOTitle: Alicia's blog
+title: Frank's blog
+SEOTitle: Frank's blog
 header-img: img/post-bg-desk.jpg
 email: yxu0528@foxmail.comn
-description: "绳锯木断，水滴石穿"
-url: "https://alicia.github.io"          # your host, for absolute URL
+description: "「同じ世界に、立っていたんだ」"
+url: "https://frank0528.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/frank0528/frank0528.github.io.git" # you code repository
 
