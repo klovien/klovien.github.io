@@ -1,13 +1,13 @@
 # Site settings
 title: Hi！Ajiao
-SEOTitle: Ajiao的世界
+SEOTitle: Hi！Ajiao
 header-img: img/post-bg-desk.jpg
 email: klovien@gmail.com
 description: "Ajiao的世界"
 keyword: "个人网站, 博客, 碎碎念, 记录生活"
-url: "https://klovien.github.io"          # your host, for absolute URL
+url: "https://iajiao.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/klovien/klovien.github.io.git" # you code repository
+github_repo: "https://github.com/iajiao/iajiao.github.io.git" # you code repository
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
