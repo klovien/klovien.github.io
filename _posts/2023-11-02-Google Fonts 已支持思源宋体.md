@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:     Google Fonts 已支持思源宋体！
-subtitle:   字体之类，大爱宋体
+title:     Google Fonts 支持思源宋体
+subtitle:   字体之美，大爱宋体
 date:       2023-11-02
 author:     ajiao
 header-img: img/home-bg.jpg
