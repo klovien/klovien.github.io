@@ -95,5 +95,5 @@ font:
 
 ## 链接
 
-[衬线体的进化：从纸面到屏幕 | 方正字库](https://zhuanlan.zhihu.com/p/49470735)
+[衬线体的进化：从纸面到屏幕](https://zhuanlan.zhihu.com/p/49470735)
 
