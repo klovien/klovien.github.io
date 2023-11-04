@@ -62,6 +62,42 @@ header-img: "img/post-bg-rwd.jpg"
     
 </div>
 </div></div>
+
+   <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                {% if site.featured-tags %}
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/2-tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				{% for tag in site.tags %}
+                            {% if tag[1].size > {{site.featured-condition-size}} %}
+                				<a href="/2-tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
+                                    {{ tag[0] }}
+                                </a>
+                            {% endif %}
+        				{% endfor %}
+        			</div>
+                </section>
+                {% endif %}
+
+                <!-- Friends Blog -->
+                {% if site.friends %}
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    {% for friend in site.friends %}
+                        <li><a href="{{friend.href}}">{{friend.title}}</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+	
     <!-- Sidebar Container -->
             <div class="
                 col-lg-8 col-lg-offset-2
