@@ -17,9 +17,9 @@ sidebar-avatar: /img/about-Ajiao.jpg      # use absolute URL, seeing it's used i
 
 
 # SNS settings
-RSS: true
-weibo_username:     用户7472924510
-zhihu_username:     宁远骄
+RSS: false
+weibo_username:     7472924510
+zhihu_username:     jiaojiaozi
 github_username:    iajiao
 twitter_username:   ajiao
 # facebook_username:  baiying.qiu.7
