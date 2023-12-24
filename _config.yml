@@ -12,7 +12,7 @@ github_repo: "https://github.com/helloo2020/helloo2020.github.io.git" # you code
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "Goals determine what you're going to be!"
-sidebar-avatar: /img/about-HJ.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/myavatar.JPG      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
