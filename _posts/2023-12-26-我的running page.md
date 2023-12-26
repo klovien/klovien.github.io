@@ -10,9 +10,8 @@ tags: running                            #标签
 ---
 
 ## 我的跑步page 
->经过2天的努力，我的running page终于上线了。
->
->https://helloo2020.github.io/Running-Tim/
+>经过2天的努力，我的[running page](https://helloo2020.github.io/Running-Tim/)终于上线了。
+
 >
 >大学学过C语言，但是没怎么听课，今天就后悔了，因为是真的什么都不会，需要google查询
 >
@@ -29,7 +28,9 @@ tags: running                            #标签
 >最好，很开心在2023年末，靠自己完成了一直以来的心愿，keep running，是会坚持一生的爱好。
 >
 >附图
->![running](.\images\running1.png)
->wind![running2](.\images\running2.jpg)
->![running](.\images\running3.jpg)
+![running](/images/running1.png)
+![running2](/images/running2.jpg)
+![running](/images/running3.jpg)
+
+
 
