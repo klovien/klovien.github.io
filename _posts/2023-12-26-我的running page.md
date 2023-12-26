@@ -27,3 +27,9 @@ tags: running                            #标签
 >这期间，十分感谢yihong的耐心指导，针对我的小白问题，大佬非常耐心，帮我提供意见。
 >
 >最好，很开心在2023年末，靠自己完成了一直以来的心愿，keep running，是会坚持一生的爱好。
+>
+>附图
+>![running](.\images\running1.png)
+>wind![running2](.\images\running2.jpg)
+>![running](.\images\running3.jpg)
+
