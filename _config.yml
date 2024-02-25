@@ -12,7 +12,7 @@ github_repo: "https://github.com/zhanghanzhe666/zhanghanzhe666.github.io" # you 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "精通python,git,nodejs操作，c++和c正在学习，喜欢vscode"
-sidebar-avatar:"img/someone.jpg"      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar:"/img/someone.jpg"      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
