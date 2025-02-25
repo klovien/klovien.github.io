@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华水食堂窗口抽选系统—江淮</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --background-color: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--background-color);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 2rem 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .funny-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin: 1rem 0 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin: 1rem 0;
+            padding: 1.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        .result-card {
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .window-name {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin: 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .window-info {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-success {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .footer {
+            margin-top: auto;
+            color: #666;
+            font-size: 0.9rem;
+            padding: 1rem 0 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .version-info {
+            width: 100%; /* 确保居中范围覆盖整个底部 */
+            text-align: center; /* 水平居中 */
+            color: #999; /* 浅灰色 */
+            font-size: 0.8em; /* 小字号（相当于父元素字体的80%） */
+            margin-top: auto; /* 自动顶到最底部 */
+            line-height: 1.4; /* 调整行高优化换行显示 */
+        }
+
+        .footer-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 24px;
+            background: rgba(74, 144, 226, 0.1);
+            transition: all 0.3s ease;
+            gap: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            position: relative;
+        }
+
+        .footer-link:hover {
+            background: rgba(74, 144, 226, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.15);
+        }
+
+        .link-icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            transition: transform 0.2s ease;
+        }
+
+        .footer-link:hover .link-icon {
+            transform: scale(1.15);
+        }
+
+        .footer-link:not(:last-child)::after {
+            content: "";
+            width: 4px;
+            height: 4px;
+            background: rgba(108, 117, 125, 0.4);
+            border-radius: 50%;
+            margin-left: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="funny-title">今天吃什么？</h1>
+        
+        <div class="card result-card">
+            <div id="windowResult">
+                <div class="window-name">欢迎使用</div>
+                <div class="window-info">点击下方按钮开始抽选</div>
+            </div>
+            <div id="dishResult"></div>
+        </div>
+
+        <div class="button-grid">
+            <button class="btn btn-primary" onclick="randomDraw()">🎲 随机窗口</button>
+            <button class="btn btn-primary" onclick="drawDish()">🔢 菜品号码</button>
+            <button class="btn btn-success" onclick="noodleWindow()">🍜 面食窗口</button>
+            <button class="btn btn-success" onclick="riceWindow()">🍚 米饭窗口</button>
+        </div>
+
+        <div class="footer">
+            <a href="#" class="footer-link">
+                <svg class="link-icon" viewBox="0 0 24 24"><path d="M13.05 9.79L10 7.5a1 1 0 1 1 1-1.732l3.05 2.292a2.5 2.5 0 0 1 0 4.166L11 15.964a1 1 0 1 1-1-1.732l3.05-2.293a.5.5 0 0 0 0-.833zM7 6a1 1 0 0 1 1 1v10a1 1 0 1 1-2 0V7a1 1 0 0 1 1-1zm10 0a1 1 0 0 1 1 1v10a1 1 0 1 1-2 0V7a1 1 0 0 1 1-1z"/></svg>
+                友链空间
+            </a>
+            <a href="https://xoyondo.com/mb/y470netmitdr69g" class="footer-link">
+                <svg class="link-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 12H7c-.55 0-1-.45-1-1s.45-1 1-1h10c.55 0 1 .45 1 1s-.45 1-1 1zm0-3H7c-.55 0-1-.45-1-1s.45-1 1-1h10c.55 0 1 .45 1 1s-.45 1-1 1zm0-3H7c-.55 0-1-.45-1-1s.45-1 1-1h10c.55 0 1 .45 1 1s-.45 1-1 1z"/></svg>
+                留言板
+            </a>
+            <a href="#" class="footer-link" id="feedback">
+                <svg class="link-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg>
+                问题反馈
+            </a>
+            <a href="#" class="footer-link">
+                <svg class="link-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                作者手记
+            </a>
+        </div>
+
+        <div class="version-info">
+            版本号1.3<br>
+            by 星雨若尘
+      </div>
+    </div>
+
+
+
+    <script>
+        // 邮箱复制功能
+        document.getElementById('feedback').addEventListener('click', function(e) {
+            e.preventDefault();
+            const email = 'xyrct301@outlook.com';
+            
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(email).then(() => {
+                    alert('邮箱已复制到剪贴板: ' + email);
+                }).catch(() => {
+                    showCopyFallback(email);
+                });
+            } else {
+                showCopyFallback(email);
+            }
+        });
+
+        function showCopyFallback(email) {
+            const textarea = document.createElement('textarea');
+            textarea.value = email;
+            textarea.style.position = 'fixed';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy') 
+                    ? alert('邮箱已复制: ' + email)
+                    : prompt('请手动复制邮箱地址:', email);
+            } catch {
+                prompt('请手动复制邮箱地址:', email);
+            }
+            document.body.removeChild(textarea);
+        }
+
+        // 每日随机文字颜色
+        function setRandomTextColor() {
+            const hue = Math.floor(Math.random() * 360);
+            const saturation = 70 + Math.random() * 20;
+            const lightness = 40 + Math.random() * 20;
+            document.querySelector('.funny-title').style.color = 
+                `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+        }
+
+        // 每日凌晨强制刷新
+        function setupDailyRefresh() {
+            const now = new Date();
+            const nextMidnight = new Date(now);
+            nextMidnight.setHours(24, 0, 0, 0);
+
+            setTimeout(() => {
+                localStorage.removeItem('lastRefreshDate');
+                location.reload();
+            }, nextMidnight - now);
+
+            const today = new Date().toDateString();
+            if (localStorage.getItem('lastRefreshDate') !== today) {
+                localStorage.setItem('lastRefreshDate', today);
+                location.reload();
+            }
+        }
+
+        // 窗口基础数据
+        const windowData = {
+            1: {
+                1: '油饼母鸡汤', 2: '河南大包', 3: '潮汕猪肘饭', 4: '韩式滑蛋饭',
+                5: '天下好面/蹦蹦鸡米饭', 6: '辉夫人猪肚鸡', 7: '粗粮渔粉', 8: '川锦汇',
+                9: '掉渣饼', 10: '广式卤味饭', 11: '馋嘴鱼', 12: '热干面/米线',
+                13: '黄焖鸡', 14: '好粥道', 15: '麦多馅饼', 16: '麻辣烫',
+                17: '自选餐', 18: '重庆小面', 19: '花小甲老碗面', 20: '鸡蛋灌饼/山东杂粮煎饼',
+                21: '秘制铁板炒饭/面', 22: '暖心豆浆', 23: '面世家'
+            },
+            2: {
+                1: '学长自选菜', 2: '小鱼馄饨', 3: '懒人焖饭\n淮南牛肉汤', 
+                4: '倔酱面\n脆香鸡扒饭', 5: '煲仔饭', 6: '蹦蹦鸡米饭',
+                7: '辣么哆炸串', 8: '炒鸡拌饭', 9: '椒麻鸡汤/粉/面', 
+                10: '自选水饺', 11: '天津捞面', 12: '盖浇饭\n套餐饭',
+                13: '铁锅炖', 14: '鸭腿饭', 15: '汉堡', 16: '牛羊肉汤',
+                17: '茶香鸡', 18: '烤肉拌饭', 19: '脆皮鸡拌饭',
+                20: '王小胖自助小火锅', 21: '螺蛳粉/螺当铺', 
+                22: '石磨肠粉/三鲜米线', 23: '麻辣香锅', 24: '烤盘饭'
+            },
+            3: {
+                1: 'A', 2: 'B', 3: 'C', 4: 'D'
+            }
+        };
+
+        // 手动维护的窗口分类
+const riceWindows = [
+    // 一楼米饭类
+    [1, 3],  // 潮汕猪肘饭
+    [1, 4],  // 韩式滑蛋饭
+    [1, 6], // 辉夫人猪肚鸡
+    [1, 10], // 广式卤味饭
+    [1, 11], // 馋嘴鱼
+    [1, 17], // 自选餐
+    [1, 5],  // 天下好面/蹦蹦鸡米饭（双分类）
+    [1, 13], // 黄焖鸡
+    [1, 21], // 秘制铁板炒饭/面（双分类）
+    // 二楼米饭类
+    [2, 1],  // 学长自选菜
+    [2, 3],  // 懒人焖饭\n淮南牛肉汤（双分类）
+    [2, 4],  // 倔酱面\n脆香鸡扒饭（双分类）
+    [2, 5],  // 煲仔饭
+    [2, 6],  // 蹦蹦鸡米饭
+    [2, 12], // 盖浇饭\n套餐饭
+    [2, 14], // 鸭腿饭
+    [2, 18], // 烤肉拌饭
+    [2, 19], // 脆皮鸡拌饭
+    [2, 24], // 烤盘饭
+    [2, 8],  // 炒鸡拌饭
+    [2, 17], // 茶香鸡
+    [2, 23], // 麻辣香锅
+];
+
+const noodleWindows = [
+    // 一层面食类
+    [1, 7],  // 粗粮渔粉
+    [1, 12], // 热干面/米线
+    [1, 18], // 重庆小面
+    [1, 19], // 花小甲老碗面
+    [1, 23], // 面世家
+    [1, 5],  // 天下好面/蹦蹦鸡米饭（双分类）
+    [1, 16], // 麻辣烫
+    [1, 21], // 秘制铁板炒饭/面（双分类）
+    // 二层面食类
+    [2, 2],  // 小鱼馄饨
+    [2, 4],  // 倔酱面\n脆香鸡扒饭（双分类）
+    [2, 9],  // 椒麻鸡汤/粉/面
+    [2, 16], // 牛羊肉汤
+    [2, 21], // 螺蛳粉/螺当铺
+    [2, 11], // 天津捞面
+];
+        // 生成全窗口列表
+        const allWindows = (() => {
+            const windows = [];
+            for (const floor in windowData) {
+                for (const num in windowData[floor]) {
+                    windows.push({
+                        floor: parseInt(floor),
+                        num: parseInt(num)
+                    });
+                }
+            }
+            return windows;
+        })();
+
+        // 核心功能函数
+        function getWindowName(floor, num) {
+            return windowData[floor][num].replace(/\n/g, '<br>');
+        }
+
+        function randomDraw() {
+            const { floor, num } = allWindows[Math.floor(Math.random() * allWindows.length)];
+            updateResultDisplay(
+                getWindowName(floor, num),
+                `${floor}楼${num}号窗口`,
+                '随机抽选结果'
+            );
+        }
+
+        function drawDish() {
+            const dish = Math.floor(Math.random() * 5) + 1;
+            document.getElementById('dishResult').innerHTML = 
+                `<div class="window-info">推荐菜品号：${dish}号</div>`;
+        }
+
+        function noodleWindow() {
+            const [floor, num] = noodleWindows[Math.floor(Math.random() * noodleWindows.length)];
+            updateResultDisplay(
+                getWindowName(floor, num),
+                `${floor}楼${num}号窗口`,
+                '🍜 推荐面食窗口'
+            );
+        }
+
+        function riceWindow() {
+            const [floor, num] = riceWindows[Math.floor(Math.random() * riceWindows.length)];
+            updateResultDisplay(
+                getWindowName(floor, num),
+                `${floor}楼${num}号窗口`,
+                '🍚 推荐米饭窗口'
+            );
+        }
+
+        function updateResultDisplay(name, info, title) {
+            const resultHTML = `
+                ${title ? `<div class="window-info">${title}</div>` : ''}
+                <div class="window-name">${name}</div>
+                <div class="window-info">${info}</div>
+            `;
+            document.getElementById('windowResult').innerHTML = resultHTML;
+            document.getElementById('dishResult').innerHTML = '';
+        }
+
+        // 初始化
+        window.addEventListener('DOMContentLoaded', () => {
+            setRandomTextColor();
+            setupDailyRefresh();
+        });
+    </script>
+</body>
+</html>
