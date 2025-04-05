@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html >
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>Happy Birthday to You 林生日快乐</title>
+    <link href="https://fonts.font.im/css?family=Anton" rel="stylesheet">
+    
+
+    <!-- 引用谷歌英语字体 -->
+    <script type="text/javascript">
+        var time_now_server,time_now_client,time_end,time_server_client;
+         time_end=new Date("2023/10/23 00:00:0");//生日填这里，此js为倒计时
+        time_end=time_end.getTime();
+         time_now_server=new Date();
+        time_now_server=time_now_server.getTime();
+        setTimeout("show_time()",1000);
+         function show_time()
+        {
+            var timer = document.getElementById("timer");
+            var hourid = document.getElementById("hour");
+            if(!timer){
+                return ;
+            }
+            timer.innerHTML =time_now_server;
+             var time_now,time_distance,str_time;
+            var int_day,int_hour,int_minute,int_second;
+            var time_now=new Date();
+            time_now=time_now.getTime();
+            time_distance=time_end-time_now;
+            if(time_distance>0)
+            {
+                int_day=Math.floor(time_distance/86400000)
+                time_distance-=int_day*86400000;
+                int_hour=Math.floor(time_distance/3600000)
+                time_distance-=int_hour*3600000;
+                int_minute=Math.floor(time_distance/60000)
+                time_distance-=int_minute*60000;
+                int_second=Math.floor(time_distance/1000)
+                 if(int_hour < 10)
+                    int_hour="0"+int_hour;
+                if(int_minute<10)
+                    int_minute="0"+int_minute;
+                if(int_second<10)
+                    int_second="0"+int_second;
+                str_time=int_day+"天"+int_hour+"小时"+int_minute+"分钟"+int_second+"秒";
+                timer.innerHTML=str_time;
+                setTimeout("show_time()",1000);
+            }
+            else
+            {
+                timer.innerHTML =0;
+            }
+        }
+    </script>
+ 
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+        }
+ 
+        body{
+            position: relative;
+            background-color: pink;/* 整体背景色调整 */
+        }
+ 
+        /* 时间盒子样式，位置采用相对定位 */
+        .time-box{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -290px;
+            margin-top: 450px;
+            width: 600px;
+            height: 600px;
+            font-size:50px;
+            line-height: 600px;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            text-shadow:  -3px -3px 3px rgb(170, 71, 124),3px 3px 3px rgb(248, 218, 223);
+            border-radius: 50%;
+            box-shadow: 6px 6px 3px rgb(170, 71, 124) inset,-6px -6px 3px rgb(248, 218, 223) inset;
+        }
+        
+        strong{
+            position: absolute;
+            left: 50%;
+            top: 80%;
+            margin-left: -375px;
+            margin-top: 1250px;
+            font-size: 40px;
+            color: rgb(206, 147, 147);
+            text-align: center;
+            width: 800px;
+            height: 200px;
+            font-style: normal;
+            font-family: 'Anton', sans-serif;
+        }
+ 
+ 
+        span{
+            position: absolute;
+            left: 50%;
+            top: 80%;
+            margin-left: -270px;
+            margin-top: 1400px;
+            font-size: 40px;
+            color: rgb(206, 147, 147);
+            line-height: 60px;
+            text-align: center;
+            width: 550px;
+            height: 200px;
+        }
+ 
+        i{
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            margin-left: -275px;
+            text-align: center;
+            font-size: 40px;
+            color: rgb(206, 147, 147);
+            line-height: 500px;
+        }
+ 
+        /* 时间盒子外的圈圈样式，圈圈内图片引用的新浪网站内的图片，可自定义网络图片填充 */
+                .qq{
+                    position: absolute;
+                    left: 48%;
+                    top:0;
+                    margin-top:  720px;
+                    font-size: 40px;
+                    border: 1px dashed gray;
+                    background-color: #fff;
+                    width: 60px;/* 小圆圈尺寸 */
+                    height: 60px;
+                    overflow: hidden;
+                    border-radius: 50%;
+                    animation: music 15s;     /* 旋转一圈所用时间 */
+                    -webkit-animation: music 15s linear infinite;
+                    background: url(https://docs.qq.com/doc/DZUFmcUVXTUdCTGx6) no-repeat;/* 网络图片引用 */
+                    background-size: cover;
+                    z-index: 999;
+                }
+                
+                @keyframes music{
+                    from{transform: rotate(0deg) translate(330px) rotate(0deg);}
+                    to{transform: rotate(360deg) translate(330px) rotate(0deg);}
+                }
+ 
+                @-webkit-keyframes music{
+                    from{transform: rotate(0deg) translate(330px) rotate(0deg);}
+                    to{transform: rotate(360deg) translate(330px) rotate(0deg);}
+                }
+ 
+        /* 下方音乐采用固定定位，音乐引用网易云音乐，自定义可以使用外链复制音乐地址进iframe里就可以了，音乐为自动播放 */
+        .music-box2{
+            position: fixed;
+            left: 0;
+            bottom: 30px;
+            width: 100%;
+            height: 66px;
+ 
+        }
+ 
+        iframe{
+            height: 120px;
+            width: 100%;
+        }
+ 
+ 
+    </style>
+</head>
+ 
+<body>
+    <i>距离林生日2023.10.23倒计时</i>
+    <div id="timer" class="time-box"></div>
+    <strong>Happy birthday To You!!!</strong>
+    <span>你藏在满天星光里<br/>承认我也为你着迷</span>
+    <div class="qq"></div>
+    <div class="music-box2">
+       <iframe src="https://music.163.com/outchain/player?type=2&id=566436186&auto=1&height=66" frameborder="0"></iframe>
+    </div>
+ 
+</body>
+</html>
