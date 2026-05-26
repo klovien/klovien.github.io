@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: default
 title: "About"
-description: "为了让更多中国人能融入国际语运动而作"
-header-img: "img/post-bg-rwd.jpg"
+description: "Hi!Ajiao"
+header-img: "img/post-bg-debug.png"
 ---
 
 <!-- Language Selector -->
@@ -11,28 +11,57 @@ header-img: "img/post-bg-rwd.jpg"
     <option value="1"> 英文 English </option>
 </select> -->
 
+<!-- Page Header -->
+<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading" id="tag-heading">
+                    <h1>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
+                    <span class="subheading">{{ page.description }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
 <!-- Chinese Version -->
 <div class="zh post-container">
 
     <!--copied from markdown -->
-    <blockquote><p>冰冻三尺 非一日之寒<br>
-    积土成山 非斯须之作</p></blockquote>
+<h1> 将进酒 </h1>
+<h3> 唐·李白 </h3>
 
-    <p>Hi，我是<strong>Dr. Henri Jambo</strong>，现旅居世界上著名的多元文化城市——蒙特利尔。在魁北克，我们不仅感受到英语、法语的强烈冲突，甚至也能感受到阿拉伯语、中文等多种语言的相互碰撞。</p>
+  <p>君不见， 黄河之水天上来， 奔流到海不复回。</p>
 
-    <p>同时我深知中国也许是世界上英语学习人均投入最多的国家，但中国人学好英语的不多，社会资源浪费很大。</p>
-    
-    <p>为了让全世界都有一门共同的、简单的外语可以学习，降低外语学习的成本并让大家相互沟通更容易，我设计了这门中西融合的人造国际语。</p>
-    
-    <p>她是对世界语和其他国际语的传承，也希望她能超越世界语。</p>
-    
-    <p>希望更多的人加入到这个社群中，共同成长。这是新的希望！</p>
+  <p>君不见， 高堂明镜悲白发， 朝如青丝暮成雪。</p>
 
-    <p>本网站为三叶语官方网站。您也可关注知乎专栏<a href="https://zhuanlan.zhihu.com/Artificial-International-Language">👉人造国际语</a>。如果您有什么建议，欢迎提出探讨~</p>
+  <p>人生得意须尽欢， 莫使金樽空对月。</p>
 
-    <p></p>
+  <p>天生我材必有用， 千金散尽还复来。</p>
+
+  <p>烹羊宰牛且为乐， 会须一饮三百杯。</p>
+
+  <p>岑夫子， 丹丘生， 将进酒， 杯莫停。</p>
+
+  <p>与君歌一曲， 请君为我倾耳听。</p>
+
+  <p>钟鼓馔玉不足贵， 但愿长醉不愿醒。</p>
+
+  <p>古来圣贤皆寂寞， 惟有饮者留其名。</p>
+
+  <p>陈王昔时宴平乐， 斗酒十千恣欢谑。</p>
+
+  <p>主人何为言少钱， 径须沽取对君酌。</p>
+
+  <p>五花马， 千金裘， 呼儿将出换美酒， 与尔同销万古愁。</p>
     
 </div>
+</div></div></div>
 
 <!-- English Version -->
 <!-- <div class="en post-container">
@@ -105,7 +134,7 @@ header-img: "img/post-bg-rwd.jpg"
 <div id="gitalk-container"></div>
     <script type="text/javascript">
     var gitalk = new Gitalk({
-    clientID: '{{site.gitalk.clientID}}',
+clientID: '{{site.gitalk.clientID}}',
     clientSecret: '{{site.gitalk.clientSecret}}',
     repo: '{{site.gitalk.repo}}',
     owner: '{{site.gitalk.owner}}',
