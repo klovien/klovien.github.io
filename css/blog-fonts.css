@@ -1,8 +1,11 @@
 @font-face {
  font-family: 'CaviarDreams';
- src: url('/fonts/CaviarDreams.woff2') format('woff2'),
- url('/fonts/CaviarDreams.woff') format('woff'),
- url('/fonts/CaviarDreams.ttf') format('truetype');
+ src: local('Caviar Dreams'),
+      local('CaviarDreams-Regular'),
+      local('CaviarDreams Regular'),
+      url('/fonts/CaviarDreams.woff2') format('woff2'),
+      url('/fonts/CaviarDreams.woff') format('woff'),
+      url('/fonts/CaviarDreams.ttf') format('truetype');
  font-weight: normal;
  font-style: normal;
  font-display: swap;
@@ -10,9 +13,13 @@
 }
 @font-face {
  font-family: 'KaitiLocal';
- src: url('/fonts/Kaiti.woff2') format('woff2'),
- url('/fonts/Kaiti.woff') format('woff'),
- url('/fonts/Kaiti.ttf') format('truetype');
+ src: local('Kaiti'),
+      local('KaiTi'),
+      local('STKaiti'),
+      local('SimKai'),
+      url('/fonts/Kaiti.woff2') format('woff2'),
+      url('/fonts/Kaiti.woff') format('woff'),
+      url('/fonts/Kaiti.ttf') format('truetype');
  font-weight: normal;
  font-style: normal;
  font-display: swap;
@@ -30,3 +37,4 @@
 .post-container h6 {
  font-family: 'CaviarDreams', 'KaitiLocal', -apple-system, BlinkMacSystemFont,
  "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
